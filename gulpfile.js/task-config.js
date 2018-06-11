@@ -12,6 +12,15 @@ module.exports = {
       // files paths are relative to
       // javascripts.dest in path-config.json
       app: ["./app.js"]
+    },
+    plugins: function (webpack) {
+      return [
+        new webpack.ProvidePlugin({
+          $: 'jquery',
+          jQuery: 'jquery',
+          'window.jQuery': 'jquery',
+        })
+      ];
     }
   },
 
