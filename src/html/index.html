@@ -1,11 +1,46 @@
-{#
-  Nunjucks Templating!
-  Homepage: https://mozilla.github.io/nunjucks/
-  Docs: https://mozilla.github.io/nunjucks/api.html
-#}
-
 {% extends 'layouts/application.html' %}
 
+{% block title %}Home{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="stylesheets/modules/index.css">
+{% endblock %}
+
 {% block content %}
-  <h1 data-module="example">{{ message }}</h1>
+  <div class="home-wrapper" data-module="home">
+    <header>
+      <div class="inner">
+        <div class="logo"></div>
+        <div class="nav">
+          <div class="nav-item">
+            <span class="nav-item-txt">Home</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="title">
+        <div class="container">
+          <h3 class="text">PROJECT</h3>
+          <span class="line"></span>
+        </div>
+      </div>
+      <div class="main">
+        <div class="projects container">
+          <table id="table" class="table"></table>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="inner container">
+        <span class="f-text">You haven’t logged in yet</span><button class="f-login-btn">Log in</button>
+      </div>
+    </footer>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  <script src="./javascripts/index.js"></script>
 {% endblock %}

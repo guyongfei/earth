@@ -1,0 +1,95 @@
+@import "bootstrap-table/dist/bootstrap-table";
+@import "../base/index.scss";
+
+header {
+  line-height: 60px;
+  background: $color-white;
+  .inner {
+    max-width: 1326px;
+    margin: 0 auto;
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bootstrap-table {
+  .table:not(.table-condensed) {
+    border: 0;
+  }
+  .table>thead>tr>th {
+    border-left: 0;
+    border-bottom-color: $color-deep-gray;
+  }
+  .fixed-table-container {
+    border: 0;
+  }
+  .fixed-table-body{
+    thead {
+      th {
+        .th-inner {
+          font-size: 14px;
+          line-height: 38px;
+        }
+      }
+    }
+  }
+}
+
+.home-wrapper {
+  section {
+    padding-bottom: 50px;
+    .title {
+      padding: 18px 0;
+      font-size: 0;
+      background: #f0f0f0;
+      .text {
+        font-size: 20px;
+        line-height: 1;
+      }
+      .line {
+        margin-top: 10px;
+        display: inline-block;
+        width: 30px;
+        height: 3px;
+        background-color: $color-orange;
+      }
+    }
+
+    .main {
+      min-height: 400px;
+      background: $color-white;
+    }
+  }
+
+  footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    line-height: 50px;
+    font-size: 0;
+    color: $color-white;
+    background: rgba(0, 0, 0, .6);
+    text-align: center;
+    .f-text {
+      display: inline-block;
+      font-size: 14px;
+    }
+    .f-login-btn {
+      margin-left: 22px;
+      display: inline-block;
+      width: 80px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: $color-white;
+      background: $color-orange;
+      @include border-radius(100px);
+      cursor: pointer;
+    }
+  }
+}
