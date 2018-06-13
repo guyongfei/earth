@@ -24,7 +24,7 @@
 }
 
 //字体大小，颜色
-@mixin sc($size, $color){
+@mixin fc($size, $color){
 	font-size: $size;
 	color: $color;
 }

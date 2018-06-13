@@ -1,0 +1,10 @@
+@import "../base/index.scss";
+
+header {
+  line-height: 60px;
+  background: $color-white;
+  .inner {
+    max-width: 1326px;
+    margin: 0 auto;
+  }
+}

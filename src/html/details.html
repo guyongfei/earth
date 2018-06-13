@@ -1,0 +1,145 @@
+{% extends 'layouts/application.html' %}
+
+{% block title %}详情页{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="stylesheets/modules/details.css">
+{% endblock %}
+
+{% block content %}
+  <div class="details-wrapper" data-module="details">
+    <header>
+      <div class="inner">
+        <div class="logo"></div>
+        <div class="nav">
+          <div class="nav-item">
+            <span class="nav-item-txt">Home</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="main">
+        <div class="container">
+          <div class="box-head">
+            <h3 class="name">PROJECT NAME</h3>
+            <label for="label" class="label">已达到软顶</label>
+            <div class="countdown">
+              <div class="time">
+                <p class="top">hours</p>
+                <p class="bottom">10</p>
+              </div>
+              <span class="colon">:</span>
+              <div class="time">
+                <p class="top">minutes</p>
+                <p class="bottom">20</p>
+              </div>
+              <span class="colon">:</span>
+              <div class="time">
+                <p class="top">second</p>
+                <p class="bottom">38</p>
+              </div>
+            </div>
+            <p class="color-gray">价格将会在倒计时之内上涨</p>
+            <p>目前代笔的价格每个SLT 0.1美金</p>
+            <button>马上获得代币</button>
+            <p>已卖代币数：192131344</p>
+          </div>
+          <div class="box-foot">
+            <div class="row">
+              <div class="area area-left">
+                <div class="project-head">
+                  <div class="project-logo">
+                    <img src="https://app.mytoken.io/static/media/logo_small.0d7e46b2.png" alt="logo">
+                  </div>
+                  <div class="project-details">
+                    <h3>
+                      <span class="project-name">KKKJD</span>
+                      <span class="project-status">coming</span>
+                    </h3>
+                    <p class="project-infos">详细说明详细说明详细说明详细说明详细说明详细说明</p>
+                  </div>
+                </div>
+                <div class="project-body">
+                  <div class="row">
+                    <a class="col-md-6" href="#">
+                      <img src="" alt="">
+                      <span>website</span>
+                    </a>
+                    <a class="col-md-6" href="#">
+                      <img src="" alt="">
+                      <span>white bool</span>
+                    </a>
+                    <a class="col-md-6" href="#">
+                      <img src="" alt="">
+                      <span>twitter</span>
+                    </a>
+                    <a class="col-md-6" href="#">
+                      <img src="" alt="">
+                      <span>facebook</span>
+                    </a>
+                  </div>
+                  <div class="row">
+                    <a class="col-md-6" href="#">
+                      <img src="" alt="">
+                      <span>telegram</span>
+                    </a>
+                    <a class="col-md-6" href="#">
+                      <img src="" alt="">
+                      <span>reddit</span>
+                    </a>
+                    <a class="col-md-6" href="#">
+                      <img src="" alt="">
+                      <span>biyong</span>
+                    </a>
+                    <a class="col-md-6" href="#">
+                      <img src="" alt="">
+                      <span>github</span>
+                    </a>
+                  </div>
+                </div>
+                <div class="project-foot">
+                  <div class="row">
+                    <div class="col-md-8">
+                      <p class="top">Name</p>
+                      <p class="bottom">LKE</p>
+                    </div>
+                    <div class="col-md-8">
+                      <p class="top">Start time</p>
+                      <p class="bottom">
+                        <i class="dot bg-color-green"></i><span class="start-time">2016-09-13</span>
+                      </p>
+                    </div>
+                    <div class="col-md-8">
+                      <p class="top">End time</p>
+                      <p class="bottom">
+                        <i class="dot bg-color-orange"></i><span class="end-time">2016-09-13</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="area area-right">
+                <h3 class="desc-title">Description</h3>
+                <p class="desc-field">
+                  你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="inner container">
+        <span class="f-text">You haven’t logged in yet</span><button class="f-login-btn">Log in</button>
+      </div>
+    </footer>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  <script src="./javascripts/details.js"></script>
+{% endblock %}
