@@ -1,0 +1,89 @@
+@import "../base/index.scss";
+
+.form-fixed-layer {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .6);
+  z-index: 9999;
+  opacity: 0;
+
+  .form-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    background: $color-white;
+    text-align: center;
+    cursor: pointer;
+    .ui-close {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      background: url('../../images/common/ui_close.png') no-repeat;
+      background-size: cover;
+      vertical-align: middle;
+    }
+  }
+
+  .forget-form,
+  .register-form {
+    display: none;
+  }
+
+  .form-container {
+    width: 470px;
+    padding: 50px 0;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    background: #F4F7F6;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .color-orange {
+    color: $color-orange;
+  }
+
+  .form-head {
+    margin-bottom: 28px;
+    font-size: 24px;
+  }
+  
+  .form-body {
+    margin: 0 auto;
+    width: 220px;
+  }
+
+  .form-group {
+    margin-bottom: 14px;
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      line-height: 24px;
+      border: 1px solid #E3E7E6;
+    }
+
+    button {
+      width: 100%;
+      line-height: 44px;
+      color: $color-white;
+      background: $color-orange;
+      cursor: pointer;
+    }
+  }
+
+  .form-foot {
+
+  }
+
+}

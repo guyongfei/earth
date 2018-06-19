@@ -1,6 +1,8 @@
 @import "../base/index.scss";
+@import "../base/grid.scss";
 @import "../components/header.scss";
 @import "../components/footer.scss";
+@import "../components/baseform.scss";
 
 .color-gray {
   color: #a9a9a9;
@@ -19,60 +21,9 @@
   margin: 0 auto;
 }
 
-.col-md-1,
-.col-md-2, 
-.col-md-3, 
-.col-md-4, 
-.col-md-5, 
-.col-md-6, 
-.col-md-7, 
-.col-md-8, 
-.col-md-9,
-.col-md-10,
-.col-md-11, 
-.col-md-12, 
-.col-md-13, 
-.col-md-14, 
-.col-md-15, 
-.col-md-16, 
-.col-md-17, 
-.col-md-18, 
-.col-md-19, 
-.col-md-20, 
-.col-md-21, 
-.col-md-22, 
-.col-md-23, 
-.col-md-24 {
-  padding-left: 5px;
-  padding-right: 5px;
-  float: left;
-  flex: 0 0 auto;
-}
-
-.col-md-1 {
-  width: 4.16666667%;
-}
-.col-md-2 {
-  width: 8.33333333%;
-}
-.col-md-3 {
-  width: 12.5%;
-}
-.col-md-4 {
-  width: 16.66666667%
-}
-.col-md-6 {
-  width: 25%;
-}
-.col-md-8 {
-  width: 33.33333333%;
-}
-.col-md-12 {
-  width: 50%;
-}
-
 .details-wrapper {
   .main {
+    padding-bottom: 55px;
     width: 100%;
     min-height: 768px;
     background: url('../../images/details/details_bg.png') no-repeat;
@@ -150,21 +101,21 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
   
     .area {
       padding-left: 20px;
       padding-right: 20px;
-      float: left;
-      flex: 0 0 auto;
     }
   
     .area-left {
-      width: 64%;
+      // width: 64%;
       border-right: 1px solid $color-border;
     }
   
     .area-right {
-      width: 36%;
+      // width: 36%;
     }
   }
 
@@ -200,7 +151,6 @@
 
       .project-infos {
         margin-top: 8px;
-        line-height: 1;
         @include fc(14px, $color-deep-gray);
       }
     }
@@ -248,6 +198,25 @@
       min-height: 180px;
       padding: 10px;
       background: #f5f5f5;
+    }
+  }
+}
+
+@media (max-width: 767.9px) {
+  .main {
+    padding: 0 10px;
+  }
+  .row {
+    .area-left {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .row {
+    .area-left {
+      border-right: 1px solid $color-border;
     }
   }
 }

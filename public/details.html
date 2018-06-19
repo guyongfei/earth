@@ -17,16 +17,103 @@
   <body>
     
   <div class="details-wrapper" data-module="details">
-    <header>
-      <div class="inner">
-        <div class="logo"></div>
-        <div class="nav">
-          <div class="nav-item">
-            <span class="nav-item-txt">Home</span>
-          </div>
+    <section class="form-fixed-layer" data-module="baseform">
+  <div class="form-container">
+    <div class="login-form">
+      <h3 class="form-head">Login with your E-mail</h3>
+      <div class="form-body form">
+        <div class="form-group">
+          <input type="text" placeholder="Email" class="l-email">
+          <p class="error l-email-error"></p>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" class="l-password">
+          <p class="error l-pass-error"></p>
+        </div>
+        <div class="form-group">
+          <button class="l-submit-button">Login Now!</button>
         </div>
       </div>
-    </header>
+      <div class="form-foot">
+        Not a member yet? <a href="javascript:;" class="color-orange register-link">Register now</a>
+      </div>
+    </div>
+    <div class="register-form">
+      <h3 class="form-head">Create your account</h3>
+      <div class="form-body form">
+        <div class="form-group">
+          <input type="text" placeholder="Email" class="r-email">
+          <p class="error r-email-error"></p>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" class="r-password">
+          <p class="error r-pass-error"></p>
+        </div>
+        <div class="form-group">
+          <input type="checkbox" id="">
+          <div class="form-group-control">
+            <p>我在此确认我已经阅读并理解了<a href="www.baidu.com">令牌条款</a></p>
+          </div>
+          <p class="error r-box-error"></p>
+        </div>
+        <div class="form-group">
+          <button class="r-submit-button">Register</button>
+        </div>
+      </div>
+      <div class="form-foot">
+        Have account yet? <a href="javascript:;" class="color-orange login-link">Login now</a>
+      </div>
+    </div>
+    <div class="forget-form">
+      <h3 class="form-head">Forget the password</h3>
+      <div class="form-body form">
+        <div class="form-group">
+          <input type="text" placeholder="Email" class="f-email">
+          <p class="error f-email-error"></p>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" class="f-old-password">
+          <p class="error f-old-error"></p>
+        </div>
+        <div class="form-group">
+          <input type="password" placeholder="Password" class="f-new-password">
+          <p class="error f-new-error"></p>
+        </div>
+        <div class="form-group">
+          <button class="f-submit-button">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-close">
+    <span class="ui-close"></span>
+  </div>
+</section>
+    <header data-module="header">
+  <div class="inner">
+    <div class="logo"></div>
+    <div class="nav">
+      <div class="nav-item">
+        <span class="nav-item-txt">Home</span>
+      </div> 
+    </div>
+    <div class="lang-switch">
+      <span class="lang-btn">English</span>
+    </div>
+    <div class="lang-fixed-layer">
+      <div class="langs-wrap">
+        <div class="login-wrap">
+          <span class="login">Login</span>
+          <span class="close-btn">CLOSE <img src="../../images/common/ui_close.png" class="lang-close" /></span>
+        </div>
+        <ul class="langs">
+          <li class="lang l-active" data-lang="en">English<span></span></li>
+          <li class="lang" data-lang="cn">简体中文<span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
 
     <section>
       <div class="main">
@@ -57,7 +144,7 @@
           </div>
           <div class="box-foot">
             <div class="row">
-              <div class="area area-left">
+              <div class="col-md-8 area area-left">
                 <div class="project-head">
                   <div class="project-logo">
                     <img src="https://app.mytoken.io/static/media/logo_small.0d7e46b2.png" alt="logo">
@@ -72,37 +159,37 @@
                 </div>
                 <div class="project-body">
                   <div class="row">
-                    <a class="col-md-6" href="#">
+                    <a class="col-3" href="#">
                       <img src="" alt="">
                       <span>website</span>
                     </a>
-                    <a class="col-md-6" href="#">
+                    <a class="col-3" href="#">
                       <img src="" alt="">
                       <span>white bool</span>
                     </a>
-                    <a class="col-md-6" href="#">
+                    <a class="col-3" href="#">
                       <img src="" alt="">
                       <span>twitter</span>
                     </a>
-                    <a class="col-md-6" href="#">
+                    <a class="col-3" href="#">
                       <img src="" alt="">
                       <span>facebook</span>
                     </a>
                   </div>
                   <div class="row">
-                    <a class="col-md-6" href="#">
+                    <a class="col-3" href="#">
                       <img src="" alt="">
                       <span>telegram</span>
                     </a>
-                    <a class="col-md-6" href="#">
+                    <a class="col-3" href="#">
                       <img src="" alt="">
                       <span>reddit</span>
                     </a>
-                    <a class="col-md-6" href="#">
+                    <a class="col-3" href="#">
                       <img src="" alt="">
                       <span>biyong</span>
                     </a>
-                    <a class="col-md-6" href="#">
+                    <a class="col-3" href="#">
                       <img src="" alt="">
                       <span>github</span>
                     </a>
@@ -110,17 +197,17 @@
                 </div>
                 <div class="project-foot">
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-4">
                       <p class="top">Name</p>
                       <p class="bottom">LKE</p>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-4">
                       <p class="top">Start time</p>
                       <p class="bottom">
                         <i class="dot bg-color-green"></i><span class="start-time">2016-09-13</span>
                       </p>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-4">
                       <p class="top">End time</p>
                       <p class="bottom">
                         <i class="dot bg-color-orange"></i><span class="end-time">2016-09-13</span>
@@ -129,7 +216,7 @@
                   </div>
                 </div>
               </div>
-              <div class="area area-right">
+              <div class="col-md-4 area area-right">
                 <h3 class="desc-title">Description</h3>
                 <p class="desc-field">
                   你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金你好小明小红小刚小金
