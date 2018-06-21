@@ -43,17 +43,26 @@
       <div class="form-body form">
         <div class="form-group">
           <input type="text" placeholder="Email" class="r-email">
+          <button class="send-code">发送验证码</button>
           <p class="error r-email-error"></p>
+        </div>
+        <div class="form-group">
+          <input type="text" placeholder="Code" class="r-code">
+          <p class="error r-code-error"></p>
         </div>
         <div class="form-group">
           <input type="password" placeholder="Password" class="r-password">
           <p class="error r-pass-error"></p>
         </div>
         <div class="form-group">
-          <input type="checkbox" id="">
-          <div class="form-group-control">
-            <p>我在此确认我已经阅读并理解了<a href="www.baidu.com">令牌条款</a></p>
-          </div>
+          <input type="password" placeholder="Confirm Password" class="r-confirm-pass">
+          <p class="error r-confirm-error"></p>
+        </div>
+        <div class="form-group">
+          <input type="checkbox" id="r-checkbox" class="r-checkbox">
+          <label for="r-checkbox">
+            <span></span>我在此确认我已经阅读并理解了<a href="www.baidu.com" class="color-orange">令牌条款</a>我在此确认我已经阅读并理解了我在此确认我已经阅读并理解了
+          </label>
           <p class="error r-box-error"></p>
         </div>
         <div class="form-group">
@@ -95,7 +104,7 @@
     <div class="nav">
       <div class="nav-item">
         <span class="nav-item-txt">Home</span>
-      </div> 
+      </div>
     </div>
     <div class="lang-switch">
       <span class="lang-btn">English</span>
