@@ -1,0 +1,174 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Sale</title>
+    <link rel="icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="stylesheets/base/base.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Generate using http://realfavicongenerator.net/ -->
+
+
+    
+  <link rel="stylesheet" href="stylesheets/modules/sale.css">
+
+  </head>
+  <body>
+    
+  <div class="sale-wrapper" data-module="sale">
+    <section>
+      <div class="section-inner">
+        <div class="steps">
+          <div class="step step-wallet finished">
+            <span class="ui-checked"></span>
+            <p>钱包地址</p>
+          </div>
+          <div class="step step-token unfinished">
+            <span class="ui-unchecked"></span>
+            <p>购买代币</p>
+          </div>
+          <div class="step step-result unfinished">
+            <span class="ui-unchecked"></span>
+            <p>结果</p>
+          </div>
+        </div>
+        <div class="container wallet-container">
+          <div class="form">
+            <div class="form-group">
+              <label>您的接受兼容ERC20的ETH钱包地址</label>
+              <input type="text">
+            </div>
+            <div class="form-group">
+              <label>您的支付ETH的钱包地址</label>
+              <input type="text">
+            </div>
+          </div>
+          <div class="description">
+            <p>您认购的代币将会在项目认筹结束后，统一打到您提供的接收ERC20代币的钱包地址。</p>
+            <p>您需要填写两个以太坊钱包地址，一个是接收地址，用于接收改项目的ERC20代币；另一个是支付地址，用于支付ETH给项目方。</p>
+            <p>接收地址必须是能兼容ERC20的ETH钱包地址</p>
+            <p>支付地址与您实际支付的地址必须完全相同</p>
+            <p>两个地址一旦输入，不可更改</p>
+            <p>千万不要使用交易所提供的地址（e.g. Coinbase, Binance, etc）</p>
+          </div>
+          <button class="btn btn-step">下一步</button>
+        </div>
+
+        <div class="container token-container">
+          <section>
+            <h2 class="head">
+              <span class="index">1</span><span>认购比例</span>
+            </h2>
+            <div class="body">
+              <div class="form-group">
+                <label>当前slt代币的认购比例为</label>
+                <div class="field">
+                  <div class="half-field">
+                    <p class="top">1</p>
+                    <p class="btm">ETH</p>
+                  </div>
+                  <div class="unit">:</div>
+                  <div class="half-field">
+                    <p class="top">80000</p>
+                    <p class="btm">slt</p>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>您将支付</label>
+                <input type="text">
+              </div>
+              <div class="form-group">
+                <label>您将获得</label>
+                <input type="text">
+              </div>
+              <p>最少数额0.18322ETH</p>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="head">
+              <span class="index">2</span><span>支付</span>
+            </h2>
+            <div class="description">
+              <p>推荐使用的gas limit: xxxxxx</p>
+              <p>gas price不少于: xxxxxx</p>
+            </div>
+            <div class="payment">
+              <h3>发送2.0ETH到</h3>
+              <p class="waller-address">08xdafd3fdgfdsdgsdgr532524dddf</p>
+              <button class="btn-copy">复制到剪切板</button>
+              <div class="barcode" id="barcode"></div>
+            </div>
+          </section>
+
+          <section>
+            <h2 class="head">
+              <span class="index">3</span><span>提供支付证明</span>
+            </h2>
+            <div class="body">
+              <div class="form-group">
+                <label>交易ID</label>
+                <input type="text">
+              </div>
+            </div>
+          </section>
+          
+          <footer>
+            <button class="btn-cancel">取消</button>
+            <button class="btn-confirm">确认</button>
+          </footer>
+        </div>
+
+        <div class="container result-container">
+          <p>在代币销售的结束前xxx代币将会发送到你接收ETH（ERC20）的钱包地址（7月11日下午3点xxx标准时间）</p>
+          <ul class="ui-list">
+            <li class="ui-item">
+              <div class="ui-item-head">
+                <i class="dot"></i>
+                <span class="order-id">订单号#10142</span>
+                <span class="order-time">Jun 10th, 5:48 PM</span>
+                <span class="order-status">待确定</span>
+              </div>
+              <div class="ui-item-body">
+                <label>认购数量</label>
+                <div class="subscription">
+                  <div class="eth">
+                    ~0.121424
+                  </div>
+                  <div class="transfer">---</div>
+                  <div class="curreny">~8899 SLT</div>
+                </div>
+              </div>
+            </li>
+            <li class="ui-item">
+              <div class="ui-item-head">
+                <i class="dot"></i>
+                <span class="order-id">订单号#10142</span>
+                <span class="order-time">Jun 10th, 5:48 PM</span>
+                <span class="order-status">待确定</span>
+              </div>
+              <div class="ui-item-body">
+                <label>认购数量</label>
+                <div class="subscription">
+                  <div class="eth">
+                    ~0.121424
+                  </div>
+                  <div class="transfer">---</div>
+                  <div class="curreny">~8899 SLT</div>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <button class="btn btn-buy">买更多代币</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+    
+  <script src="./javascripts/sale.js"></script>
+
+  </body>
+</html>

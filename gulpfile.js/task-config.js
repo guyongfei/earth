@@ -11,8 +11,9 @@ module.exports = {
     entry: {
       // files paths are relative to
       // javascripts.dest in path-config.json
-      index: ["./index.js"],
-      details: ["./details.js"]
+      index: ['./index.js'],
+      details: ['./details.js'],
+      sale: ['./sale.js']
     },
     plugins: function (webpack) {
       return [

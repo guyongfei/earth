@@ -1,0 +1,301 @@
+@import "../base/index.scss";
+
+.sale-wrapper {
+  padding-top: 80px;
+  // min-height: 100%;
+  background: url('../../images/details/details_bg.png') no-repeat;
+  background-size: cover;
+
+  section {
+    position: relative;
+    max-width: 375px;
+    margin: 0 auto;
+
+    .section-inner {
+      padding: 20px;
+      background: #ffffff;
+      @include border-radius(5px);
+    }
+
+    .steps {
+      display: -webkit-box;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      .step {
+        width: 33.3333%;
+        text-align: center;
+        // &:nth-child(1) {
+        //   text-align: left;
+        // }
+        // &:nth-child(2) {
+        //   text-align: center;
+        // }
+        // &:nth-child(3) {
+        //   text-align: right;
+        // }
+        &.active {
+
+        }
+        &.finished {
+          &:not(.active) {
+            span {
+              background-image: url('../../images/common/ui_box_checked.png');
+            }
+          }
+        }
+        &.unfinished {
+
+        }
+        span {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    .container {
+      margin-top: 36px;
+      .form-group {
+        margin-bottom: 20px;
+        label {
+          display: block;
+          color: #999999;
+        }
+        input {
+          display: block;
+          padding: 10px;
+          width: 100%;
+          line-height: 25px;
+          border: 1px solid #999999;
+          @include border-radius(4px);
+        }
+      }
+      
+      .btn {
+        display: block;
+        width: 100%;
+        line-height: 44px;
+        font-size: 16px;
+        color: $color-white;
+        background: $color-orange;
+        text-align: center;
+        @include border-radius(25px);
+        cursor: pointer;
+      }
+
+      .description {
+        margin-bottom: 40px;
+        p {
+          position: relative;
+          padding-left: 18px;
+          line-height: 18px;
+          color: #000000;
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 4px;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            @include border-radius(100%);
+            background: $color-orange;
+          }
+        }
+      }
+    }
+    .wallet-container {
+      display: none;
+    }
+
+    .token-container {
+      display: none;
+      section {
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+
+      .head {
+        margin-bottom: 20px;
+        font-size: 0;
+        color: #000000;
+        span {
+          display: inline-block;
+          font-size: 20px;
+          vertical-align: middle;
+        }
+        .index {
+          margin-right: 10px;
+          width: 24px;
+          height: 24px;
+          line-height: 24px;
+          font-style: italic;
+          color: $color-white;
+          background: $color-orange;
+          @include border-radius(100%);
+          text-align: center;
+        }
+      }
+
+      .field {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        background: #ffffff;
+        .half-field {
+          width: 40%;
+          text-align: center;
+        }
+        .unit {
+          padding: 0 8px;
+        }
+        .top {
+          margin-bottom: 4px;
+        }
+        .btm {
+          color: #999999;
+        }
+      }
+
+      .payment {
+        h3 {
+          margin-bottom: 5px;
+          font-size: 16px;
+          color: $color-orange;
+        }
+        .btn-copy {
+          display: block;
+          margin: 24px 0;
+          width: 100%;
+          line-height: 44px;
+          font-size: 16px;
+          color: $color-orange;
+          background: $color-white;
+          border: 1px solid $color-orange;
+          @include border-radius(40px);
+          text-align: center;
+        }
+      }
+
+      footer {
+        margin-top: 40px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        button {
+          width: 50%;
+          display: block;
+          line-height: 44px;
+          text-align: center;
+        }
+        .btn-cancel {
+          color: #000000;
+        }
+        .btn-confirm {
+          color: $color-white;
+          background: $color-orange;
+          @include border-radius(40px);
+        }
+      }
+
+    }
+
+    .result-container {
+      .ui-list {
+      }
+
+      .ui-item {
+        padding: 10px 0;
+        &:not(:last-child) {
+          border-bottom: 1px solid #EAEAEA;
+        }
+        .ui-item-head {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          margin-bottom: 10px;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          i, span {
+            display: block;
+          }
+          .dot {
+            margin-right: 10px;
+            width: 8px;
+            height: 8px;
+            background: $color-orange;
+            @include border-radius(100%);
+          }
+          .order-id {
+            margin-right: 10px;
+            color: #000000;
+          }
+          .order-time {
+            font-size: 12px;
+            color: #999999;
+            flex: 1;
+          }
+          .order-status {
+            padding: 0 5px;
+            color: #ffffff;
+            background: #999999;
+            @include border-radius(2px);
+          }
+        }
+
+        .ui-item-body {
+          label {
+            color: #999999;
+          }
+          .subscription {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 10px;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            line-height: 34px;
+            text-align: center;
+            .eth {
+              width: 120px;
+              background: #E5E9F3;
+              @include border-radius(4px);
+            }
+            .transfer {
+              flex: 1;
+            }
+            .curreny {
+              width: 154px;
+              color: $color-white;
+              background: $color-orange;
+              @include border-radius(4px);
+            }
+          }
+        }
+      }
+    }
+  }
+}

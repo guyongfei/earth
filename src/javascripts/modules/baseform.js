@@ -101,7 +101,7 @@ export default class Baseform {
 
   // error
   error (el, msg, flag) {
-    return flag ? el.text(msg).show() : el.text('').hide();
+    return flag ? $(el).text(msg).show() : $(el).text(msg).hide();
   }
 
   // 销毁事件
@@ -176,11 +176,26 @@ export default class Baseform {
         confirmPass = this.trim($regConfirm);
 
       if (method.isEmpty(email)) {
-        this.error($rEmailError, '请输入邮箱');
+        this.error($rEmailError, '请输入邮箱', true);
       } else if (!method.emailFormat(email)) {
-        this.error($rEmailError, '邮箱格式不正确');
+        this.error($rEmailError, '邮箱格式不正确', true);
+      } else if (method.isEmpty(code)) {
+        this.error($rEmailError, '', false);
+        this.error($rCodeError, '请输入验证码', true);
+      } else if (method.isEmpty(pass)) {
+        this.error($rCodeError, '', false);
+        this.error($rPassError, '请输入密码', true);
+      } else if (!method.passwordFormat(pass)) {
+        this.error($rPassError, '请输入6-20位数字或者字母', true);
+      } else if (method.isEmpty(confirmPass)) {
+        this.error($rPassError, '', false)
+        this.error($rConfirmError, '请输入确认密码', true);
+      } else if (!method.passwordFormat(confirmPass)) {
+        this.error($rConfirmError, '请输入6-20位数字或者字母', true);
+      } else if (method.checkNoEquals(pass, confirmPass)) {
+        this.error($rConfirmError, '两次密码输入的不一致', true);
       } else {
-        console.log('aaaaaaa')
+        this.error($rConfirmError, '', false);
       }
 
     });
