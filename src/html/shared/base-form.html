@@ -1,78 +1,75 @@
 <section class="form-fixed-layer" data-module="baseform">
   <div class="form-container">
-    <div class="login-form">
+    <div class="login-form-container">
       <h3 class="form-head">Login with your E-mail</h3>
-      <div class="form-body form">
+      <p class="request-error"></p>
+      <form id="loginForm" class="form-body form">
         <div class="form-group">
-          <input type="text" placeholder="Email" class="l-email">
-          <p class="error l-email-error"></p>
+          <input type="text" id="loginEail" name="email" placeholder="请输入邮箱">
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Password" class="l-password">
-          <p class="error l-pass-error"></p>
+          <input type="password" id="loginPassword" name="password" placeholder="请输入密码">
+        </div>
+        <div class="form-group right">
+          <a href="javascript:;" class="color-orange forget-link">Forgot password？</a> 
         </div>
         <div class="form-group">
-          <button class="l-submit-button">Login Now!</button>
+          <button type="submit" class="l-submit-button">Login Now!</button>
         </div>
-      </div>
+      </form>
       <div class="form-foot">
         Not a member yet? <a href="javascript:;" class="color-orange register-link">Register now</a>
       </div>
     </div>
-    <div class="register-form">
+    <div class="register-form-container">
       <h3 class="form-head">Create your account</h3>
-      <div class="form-body form">
+      <p class="request-error"></p>
+      <form id="regForm" class="form-body form"> 
         <div class="form-group">
-          <input type="text" placeholder="Email" class="r-email">
-          <button class="send-code">发送验证码</button>
-          <p class="error r-email-error"></p>
+          <input type="text" id="regEmail" name="email" placeholder="Email">
+          <button type="submit" class="send-code">发送验证码</button>
         </div>
         <div class="form-group">
-          <input type="text" placeholder="Code" class="r-code">
-          <p class="error r-code-error"></p>
+          <input type="text" id="regCode" name="code" placeholder="Code">
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Password" class="r-password">
-          <p class="error r-pass-error"></p>
+          <input type="password" id="regPassword" name="password" placeholder="Password">
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Confirm Password" class="r-confirm-pass">
-          <p class="error r-confirm-error"></p>
+          <input type="password" id="regConfirmPassword" name="confirm_password"  placeholder="Confirm Password">
         </div>
         <div class="form-group">
-          <input type="checkbox" id="r-checkbox" class="r-checkbox">
-          <label for="r-checkbox">
-            <span></span>我在此确认我已经阅读并理解了<a href="www.baidu.com" class="color-orange">令牌条款</a>我在此确认我已经阅读并理解了我在此确认我已经阅读并理解了
+          <label for="agree" class="agree">
+            我在此确认我已经阅读并理解了<a href="www.baidu.com" class="color-orange">令牌条款</a>我在此确认我已经阅读并理解了我在此确认我已经阅读并理解了
           </label>
-          <p class="error r-box-error"></p>
+          <input type="checkbox" id="agree" name="agree" class="r-checkbox">
         </div>
         <div class="form-group">
-          <button class="r-submit-button">Register</button>
+          <button type="submit" class="r-submit-button">Register</button>
         </div>
-      </div>
+      </form>
       <div class="form-foot">
         Have account yet? <a href="javascript:;" class="color-orange login-link">Login now</a>
       </div>
     </div>
-    <div class="forget-form">
-      <h3 class="form-head">Forget the password</h3>
-      <div class="form-body form">
+    <div class="forget-form-container">
+      <h3 class="form-head">Forgot the password</h3>
+      <p class="request-error"></p>
+      <form id="forgetForm" class="form-body form">
         <div class="form-group">
-          <input type="text" placeholder="Email" class="f-email">
-          <p class="error f-email-error"></p>
+          <input type="text" id="forgetEmail" name="email" placeholder="Email">
+          <button class="send-code">发送验证码</button>
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Password" class="f-old-password">
-          <p class="error f-old-error"></p>
+          <input type="text" id="forgetCode" name="code" placeholder="Code">
         </div>
         <div class="form-group">
-          <input type="password" placeholder="Password" class="f-new-password">
-          <p class="error f-new-error"></p>
+          <input type="password" id="forgetPassword" name="password" placeholder="Password">
         </div>
         <div class="form-group">
-          <button class="f-submit-button">Confirm</button>
+          <button type="submit" class="f-submit-button">Confirm</button>
         </div>
-      </div>
+      </form>
     </div>
   </div>
   <div class="form-close">

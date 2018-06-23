@@ -11,6 +11,10 @@
   z-index: 9999;
   opacity: 0;
 
+  .right {
+    text-align: right;
+  }
+
   .form-close {
     position: absolute;
     top: 0;
@@ -31,8 +35,18 @@
     }
   }
 
-  .forget-form,
-  .register-form {
+  .request-error {
+    display: none;
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    color: red;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .forget-form-container,
+  .register-form-container {
     display: none;
   }
 
@@ -46,14 +60,6 @@
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
     text-align: center;
-  }
-
-  .error {
-    display: none;
-    margin-top: 5px;
-    color: red;
-    font-size: 12px;
-    text-align: left;
   }
 
   .color-orange {
@@ -88,21 +94,27 @@
       color: $color-white;
       background: $color-orange;
       cursor: pointer;
+      &:disabled {
+        background: #999999;
+      }
     }
 
     input[type="checkbox"] {
-      display: none;
-      &+label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      &:after {
+        content: "";
         display: block;
-        padding-left: 30px;
-        text-align: left;
-        cursor: pointer;
-      }
-      &+label span {
-        position: relative;
-        display: inline-block;
-        margin-left: -30px;
-        margin-right: 10px;
         width: 20px;
         height: 20px;
         background-image: url('../../images/common/ui_box_unchecked.png');
@@ -110,17 +122,34 @@
         background-size: cover;
         -webkit-transition: all ease .3s;
         transition: all ease .3s;
-        cursor: pointer;
-        vertical-align: middle;
       }
-      &:checked+label span {
-        background-image: url('../../images/common/ui_box_checked.png');
+      &:checked {
+        &:after {
+          background-image: url('../../images/common/ui_box_checked.png');
+        }
       }
+    }
+
+    .agree {
+      display: block;
+      padding-left: 30px;
+      text-align: left;
+      cursor: pointer;
     }
 
     input[type="text"] {
       &.r-email {
         padding-right: 110px;
+      }
+    }
+
+    label {
+      &.error {
+        display: block;
+        margin-top: 5px;
+        color: red;
+        font-size: 12px;
+        text-align: left;
       }
     }
 

@@ -37,46 +37,45 @@
     color: $color-white;
     text-align: center;
     .name {
-      margin-bottom: 34px;
+      margin-bottom: 24px;
       line-height: 1;
       font-size: 26px;
     }
-    .label {
-      display: inline-block;
-      width: 140px;
-      height: 21px;
-      line-height: 21px;
-      background: url('../../images/details/label.png') no-repeat;
-      background-size: cover;
-    }
-    .countdown {
-      margin-top: 20px;
+    .divide {
       margin-bottom: 10px;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-pack: center;
-      -ms-flex-pack: center;
-      justify-content: center;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      .time {
-        width: 66px;
-        height: 66px;
-        background: $color-white;
-        @include border-radius(5px);
-        .top {
-          padding: 4px 0;
-          @include fc(12px, #a9a9a9);
-        }
-        .bottom {
-          @include fc(36px, $color-orange);
-        }
+    }
+    .label {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 0 5px;
+      height: 30px;
+      line-height: 30px;
+      background: #927a63;
+      text-align: center;
+      &:before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        left: -30px;
+        border-style: solid;
+        border-width: 15px;
+        border-color: #927a63 #927a63 transparent transparent;
       }
-      .colon {
-        padding: 0 8px;
-        color: #a9a9a9;
+      &:after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        right: -30px;
+        border-style: solid;
+        border-width: 15px;
+        border-color: #927a63 transparent transparent #927a63;
       }
     }
     button {

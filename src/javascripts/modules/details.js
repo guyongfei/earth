@@ -3,18 +3,41 @@ export default class Details {
   constructor(el) {
     this.$el = $(el);
     this.childMap = {};
-    console.log('3333');
+    this.handleDom();
+    this.render();
+    this.bindEvents();
   }
 
-  domHandle () {
-    let $lang = $();
+  handleDom () {
+    let $head = $('.box-head');
+
+    this.childMap.$head = $head;
   }
 
   //千分位
-  numberFormatter (num, decimals) {
-    
+  thousandsFormatter (number) {
+    let num = (number || 0).toString(),
+      result = '';
+    while (num.length > 3) {
+      result = ',' + num.slice(-3) + result;
+      num = num.slice(0, num.length - 3);
+    }
+    if (num) { result = num + result; }
+    return result;
   }
 
+  // 初始化
+  render () {
+    const {
+      $head
+    } = this.childMap;
+    console.log(this.thousandsFormatter(12334))
+    $head.find('.sale-numbers').text(this.thousandsFormatter(1231324254));
+  }
 
+  // 绑定的事件
+  bindEvents () {
+
+  }
 
 }

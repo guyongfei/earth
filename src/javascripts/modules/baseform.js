@@ -1,84 +1,65 @@
+import 'jquery-validation';
 import method from '../common/method';
+import { emailCode, login, register, forget, password } from '../common/service';
+
 export default class Baseform {
   constructor(el) {
     this.$el = $(el);
     this.childMap = {};
+    this.loginValidator = null;
+    this.regValidator = null;
+    this.forgetValidator = null;
+    this.timer = null;
+    this.count = 60;
     this.handleDom();
+    this.validateMethod();
     this.bindEvents();
   }
 
   handleDom () {
     let $container = $('.form-container'),
-      $login = $('.login-form'),
-      $register = $('.register-form'),
-      $forget = $('.forget-form'),
-      $loginSubmit = this.$el.find('.l-submit-button'),
-      $regSubmit = this.$el.find('.r-submit-button'),
-      $forgetSubmit = this.$el.find('.f-submit-button'),
+      $login = $('.login-form-container'),
+      $reg = $('.register-form-container'),
+      $forget = $('.forget-form-container'),
+      $loginForm = $('#loginForm'),
+      $regForm = $('#regForm'),
+      $forgetForm = $('#forgetForm'),
+      $regCodeBtn = $regForm.find('.send-code'),
+      $forgetCodeBtn = $forgetForm.find('.send-code'),
       $loginLink = $('.login-link'),
-      $registerLink = $('.register-link'),
+      $regLink = $('.register-link'),
+      $forgetLink = $('.forget-link'),
       $loginFoot = $('.f-login-btn'),
-      $closeForm = $('.form-close'),
-      $loginEmail = $('.l-email'),
-      $loginPass = $('.l-passowrd'),
-      $regEmail = $register.find('.r-email'),
-      $regPass = $register.find('.r-password'),
-      $regConfirm = $register.find('.r-confirm-pass'),
-      $regCode = $register.find('.r-code'),
-      $regBox = $register.find('.r-checkbox'),
-      $forgetEmail = $('.f-email'),
-      $forgetOld = $('.f-old-password'),
-      $forgetNew = $('.f-new-password'),
-      $lEmailError = $login.find('.l-email-error'),
-      $lPassError = $login.find('.l-password-error'),
-      $rEmailError = $register.find('.r-email-error'),
-      $rCodeError = $register.find('.r-code-error'),
-      $rPassError = $register.find('.r-pass-error'),
-      $rConfirmError = $register.find('.r-confirm-error'),
-      $rBoxError = $register.find('.r-box-error');
-
+      $closeForm = $('.form-close');
+  
     this.childMap.$login = $login;
-    this.childMap.$register = $register;
+    this.childMap.$reg = $reg;
     this.childMap.$forget = $forget;
-
-    this.childMap.$loginSubmit = $loginSubmit;
-    this.childMap.$regSubmit = $regSubmit;
-    this.childMap.$forgetSubmit = $forgetSubmit;
-
+    this.childMap.$loginForm = $loginForm;
+    this.childMap.$regForm = $regForm;
+    this.childMap.$forgetForm = $forgetForm;
+    this.childMap.$regCodeBtn = $regCodeBtn;
+    this.childMap.$forgetCodeBtn = $forgetCodeBtn;
     this.childMap.$loginLink = $loginLink;
-    this.childMap.$registerLink = $registerLink;
-
+    this.childMap.$regLink = $regLink;
+    this.childMap.$forgetLink = $forgetLink;
     this.childMap.$container = $container;
     this.childMap.$loginFoot = $loginFoot;
     this.childMap.$closeForm = $closeForm;
 
-    this.childMap.$loginEmail = $loginEmail;
-    this.childMap.$loginPass = $loginPass;
-
-    this.childMap.$regEmail = $regEmail;
-    this.childMap.$regPass = $regPass;
-    this.childMap.$regCode = $regCode;
-    this.childMap.$regConfirm = $regConfirm;
-    this.childMap.$regBox = $regBox;
-
-    this.childMap.$forgetEmail = $forgetEmail;
-    this.childMap.$forgetOld = $forgetOld;
-    this.childMap.$forgetNew = $forgetNew;
-
-    this.childMap.$lEmailError = $lEmailError;
-    this.childMap.$lPassError = $lPassError;
-    this.childMap.$rEmailError = $rEmailError;
-    this.childMap.$rCodeError = $rCodeError;
-    this.childMap.$rPassError = $rPassError;
-    this.childMap.$rConfirmError = $rConfirmError;
-    this.childMap.$rBoxError = $rBoxError;
   }
 
   execInAnimation (callback) {
     const {
+      $login,
+      $reg,
+      $forget,
       $container
     } = this.childMap;
 
+    $login.show();
+    $reg.hide();
+    $forget.hide();
     this.$el.show().stop().animate({ opacity: 1 }, 300);
     $container.stop().animate({ 'top': '20%' });
   }
@@ -99,43 +80,72 @@ export default class Baseform {
     return $.trim(el.val());
   }
 
-  // error
-  error (el, msg, flag) {
-    return flag ? $(el).text(msg).show() : $(el).text(msg).hide();
+  countDown (el) {
+    $(el).attr('disabled', 'disabled').text(this.count+'s');
+    this.timer = setInterval(() => {
+      this.count--;
+      $(el).text(this.count+'s');
+      if (this.count == 0) {
+        clearInterval(this.timer);
+        this.count = 60;
+        $(el).removeAttr('disabled').text('重新获取');
+      }
+    }, 1000);
+  }
+  
+  // validate method
+  validateMethod () {
+    $.validator.addMethod('pwdFormat', (value, el) => {
+      return /[0-9a-zA-Z]{6,20}$/.test(value);
+    })
   }
 
+  // 错误提示
+  error (el, message) {
+    el.find('.request-error').text(message).fadeIn();
+    setTimeout(() => {
+      el.find('.request-error').text('').fadeOut();
+    }, 3000);
+  }
+  
   // 销毁事件
   destroy () {
     const {
       $login,
-      $register,
-      $forget
+      $reg,
+      $forget,
+      $regForm,
+      $forgetForm
     } = this.childMap;
+
+    document.getElementById('loginForm').reset();
+    document.getElementById('regForm').reset();
+    document.getElementById('forgetForm').reset();
+
+    this.count = 60;
+    this.timer = null;
+
+    $regForm.find('.send-code').removeAttr('disabled').text('获取验证码');
+    $forgetForm.find('.send-code').removeAttr('disabled').text('获取验证码');
+
   }
 
   bindEvents () {
     const {
       $login,
-      $register,
+      $reg,
       $forget,
-      $loginSubmit,
-      $regSubmit,
-      $forgetSubmit,
+      $loginForm,
+      $regForm,
+      $forgetForm,
+      $regCodeBtn,
+      $forgetCodeBtn,
       $loginFoot,
       $closeForm,
-      $registerLink,
+      $regLink,
       $loginLink,
-      $regEmail,
-      $regPass,
-      $regCode,
-      $regConfirm,
-      $regBox,
-      $lEmailError,
-      $lPassError,
-      $rEmailError,
-      $rPassError,
-      $rCodeError,
-      $rConfirmError
+      $forgetLink
+
     } = this.childMap;
 
     // 底部登录事件
@@ -147,59 +157,185 @@ export default class Baseform {
     $closeForm.on('click', (e) => {
       this.execOutAnimation((() => {
         this.destroy();
+        this.loginValidator.resetForm();
+        this.regValidator.resetForm();
+        this.forgetValidator.resetForm();
       }));
     });
 
     // 显示注册弹窗
-    $registerLink.on('click', (e) => {
+    $regLink.on('click', (e) => {
       $login.hide();
-      $register.show();
+      $reg.show();
     });
 
     // 显示登录弹窗
     $loginLink.on('click', (e) => {
-      $register.hide();
+      $reg.hide();
       $login.show();
     });
 
+    // 忘记密码弹窗
+    $forgetLink.on('click', (e) => {
+      $login.hide();
+      $forget.show();
+    });
+
     // 表单提交事件
-    // 登录
-    $loginSubmit.on('click', (e) => {
-      
-    });
-
-    // 注册
-    $regSubmit.on('click', (e) => {
-      let email = this.trim($regEmail),
-        code = this.trim($regCode),
-        pass = this.trim($regPass),
-        confirmPass = this.trim($regConfirm);
-
-      if (method.isEmpty(email)) {
-        this.error($rEmailError, '请输入邮箱', true);
-      } else if (!method.emailFormat(email)) {
-        this.error($rEmailError, '邮箱格式不正确', true);
-      } else if (method.isEmpty(code)) {
-        this.error($rEmailError, '', false);
-        this.error($rCodeError, '请输入验证码', true);
-      } else if (method.isEmpty(pass)) {
-        this.error($rCodeError, '', false);
-        this.error($rPassError, '请输入密码', true);
-      } else if (!method.passwordFormat(pass)) {
-        this.error($rPassError, '请输入6-20位数字或者字母', true);
-      } else if (method.isEmpty(confirmPass)) {
-        this.error($rPassError, '', false)
-        this.error($rConfirmError, '请输入确认密码', true);
-      } else if (!method.passwordFormat(confirmPass)) {
-        this.error($rConfirmError, '请输入6-20位数字或者字母', true);
-      } else if (method.checkNoEquals(pass, confirmPass)) {
-        this.error($rConfirmError, '两次密码输入的不一致', true);
-      } else {
-        this.error($rConfirmError, '', false);
+    // 登录表单检验
+    this.loginValidator = $loginForm.validate({
+      rules: {
+        email: {
+          required: true,
+          email: true
+        },
+        password: {
+          required: true,
+          pwdFormat: true
+        }
+      },
+      messages: {
+        email: {
+          required: '请输入您的邮箱地址',
+          email: '请输入正确的邮箱地址'
+        },
+        password: {
+          required: '请输入您的密码',
+          pwdFormat: '请输入6-20位字母或者数字'
+        }
+      },
+      // 给未通过验证的元素进行处理
+      highlight: (el) => {
+      },
+      submitHandler: (form) => {
+        console.log('ajax');
+        this.error($login, 'Login successed!!')
       }
-
     });
 
+    // 注册表单校验
+    this.regValidator = $regForm.validate({
+      rules: {
+        email: {
+          required: true,
+          email: true
+        },
+        code: {
+          required: true
+        },
+        password: {
+          required: true,
+          pwdFormat: true
+        },
+        confirm_password: {
+          required: true,
+          pwdFormat: true,
+          equalTo: '#regPassword'
+        },
+        agree: {
+          required: true
+        }
+      },
+      messages: {
+        email: {
+          required: '请输入您的邮箱地址',
+          email: '请输入正确的邮箱地址'
+        },
+        code: {
+          required: '请输入验证码',
+        },
+        password: {
+          required: '请输入您的密码',
+          pwdFormat: '请输入6-20位字母或者数字'
+        },
+        confirm_password: {
+          required: '请再次输入密码',
+          pwdFormat: '请输入6-20位字母或者数字',
+          equalTo: '两次输入的密码需要一致'
+        },
+        agree: {
+          required: '请同意条款和条件,以创建帐户'
+        }
+      },
+      // 给未通过验证的元素进行处理
+      highlight: function(el) {
+      },
+      submitHandler: function(form) {
+        console.log('ajax');
+      }
+    });
+
+    // 忘记密码表单校验
+    this.forgetValidator = $forgetForm.validate({
+      rules: {
+        email: {
+          required: true,
+          email: true
+        },
+        code: {
+          required: true
+        },
+        password: {
+          required: true,
+          pwdFormat: true
+        }
+      },
+      messages: {
+        email: {
+          required: '请输入您的邮箱地址',
+          email: '请输入正确的邮箱地址'
+        },
+        code: {
+          required: '请输入验证码',
+        },
+        password: {
+          required: '请输入您的密码',
+          pwdFormat: '请输入6-20位字母或者数字'
+        }
+      },
+      // 给未通过验证的元素进行处理
+      highlight: function(el) {
+      },
+      submitHandler: function(form) {
+        console.log('ajax');
+      }
+    });
+
+    // 注册时点击 获取验证码
+    $regCodeBtn.on('click', (e) => {
+      e.preventDefault();
+      let $email = $('#regEmail'),
+        emailVal = this.trim($email);
+
+      if (!$regForm.validate().element($email)) return
+      emailCode('register', emailVal)
+      .then(res => {
+        console.log(res)
+        this.countDown($regCodeBtn);
+        console.log('验证码已经发送至邮箱');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    });
+
+    // 忘记密码点击 获取验证码
+    $forgetCodeBtn.on('click', (e) => {
+      e.preventDefault();
+      let $email = $('#forgetEmail'),
+        emailVal = this.trim($email);
+
+      if (!$forgetForm.validate().element($email)) return
+      emailCode('other', emailVal)
+      .then(res => {
+        console.log(res)
+        this.countDown($forgetCodeBtn);
+        console.log('验证码已经发送至邮箱');
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    });
 
   }
 
