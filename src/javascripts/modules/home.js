@@ -1,27 +1,32 @@
 import "bootstrap-table";
 import "bootstrap-table/dist/bootstrap-table-locale-all";
-import tableData from '../common/data';
-// import { baseURL } from '../common/constants';
+import { baseURL } from '../common/constants';
+import method from '../common/method';
 
 export default class Home {
   constructor(el) {
     this.$el = $(el);
     this.$table = $('#table');
 
-    this.tableInit();
+    this.tableRender();
   }
 
   //query params
   queryParams (params) {
     return {
-
+      pageSize: params.pageSize,
+      pageNum: params.pageNumber,
+      ascOrdesc: params.sortOrder == 'desc' ? '-1' : '1',
+      orderCondition: params.sortName || ''
     };
   }
-  
 
   // response
-  responseHandler (res) {
-
+  responseHandler ({ success, data, message }) {
+    let d = {};
+    d.total = data.total || 0;
+    d.rows = data.list || [];
+    return d;
   }
 
   //logo
@@ -29,76 +34,80 @@ export default class Home {
     return `<img src="${value}" alt="logo" class="logo" />`;
   }
 
+  statusFormatter (value, row, index) {
+    return `<span>${method.checkStatus(value)}</span>`
+  }
+
   // time
-  timeFrormatter (value, row, index) {
-    return `<i class="dot"></i><span class="time">${value}</span>`;
+  timerFormatter (value, row, index) {
+    return `<i class="dot"></i><span class="time">${method.timeFormatter(value)}</span>`;
   }
 
   //operation
   operateFormatter (value, row, index) {
-    return `<a href="./details.html" class="button">Go</a>`;
+    return `<a href="./details.html?gid=${row.projectGid}" class="button">Go</a>`;
   }
 
   // projects init
-  tableInit () {
+  tableRender () {
     this.$table.bootstrapTable({
-      // locale: 'zh-CN',
-      // method: 'GET',
-      // url: '',
-      // queryParams: this.queryParams,
-      // queryParamsType: 'no',
-      // contentType: 'application/json',
-      // dataType: 'json',
-      // responseHandler: function(res) {},
-      data: tableData,
+      locale: 'zh-CN',
+      method: 'GET',
+      url: `${baseURL}/project/list`,
+      queryParams: this.queryParams,
+      queryParamsType: 'no',
+      contentType: 'application/json',
+      dataType: 'json',
+      responseHandler: this.responseHandler,
       pageNumber: 1,
-      pageSize: 6,
+      pageSize: 2,
       pageList: [10, 20, 50, 100],
-      // sidePagination: 'server',
+      sidePagination: 'server',
       pagination: true,
       paginationHAlign: 'right',
       paginationLoop: false,
       paginationPreText: '<',//指定分页条中上一页按钮的图标或文字
       paginationNextText: '>',//指定分页条中下一页按钮的图标或文字
-      // silentSort: false,
+      silentSort: false,
       columns: [
         {
-          field: 'logo',
+          field: 'projectLogoLink',
           align: 'center',
           formatter: this.logoFormatter
         },
         {
-          title: 'Status',
-          field: 'status',
+          title: 'Project satus',
+          field: 'projectStatus',
+          formatter: this.statusFormatter
         },
         {
-          title: 'Name',
-          field: 'name',
+          title: 'Project name',
+          field: 'projectName',
         },
         {
           title: 'Description',
-          field: 'description',
+          field: 'projectInstruction',
           align: 'center',
           class: 'color-gray'
         },
         {
-          title: 'Symbol',
-          field: 'symbol',
+          title: 'project Token',
+          field: 'projectToken',
           align: 'center'
         },
         {
           title: 'Start',
-          field: 'start',
+          field: 'startTime',
           align: 'center',
           class: 'start-time',
-          formatter: this.timeFrormatter
+          formatter: this.timerFormatter
         },
         {
           title: 'End',
-          field: 'end',
+          field: 'endTime',
           align: 'center',
           class: 'end-time',
-          formatter: this.timeFrormatter
+          formatter: this.timerFormatter
         },
         {
           title: 'Operation',

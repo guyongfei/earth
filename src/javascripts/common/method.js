@@ -62,5 +62,39 @@ export default {
     day = day < 10 ? '0' + day : day;
 
     return `${year}-${month}-${day}`;
+  },
+  checkStatus (value) {
+    let result = null;
+    switch (value) {
+      case 0:
+        result = '未开始';
+        break;
+      case 1:
+        result = '开始认筹还未到软顶';
+        break;
+      case 2:
+        result = '开始认筹还未到硬顶';
+        break;
+      case 3:
+        result = '认筹完成且成功';
+        break;
+      case 4:
+        result = '认筹完成但失败';
+        break;
+      default:
+        break;
+    }
+    return result;
+  },
+  //千分位
+  thousandsFormatter (number) {
+    let num = (number || 0).toString(),
+      result = '';
+    while (num.length > 3) {
+      result = ',' + num.slice(-3) + result;
+      num = num.slice(0, num.length - 3);
+    }
+    if (num) { result = num + result; }
+    return result;
   }
 }

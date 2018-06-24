@@ -1,6 +1,6 @@
 import 'jquery-validation';
 import method from '../common/method';
-import { emailCode, login, register, forget, password } from '../common/service';
+import { emailCode, login, register, forget, passRequest } from '../common/service';
 
 export default class Baseform {
   constructor(el) {
@@ -102,9 +102,9 @@ export default class Baseform {
 
   // 错误提示
   error (el, message) {
-    el.find('.request-error').text(message).fadeIn();
+    el.find('.request-error').text(message).fadeIn(300);
     setTimeout(() => {
-      el.find('.request-error').text('').fadeOut();
+      el.find('.request-error').fadeOut(300);
     }, 3000);
   }
   
@@ -127,6 +127,10 @@ export default class Baseform {
 
     $regForm.find('.send-code').removeAttr('disabled').text('获取验证码');
     $forgetForm.find('.send-code').removeAttr('disabled').text('获取验证码');
+
+    this.loginValidator.resetForm();
+    this.regValidator.resetForm();
+    this.forgetValidator.resetForm();
 
   }
 
@@ -157,9 +161,6 @@ export default class Baseform {
     $closeForm.on('click', (e) => {
       this.execOutAnimation((() => {
         this.destroy();
-        this.loginValidator.resetForm();
-        this.regValidator.resetForm();
-        this.forgetValidator.resetForm();
       }));
     });
 
@@ -208,8 +209,20 @@ export default class Baseform {
       highlight: (el) => {
       },
       submitHandler: (form) => {
-        console.log('ajax');
-        this.error($login, 'Login successed!!')
+        login({
+          email: this.trim($('#loginEmail')),
+          password: this.trim($('#loginPassword'))
+        })
+        .then(res => {
+          method.setCookie('logined', true);
+          this.error($login, 'Login successed!');
+          setTimeout(() => {
+            window.location.reload();
+          }, 300);
+        })
+        .catch(err => {
+          this.error($login, err.message);
+        });
       }
     });
 
@@ -258,10 +271,25 @@ export default class Baseform {
         }
       },
       // 给未通过验证的元素进行处理
-      highlight: function(el) {
+      highlight: (el) => {
       },
-      submitHandler: function(form) {
-        console.log('ajax');
+      submitHandler: (form) => {
+        register({
+          email: this.trim($('#regEmail')),
+          password: this.trim($('#regPassword')),
+          verifyCode: this.trim($('#regCode'))
+        })
+        .then(res => {
+          this.error($reg, 'Register successed!!')
+          method.setCookie('logined', true);
+          // 强制页面刷新
+          setTimeout(() => {
+            window.location.reload();
+          }, 300);
+        })
+        .catch(err => {
+          this.error($reg, err.message);
+        });
       }
     });
 
@@ -294,10 +322,24 @@ export default class Baseform {
         }
       },
       // 给未通过验证的元素进行处理
-      highlight: function(el) {
+      highlight: (el) => {
       },
-      submitHandler: function(form) {
-        console.log('ajax');
+      submitHandler: (form) => {
+        console.log(form);
+        let email = this.trim($('#forgetEmail')),
+          password = this.trim($('#forgetPassword')),
+          verifyCode = this.trim($('#forgetCode'));
+
+        passRequest('reset', email, password, verifyCode)
+        .then(res => {
+          this.error($forget, 'Reset password successed!');
+          setTimeout(() => {
+            $closeForm.trigger('click');
+          }, 300);
+        })
+        .catch(err => {
+          this.error($forget, err.message);
+        });
       }
     });
 
@@ -307,15 +349,14 @@ export default class Baseform {
       let $email = $('#regEmail'),
         emailVal = this.trim($email);
 
-      if (!$regForm.validate().element($email)) return
+      if (!$regForm.validate().element($email)) return;
       emailCode('register', emailVal)
       .then(res => {
-        console.log(res)
         this.countDown($regCodeBtn);
-        console.log('验证码已经发送至邮箱');
+        this.error($reg, '验证码已经发送至邮箱');
       })
       .catch(err => {
-        console.log(err);
+        this.error($reg, err.message);
       });
     });
 
@@ -325,15 +366,14 @@ export default class Baseform {
       let $email = $('#forgetEmail'),
         emailVal = this.trim($email);
 
-      if (!$forgetForm.validate().element($email)) return
+      if (!$forgetForm.validate().element($email)) return;
       emailCode('other', emailVal)
       .then(res => {
-        console.log(res)
         this.countDown($forgetCodeBtn);
-        console.log('验证码已经发送至邮箱');
+        this.error($forget, '验证码已经发送至邮箱');
       })
       .catch(err => {
-        console.log(err);
+        this.error($forget, err.message);
       });
     });
 

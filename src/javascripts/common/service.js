@@ -13,7 +13,7 @@ const baseOptions = (options) => {
 };
 
 const checkStatus = (data) => {
-  data = { ...data, msg: data.message };
+  data = { ...data };
   if (data.success) {
     return Promise.resolve(data);
   }
@@ -67,19 +67,38 @@ export function logout (params) {
 }
 
 //修改重置密码
-export function password (params) {
+export function passRequest (action, email, password, verifyCode) {
   return request({
     type: 'POST',
-    url: `/user/password?action=${params.action}`,
-    data: params.body
+    url: `/user/password?action=${action}`,
+    data: {
+      email,
+      password,
+      verifyCode
+    }
   });
 }
 
 //获取用户信息（只针对本人）
-export function userinfo (params) {
+export function userinfo () {
   return request({
     type: 'GET',
     url: '/user/user-info'
   });
 }
 
+// 获取项目列表
+export function projectList () {
+  return request({
+    type: 'GET',
+    url: '/project/list'
+  });
+}
+
+// 获取项目详情
+export function projectDetails (projectGid) {
+  return request({
+    type: 'GET',
+    url: `/project/${projectGid}`
+  });
+}
