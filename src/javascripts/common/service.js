@@ -102,3 +102,45 @@ export function projectDetails (projectGid) {
     url: `/project/${projectGid}`
   });
 }
+
+// 查询用户交易地址
+export function getUserAddress (projectGid) {
+  return request({
+    type: 'GET',
+    url: `/transaction/user-address?projectGid=${projectGid}`
+  });
+}
+
+// 设置用户交易地址
+export function setUserAddress (params) {
+  return request({
+    type: 'POST',
+    url: '/transaction/user-address',
+    data: params
+  });
+}
+
+// 提交交易
+export function transaction (params) {
+  return request({
+    type: 'POST',
+    url: '/transaction',
+    data: params
+  });
+}
+
+// 个人交易列表
+export function getTransactions (payTx, projectStatus, userTxStatus, startTime, endTime) {
+  return request({
+    type: 'GET',
+    url: `/transactions?payTx=${payTx}&projectStatus=${projectStatus}&userTxStatus=${userTxStatus}&startTime=${startTime}&endTime=${endTime}`,
+  });
+}
+
+// 交易详情
+export function ownerTransaction (payTx) {
+  return request({
+    type: 'GET',
+    url: `/transaction/${payTx}`
+  });
+}

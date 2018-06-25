@@ -21,38 +21,41 @@
       <div class="section-inner">
         <div class="steps">
           <div class="step step-wallet finished">
-            <span class="ui-checked"></span>
+            <span></span>
             <p>钱包地址</p>
           </div>
           <div class="step step-token unfinished">
-            <span class="ui-unchecked"></span>
+            <span></span>
             <p>购买代币</p>
           </div>
           <div class="step step-result unfinished">
-            <span class="ui-unchecked"></span>
+            <span></span>
             <p>结果</p>
           </div>
         </div>
         <div class="container wallet-container">
-          <div class="form">
-            <div class="form-group">
-              <label>您的接受兼容ERC20的ETH钱包地址</label>
-              <input type="text">
+          <form id="wallet-form">
+            <div class="form">
+              <div class="form-group">
+                <label>您的接受兼容ERC20的ETH钱包地址</label>
+                <input type="text" name="receiving" id="receiving-wallet">
+              </div>
+              <div class="form-group">
+                <label>您的支付ETH的钱包地址</label>
+                <input type="text" name="sending" id="sending-wallet">
+              </div>
             </div>
-            <div class="form-group">
-              <label>您的支付ETH的钱包地址</label>
-              <input type="text">
+            
+            <div class="description">
+              <p>您认购的代币将会在项目认筹结束后，统一打到您提供的接收ERC20代币的钱包地址。</p>
+              <p>您需要填写两个以太坊钱包地址，一个是接收地址，用于接收改项目的ERC20代币；另一个是支付地址，用于支付ETH给项目方。</p>
+              <p>接收地址必须是能兼容ERC20的ETH钱包地址</p>
+              <p>支付地址与您实际支付的地址必须完全相同</p>
+              <p>两个地址一旦输入，不可更改</p>
+              <p>千万不要使用交易所提供的地址（e.g. Coinbase, Binance, etc）</p>
             </div>
-          </div>
-          <div class="description">
-            <p>您认购的代币将会在项目认筹结束后，统一打到您提供的接收ERC20代币的钱包地址。</p>
-            <p>您需要填写两个以太坊钱包地址，一个是接收地址，用于接收改项目的ERC20代币；另一个是支付地址，用于支付ETH给项目方。</p>
-            <p>接收地址必须是能兼容ERC20的ETH钱包地址</p>
-            <p>支付地址与您实际支付的地址必须完全相同</p>
-            <p>两个地址一旦输入，不可更改</p>
-            <p>千万不要使用交易所提供的地址（e.g. Coinbase, Binance, etc）</p>
-          </div>
-          <button class="btn btn-step">下一步</button>
+            <button type="submit" class="btn btn-step">下一步</button>
+          </form>
         </div>
 
         <div class="container token-container">
@@ -77,11 +80,17 @@
               </div>
               <div class="form-group">
                 <label>您将支付</label>
-                <input type="text">
+                <div class="form-group-control">
+                  <input type="text" name="receiving" id="receiving-wallet">
+                  <span class="unit">ETH</span>
+                </div>
               </div>
               <div class="form-group">
                 <label>您将获得</label>
-                <input type="text">
+                <div class="form-group-control">
+                  <input type="text" name="receiving" id="receiving-wallet">
+                  <span class="unit">SLT</span>
+                </div>
               </div>
               <p>最少数额0.18322ETH</p>
             </div>
@@ -99,7 +108,7 @@
               <h3>发送2.0ETH到</h3>
               <p class="waller-address">08xdafd3fdgfdsdgsdgr532524dddf</p>
               <button class="btn-copy">复制到剪切板</button>
-              <div class="barcode" id="barcode"></div>
+              <div class="qrcode" id="qrcode"></div>
             </div>
           </section>
 
@@ -137,7 +146,7 @@
                   <div class="eth">
                     ~0.121424
                   </div>
-                  <div class="transfer">---</div>
+                  <div class="transfer"><span class="ui-transfer"></span></div>
                   <div class="curreny">~8899 SLT</div>
                 </div>
               </div>
@@ -155,7 +164,7 @@
                   <div class="eth">
                     ~0.121424
                   </div>
-                  <div class="transfer">---</div>
+                  <div class="transfer"><span class="ui-transfer"></span></div>
                   <div class="curreny">~8899 SLT</div>
                 </div>
               </div>

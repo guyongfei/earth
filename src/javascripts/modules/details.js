@@ -36,7 +36,7 @@ export default class Details {
         <label for="label" class="label">${method.checkStatus(data.projectStatus)}</label>
         <p class="divide">目前代币的价格</p>
         <p>1ETH: ${data.priceRate}${data.projectName}</p>
-        <button class="get-token-btn">马上获得代币</button>
+        <button class="get-token-btn" data-id="${data.projectGid}">马上获得代币</button>
         <p>已卖代币数：<span class="sale-numbers">${method.thousandsFormatter(data.soldAmount)}</span></p>
       `;
 
@@ -55,16 +55,16 @@ export default class Details {
 
       proBodyTemp = `
         <div class="row">
-          <a class="col-3" href="${data.websites.officialLink}"><img src="" alt=""><span>website</span></a>
-          <a class="col-3" href="${data.websites.whitePaperLink}"><img src="" alt=""><span>white bool</span></a>
-          <a class="col-3" href="${data.websites.twitter}"><img src="" alt=""><span>twitter</span></a>
-          <a class="col-3" href="${data.websites.facebook}"><img src="" alt=""><span>facebook</span></a>
+          <a class="col-3" href="${data.websites.officialLink}"><img src="./images/details/website.png" alt=""><span>website</span></a>
+          <a class="col-3" href="${data.websites.whitePaperLink}"><img src="./images/details/whitebook.png" alt=""><span>white bool</span></a>
+          <a class="col-3" href="${data.websites.twitter}"><img src="./images/details/twitter.png" alt=""><span>twitter</span></a>
+          <a class="col-3" href="${data.websites.facebook}"><img src="./images/details/facebook.png" alt=""><span>facebook</span></a>
         </div>
         <div class="row">
-          <a class="col-3" href="${data.websites.telegram}"><img src="" alt=""><span>telegram</span></a>
-          <a class="col-3" href="${data.websites.reddit}"><img src="" alt=""><span>reddit</span></a>
-          <a class="col-3" href="${data.websites.biYong}"><img src="" alt=""><span>biyong</span></a>
-          <a class="col-3" href="${data.websites.gitHub}"><img src="" alt=""><span>github</span></a>
+          <a class="col-3" href="${data.websites.telegram}"><img src="./images/details/telegram.png" alt=""><span>telegram</span></a>
+          <a class="col-3" href="${data.websites.reddit}"><img src="./images/details/reddit.png" alt=""><span>reddit</span></a>
+          <a class="col-3" href="${data.websites.biYong}"><img src="./images/details/biyong.png" alt=""><span>biyong</span></a>
+          <a class="col-3" href="${data.websites.gitHub}"><img src="./images/details/github.png" alt=""><span>github</span></a>
         </div>
       `;
 
@@ -103,6 +103,19 @@ export default class Details {
 
   // 绑定的事件
   bindEvents () {
+    const {
+      $header,
+      $footer
+    } = this.childMap;
+
+    // 获取代币
+    $header.on('click', '.get-token-btn', (e) => {
+      e.preventDefault();
+      let $this = $(e.currentTarget),
+        gid = $this.data('id');
+
+      window.location.href = `/sale.html?gid=${gid}`;
+    });
 
   }
 

@@ -228,6 +228,11 @@ img, button {
   border: none;
 }
 
+button {
+  outline: 0;
+  cursor: pointer;
+}
+
 img {
   max-width: 100%;
 }
