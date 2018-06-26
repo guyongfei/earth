@@ -1,7 +1,13 @@
-import { QRCode } from 'qrcodejs';
+import QRCode from 'qrcodejs2';
 import 'jquery-validation';
 import method from '../common/method';
-import { setUserAddress, getUserAddress } from '../common/service';
+import {
+  setUserAddress,
+  getUserAddress,
+  submitTransaction,
+  getTransactions,
+  ownerTransaction
+} from '../common/service';
 
 export default class Sale {
   constructor(el) {
@@ -21,13 +27,15 @@ export default class Sale {
     $wallet = $('.wallet-container'),
     $token = $('.token-container'),
     $result = $('.result-container'),
-    $walletForm = $('#wallet-form');
+    $walletForm = $('#wallet-form'),
+    $tokenForm = $('#token-form');
 
     this.childMap.$steps = $steps;
     this.childMap.$wallet = $wallet;
     this.childMap.$token = $token;
     this.childMap.$result = $result;
     this.childMap.$walletForm = $walletForm;
+    this.childMap.$tokenForm = $tokenForm;
   }
 
   // 页面初始化
@@ -38,18 +46,26 @@ export default class Sale {
 
     this.gid = method.getUrlParam('gid');
 
-    // let code = new QRCode(document.getElementById("qrcode"), {
-    //   width : 100,
-    //   height : 100
-    // });
-
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: 'https://www.baidu.com',
+      width : 100,
+      height : 100,
+      colorDark: '#000000',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
   }
 
    // validate method
    validateMethod () {
     $.validator.addMethod('walletFormat', (value, el) => {
       return /^(0x)?([a-fA-F0-9]{40})$/.test(value);
-    })
+    });
+
+    $.validator.addMethod('hashFormat', (value, el) => {
+      return /^0x?([A-Fa-f0-9]{64})$/.text(value);
+    });
+
   }
 
   // trim
@@ -64,7 +80,8 @@ export default class Sale {
       $wallet,
       $token,
       $result,
-      $walletForm
+      $walletForm,
+      $tokenForm
     } = this.childMap;
 
     // Tab 切换
@@ -79,7 +96,7 @@ export default class Sale {
 
     // 表单提交事件
     // 钱包地址弹窗，点击下一步
-     $walletForm.validate({
+    $walletForm.validate({
       rules: {
         receiving: {
           required: true,
@@ -121,6 +138,81 @@ export default class Sale {
 
       }
     });
+
+    // 购买代币
+    $tokenForm.validate({
+      rules: {
+        payAmount: {
+          required: true,
+          number: true
+        },
+        getAmount: {
+          required: true,
+          min: 1
+        },
+        payId: {
+          required: true,
+          hashFormat: true
+        }
+      },
+      messages: {
+        payAmount: {
+          required: '输入有效号码',
+          number: '请输入合法的数字'
+        },
+        getAmount: {
+          required: '输入有效号码',
+          min: '最小购买量为10 000VRA(~0.22679 ETH)'
+        },
+        payId: {
+          required: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)'
+        }
+      },
+      // 给未通过验证的元素进行处理
+      highlight: (el) => {
+      },
+      submitHandler: (form) => {
+        console.log('ajax');
+        // $token.on('click', '.btn-confirm', (e) => {
+        //   submitTransaction({
+        //     projectGid: this.gid,
+        //     priceRate: 500.0,
+        //     payAmount: 1.0,
+        //     payCoinType: 0,
+        //     payTx: "0xdc9f30b716597999eafa0cabaa0b33423845e2f13d4c30d845018d4cf7bad959",
+        //     hopeGetAmount: 500
+        //   })
+        //   .then(res => {
+        //     console.log(res);
+        //   })
+        //   .catch(err => {
+        //     console.log(er);
+        //   })
+        // });
+      }
+    });
+
+    $tokenForm.on('input', '#payAmount', (e) => {
+      console.log(e);
+      let currentValue = this.trim($(e.currentTarget));
+      console.log(currentValue);
+    });
+
+    // ownerTransaction('0xdc9f30b716597999eafa0cabaa0b33423845e2f13d4c30d845018d4cf7bad959')
+    // .then(res => {
+
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
+
+    // getTransactions('0xdc9f30b716597999eafa0cabaa0b33423845e2f13d4c30d845018d4cf7bad959', '', '', '', '')
+    // .then(res => {
+
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // });
 
   }
 }

@@ -121,7 +121,7 @@ export function setUserAddress (params) {
 }
 
 // 提交交易
-export function transaction (params) {
+export function submitTransaction (params) {
   return request({
     type: 'POST',
     url: '/transaction',

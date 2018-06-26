@@ -59,75 +59,77 @@
         </div>
 
         <div class="container token-container">
-          <section>
-            <h2 class="head">
-              <span class="index">1</span><span>认购比例</span>
-            </h2>
-            <div class="body">
-              <div class="form-group">
-                <label>当前slt代币的认购比例为</label>
-                <div class="field">
-                  <div class="half-field">
-                    <p class="top">1</p>
-                    <p class="btm">ETH</p>
+          <form id="token-form">
+            <section>
+              <h2 class="head">
+                <span class="index">1</span><span>认购比例</span>
+              </h2>
+              <div class="body">
+                <div class="form-group">
+                  <label>当前slt代币的认购比例为</label>
+                  <div class="field">
+                    <div class="half-field">
+                      <p class="top">1</p>
+                      <p class="btm">ETH</p>
+                    </div>
+                    <div class="unit">:</div>
+                    <div class="half-field">
+                      <p class="top">80000</p>
+                      <p class="btm">slt</p>
+                    </div>
                   </div>
-                  <div class="unit">:</div>
-                  <div class="half-field">
-                    <p class="top">80000</p>
-                    <p class="btm">slt</p>
+                </div>
+                <div class="form-group">
+                  <label>您将支付</label>
+                  <div class="form-group-control">
+                    <input type="text" name="payAmount" id="payAmount" maxlength="18">
+                    <span class="unit">ETH</span>
                   </div>
                 </div>
+                <div class="form-group">
+                  <label>您将获得</label>
+                  <div class="form-group-control">
+                    <input type="text" name="getAmount" id="getAmount">
+                    <span class="unit">SLT</span>
+                  </div>
+                </div>
+                <p>最少数额0.18322ETH</p>
               </div>
-              <div class="form-group">
-                <label>您将支付</label>
-                <div class="form-group-control">
-                  <input type="text" name="receiving" id="receiving-wallet">
-                  <span class="unit">ETH</span>
+            </section>
+
+            <section>
+              <h2 class="head">
+                <span class="index">2</span><span>支付</span>
+              </h2>
+              <div class="description">
+                <p>推荐使用的gas limit: xxxxxx</p>
+                <p>gas price不少于: xxxxxx</p>
+              </div>
+              <div class="payment">
+                <h3>发送2.0ETH到</h3>
+                <p class="waller-address">08xdafd3fdgfdsdgsdgr532524dddf</p>
+                <button class="btn-copy">复制到剪切板</button>
+                <div class="qrcode" id="qrcode"></div>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="head">
+                <span class="index">3</span><span>提供支付证明</span>
+              </h2>
+              <div class="body">
+                <div class="form-group">
+                  <label>交易ID</label>
+                  <input type="text" name="payId" id="payId">
                 </div>
               </div>
-              <div class="form-group">
-                <label>您将获得</label>
-                <div class="form-group-control">
-                  <input type="text" name="receiving" id="receiving-wallet">
-                  <span class="unit">SLT</span>
-                </div>
-              </div>
-              <p>最少数额0.18322ETH</p>
-            </div>
-          </section>
-
-          <section>
-            <h2 class="head">
-              <span class="index">2</span><span>支付</span>
-            </h2>
-            <div class="description">
-              <p>推荐使用的gas limit: xxxxxx</p>
-              <p>gas price不少于: xxxxxx</p>
-            </div>
-            <div class="payment">
-              <h3>发送2.0ETH到</h3>
-              <p class="waller-address">08xdafd3fdgfdsdgsdgr532524dddf</p>
-              <button class="btn-copy">复制到剪切板</button>
-              <div class="qrcode" id="qrcode"></div>
-            </div>
-          </section>
-
-          <section>
-            <h2 class="head">
-              <span class="index">3</span><span>提供支付证明</span>
-            </h2>
-            <div class="body">
-              <div class="form-group">
-                <label>交易ID</label>
-                <input type="text">
-              </div>
-            </div>
-          </section>
-          
-          <footer>
-            <button class="btn-cancel">取消</button>
-            <button class="btn-confirm">确认</button>
-          </footer>
+            </section>
+            
+            <footer>
+              <button type="submit" class="btn-cancel">取消</button>
+              <button type="submit" class="btn-confirm">确认</button>
+            </footer>
+          </form>
         </div>
 
         <div class="container result-container">

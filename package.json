@@ -68,7 +68,7 @@
     "open": "0.0.5",
     "plugin-error": "^0.1.2",
     "pretty-hrtime": "1.0.3",
-    "qrcodejs": "^1.0.0",
+    "qrcodejs2": "^0.0.2",
     "require-dir": "0.3.2",
     "webpack": "^3.4.1",
     "webpack-dev-middleware": "^1.12.0",
