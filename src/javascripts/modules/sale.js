@@ -3,7 +3,7 @@ import 'jquery-validation';
 import method from '../common/method';
 import {
   setUserAddress,
-  getUserAddress,
+  getTransactionInfo,
   submitTransaction,
   getTransactions,
   ownerTransaction
@@ -15,10 +15,13 @@ export default class Sale {
     this.childMap = {};
     this.flag = false;
     this.gid = null;
+    this.priceRate = null;
+    this.defaultEth = 2;
+    this.payTx = null;
 
     this.validateMethod();
-    this.render();
     this.handleDom();
+    this.render();
     this.bindEvents();
   }
 
@@ -28,7 +31,9 @@ export default class Sale {
     $token = $('.token-container'),
     $result = $('.result-container'),
     $walletForm = $('#wallet-form'),
-    $tokenForm = $('#token-form');
+    $tokenForm = $('#token-form'),
+    $payInput = $('#payAmount'),
+    $getInput = $('#getAmount');
 
     this.childMap.$steps = $steps;
     this.childMap.$wallet = $wallet;
@@ -36,23 +41,91 @@ export default class Sale {
     this.childMap.$result = $result;
     this.childMap.$walletForm = $walletForm;
     this.childMap.$tokenForm = $tokenForm;
+    this.childMap.$payInput = $payInput;
+    this.childMap.$getInput = $getInput;
   }
 
   // 页面初始化
   render() {
     const {
-      $token
+      $steps,
+      $token,
+      $wallet,
+      $result,
+      $walletForm,
+      $tokenForm,
+      $getInput,
+      $payInput
     } = this.childMap;
 
     this.gid = method.getUrlParam('gid');
 
-    var qrcode = new QRCode(document.getElementById("qrcode"), {
-      text: 'https://www.baidu.com',
-      width : 100,
-      height : 100,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H
+    // 用户项目交易信息
+    getTransactionInfo(this.gid)
+    .then(res => {
+      if (res.success) {
+        
+        let result = res.data,
+          payEthAddress = result.payEthAddress,
+          getTokenAddress = result.getTokenAddress;
+
+        this.priceRate = result.priceRate;
+        this.payTx = result.platformAddress;
+
+        if (!method.isEmpty(payEthAddress)) {
+          $('#sending-wallet').attr('disabled', true).val(payEthAddress);
+        }
+        if (!method.isEmpty(getTokenAddress)) {
+          $('#receiving-wallet').attr('disabled', true).val(getTokenAddress);
+        }
+        
+        // 导航栏
+        if (!method.isEmpty(payEthAddress) && !method.isEmpty(getTokenAddress)) {
+          if (result.txCount > 0) {
+            $steps.children().eq(0).removeClass('unfinished').addClass('finished');
+            $steps.children().eq(1).removeClass('unfinished').addClass('finished');
+            $steps.children().eq(2).removeClass('unfinished').addClass('finished active');
+            $wallet.hide();
+            $token.hide();
+            $result.show();
+          } else {
+            $steps.children().eq(0).removeClass('unfinished').addClass('finished');
+            $steps.children().eq(1).addClass('active');
+            $wallet.hide();
+            $token.show();
+            $result.hide();
+          }
+        } else {
+          $steps.children().eq(0).addClass('active');
+          $wallet.show();
+          $token.hide();
+          $result.hide();
+        }
+
+        // 购买代币
+        var qrcode = new QRCode(document.getElementById("qrcode"), {
+          text: result.platformAddress,
+          width : 100,
+          height : 100,
+          colorDark: '#000000',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.H
+        });
+
+        $payInput.val(this.defaultEth);
+        $getInput.val((this.defaultEth * this.priceRate).toFixed(5));
+        $tokenForm.find('.pay-eth').text(this.defaultEth);
+        $tokenForm.find('.number').text(result.priceRate);
+        $tokenForm.find('.token').text(result.projectToken);
+        $tokenForm.find('.gas-limit').text(result.gasPrice.ethGasLimit);
+        $tokenForm.find('.gas-price').text(result.gasPrice.gasPrice);
+        $tokenForm.find('.min-eth').text(result.minPurchaseAmount);
+        $tokenForm.find('.platform-address').text(result.platformAddress);
+
+      }
+    })
+    .catch(err => {
+      console.log(err);
     });
   }
 
@@ -63,7 +136,7 @@ export default class Sale {
     });
 
     $.validator.addMethod('hashFormat', (value, el) => {
-      return /^0x?([A-Fa-f0-9]{64})$/.text(value);
+      return /^0x?([A-Fa-f0-9]{64})$/.test(value);
     });
 
   }
@@ -81,7 +154,9 @@ export default class Sale {
       $token,
       $result,
       $walletForm,
-      $tokenForm
+      $tokenForm,
+      $payInput,
+      $getInput
     } = this.childMap;
 
     // Tab 切换
@@ -92,6 +167,25 @@ export default class Sale {
 
       console.log(index);
       $this.addClass('active').siblings().removeClass('active');
+    });
+
+    // 购买代币输入框
+    $tokenForm.on('input', '#payAmount', (e) => {
+      let value = this.trim($(e.currentTarget));
+      let total = (value * this.priceRate).toFixed(5);
+
+      total = total > 0 ? total : ''; 
+      $('#getAmount').val(total);
+      $('.pay-eth').text(value);
+    });
+
+    $tokenForm.on('input', '#getAmount', (e) => {
+      let value = this.trim($(e.currentTarget));
+      let eth = (value / this.priceRate).toFixed(5);
+
+      eth = eth > 0 ? eth : '';
+      $('#payAmount').val(eth);
+      $('.pay-eth').text(eth);
     });
 
     // 表单提交事件
@@ -128,9 +222,11 @@ export default class Sale {
           payEthAddress: this.trim($('#sending-wallet'))
         })
         .then(res => {
-          $wallet.hide();
-          $token.show();
-          $result.hide();
+          if (res.success) {
+            $wallet.hide();
+            $token.show();
+            $result.hide();
+          }
         })
         .catch(err => {
           console.log(err.message);
@@ -165,37 +261,39 @@ export default class Sale {
           min: '最小购买量为10 000VRA(~0.22679 ETH)'
         },
         payId: {
-          required: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)'
+          required: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)',
+          hashFormat: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)'
         }
       },
       // 给未通过验证的元素进行处理
       highlight: (el) => {
       },
       submitHandler: (form) => {
-        console.log('ajax');
-        // $token.on('click', '.btn-confirm', (e) => {
-        //   submitTransaction({
-        //     projectGid: this.gid,
-        //     priceRate: 500.0,
-        //     payAmount: 1.0,
-        //     payCoinType: 0,
-        //     payTx: "0xdc9f30b716597999eafa0cabaa0b33423845e2f13d4c30d845018d4cf7bad959",
-        //     hopeGetAmount: 500
-        //   })
-        //   .then(res => {
-        //     console.log(res);
-        //   })
-        //   .catch(err => {
-        //     console.log(er);
-        //   })
-        // });
-      }
-    });
+        console.log(form);
+        let payValue = parseFloat(this.trim($payInput)),
+          getValue = parseFloat(this.trim($getInput));
 
-    $tokenForm.on('input', '#payAmount', (e) => {
-      console.log(e);
-      let currentValue = this.trim($(e.currentTarget));
-      console.log(currentValue);
+        submitTransaction({
+          projectGid: this.gid,
+          priceRate: this.priceRate,
+          payAmount: payValue,
+          payCoinType: 0,
+          payTx: this.payTx,
+          hopeGetAmount: getValue
+        })
+        .then(res => {
+          if (res.success) {
+            $wallet.hide();
+            $token.hide();
+            $result.show();
+          }
+        })
+        .catch(err => {
+          console.log(er);
+        })
+
+        return false;
+      }
     });
 
     // ownerTransaction('0xdc9f30b716597999eafa0cabaa0b33423845e2f13d4c30d845018d4cf7bad959')

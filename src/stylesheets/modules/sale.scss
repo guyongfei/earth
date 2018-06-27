@@ -76,6 +76,15 @@
               background-image: url('../../images/sale/ui_unradio.png');
             }
           }
+          &.active {
+            span {
+              background-image: url('../../images/sale/ui_radio.png');
+            }
+          }
+
+          &.step-wallet {
+            @include line(#999999);
+          }
 
           &.step-token {
             @include line(#999999);
@@ -119,6 +128,9 @@
           line-height: 25px;
           border: 1px solid #999999;
           @include border-radius(4px);
+          &:disabled {
+            background: #bbbbbb;
+          }
         }
       }
       
@@ -159,11 +171,11 @@
       }
     }
     .wallet-container {
-      display: none;
+      // display: none;
     }
 
     .token-container {
-      // display: none;
+      display: none;
       section {
         &:not(:last-child) {
           margin-bottom: 20px;

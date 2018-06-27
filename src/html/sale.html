@@ -11,7 +11,7 @@
     <section>
       <div class="section-inner">
         <div class="steps">
-          <div class="step step-wallet finished">
+          <div class="step step-wallet unfinished">
             <span></span>
             <p>钱包地址</p>
           </div>
@@ -50,7 +50,7 @@
         </div>
 
         <div class="container token-container">
-          <form id="token-form">
+          <form id="token-form" onSubmit="return false;">
             <section>
               <h2 class="head">
                 <span class="index">1</span><span>认购比例</span>
@@ -65,26 +65,26 @@
                     </div>
                     <div class="unit">:</div>
                     <div class="half-field">
-                      <p class="top">80000</p>
-                      <p class="btm">slt</p>
+                      <p class="top number">80000</p>
+                      <p class="btm token">slt</p>
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>您将支付</label>
                   <div class="form-group-control">
-                    <input type="text" name="payAmount" id="payAmount" maxlength="18">
+                    <input type="number" name="payAmount" id="payAmount" maxlength="18">
                     <span class="unit">ETH</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>您将获得</label>
                   <div class="form-group-control">
-                    <input type="text" name="getAmount" id="getAmount">
-                    <span class="unit">SLT</span>
+                    <input type="number" name="getAmount" id="getAmount">
+                    <span class="unit" class="token"></span>
                   </div>
                 </div>
-                <p>最少数额0.18322ETH</p>
+                <p class="min-buy-eth">最少数额<span class="min-eth"></span>ETH</p>
               </div>
             </section>
 
@@ -93,12 +93,12 @@
                 <span class="index">2</span><span>支付</span>
               </h2>
               <div class="description">
-                <p>推荐使用的gas limit: xxxxxx</p>
-                <p>gas price不少于: xxxxxx</p>
+                <p>推荐使用的gas limit: <span class="gas-limit"></span></p>
+                <p>gas price不少于: <span class="gas-price"></span></p>
               </div>
               <div class="payment">
-                <h3>发送2.0ETH到</h3>
-                <p class="waller-address">08xdafd3fdgfdsdgsdgr532524dddf</p>
+                <h3>发送<span class="pay-eth"></span>ETH到</h3>
+                <p class="platform-address"></p>
                 <button class="btn-copy">复制到剪切板</button>
                 <div class="qrcode" id="qrcode"></div>
               </div>
@@ -117,8 +117,8 @@
             </section>
             
             <footer>
-              <button type="submit" class="btn-cancel">取消</button>
-              <button type="submit" class="btn-confirm">确认</button>
+              <button class="btn-cancel">取消</button>
+              <button class="btn-confirm">确认</button>
             </footer>
           </form>
         </div>

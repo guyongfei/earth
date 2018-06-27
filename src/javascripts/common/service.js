@@ -103,11 +103,11 @@ export function projectDetails (projectGid) {
   });
 }
 
-// 查询用户交易地址
-export function getUserAddress (projectGid) {
+// 查询用户项目交易信息
+export function getTransactionInfo (projectGid) {
   return request({
     type: 'GET',
-    url: `/transaction/user-address?projectGid=${projectGid}`
+    url: `/transaction/info?projectGid=${projectGid}`
   });
 }
 
