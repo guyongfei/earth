@@ -187,7 +187,8 @@
         input {
           padding-right: 100px;
         }
-        .unit {
+        .unit,
+        .token {
           display: block;
           position: absolute;
           top: 0;
@@ -274,6 +275,11 @@
           text-align: center;
           cursor: pointer;
         }
+        .copied {
+          color: #ffffff;
+          background: #999999;
+          border-color: #999999;
+        }
       }
 
       .qrcode {
@@ -359,7 +365,11 @@
           }
           .order-id {
             margin-right: 10px;
+            width: 90px;
             color: #000000;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
           .order-time {
             font-size: 12px;
@@ -367,7 +377,8 @@
             flex: 1;
           }
           .order-status {
-            padding: 0 5px;
+            padding: 2px 4px;
+            font-size: 12px;
             color: #ffffff;
             background: #999999;
             @include border-radius(2px);
@@ -399,7 +410,7 @@
             .curreny {
               width: 154px;
               color: $color-white;
-              background: $color-orange;
+              background: #4392F9;
               @include border-radius(4px);
             }
           }

@@ -30,6 +30,8 @@ export default class Details {
     .then(({ success, data, message }) => {
       if (!success) { console.log('no data'); }; 
       let headTemp, proHeadTemp, proBodyTemp, proFootTemp;
+      let flag = !this.checkStatus(data.projectStatus),
+        className = flag ? 'disabled' : '';
 
       headTemp = `
         <h3 class="name">${data.projectName}</h3>
@@ -94,6 +96,10 @@ export default class Details {
       $footer.find('.project-body').html(proBodyTemp);
       $footer.find('.project-foot').html(proFootTemp);
       $footer.find('.desc-field').text(data.projectContent);
+
+      if (flag) {
+        $header.find('.get-token-btn').attr('disabled', 'disabled');
+      }
     })
     .catch(err => {
       console.log(err);
@@ -113,10 +119,28 @@ export default class Details {
       e.preventDefault();
       let $this = $(e.currentTarget),
         gid = $this.data('id');
-
+      
       window.location.href = `/sale.html?gid=${gid}`;
     });
 
+  }
+
+  checkStatus (val) {
+    switch (val) {
+      case 0:
+        return false;
+        break;
+      case 1:
+      case 2:
+        return true;
+        break;
+      case 3:
+        return false;
+        break;
+      default:
+        return false;
+        break;
+    }
   }
 
 }

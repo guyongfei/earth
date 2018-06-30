@@ -1,9 +1,13 @@
+import { userinfo } from '../common/service';
+import method from '../common/method';
+
 export default class Header {
   constructor(el) {
     this.$el = $(el);
     this.childMap = {};
 
     this.handleDom();
+    this.render();
     this.bindEvents();
   }
 
@@ -19,6 +23,18 @@ export default class Header {
     this.childMap.$langWrap = $langWrap;
     this.childMap.$langClose = $langClose;
     this.childMap.$langs = $langs;
+  }
+
+  render () {
+    userinfo()
+    .then(res => {
+      if (res.success) {
+
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
   execInAnimation (callback) {

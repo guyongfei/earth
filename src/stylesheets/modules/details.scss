@@ -86,6 +86,9 @@
       @include fc(20px, $color-white);
       @include border-radius(100px);
       cursor: pointer;
+      &:disabled {
+        background: #999999;
+      }
     }
   }
 

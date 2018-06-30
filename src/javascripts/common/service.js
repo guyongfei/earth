@@ -130,10 +130,10 @@ export function submitTransaction (params) {
 }
 
 // 个人交易列表
-export function getTransactions (payTx, projectStatus, userTxStatus, startTime, endTime) {
+export function getTransactions (gid, pageNum, pageSize) {
   return request({
     type: 'GET',
-    url: `/transactions?payTx=${payTx}&projectStatus=${projectStatus}&userTxStatus=${userTxStatus}&startTime=${startTime}&endTime=${endTime}`,
+    url: `/transactions?projectGid=${gid}&pageNum=${pageNum}&pageSize=${pageSize}`
   });
 }
 

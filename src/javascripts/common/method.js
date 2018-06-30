@@ -63,6 +63,9 @@ export default {
 
     return `${year}-${month}-${day}`;
   },
+  dateFormatter (timestamp) {
+    
+  },
   checkStatus (value) {
     let result = null;
     switch (value) {
