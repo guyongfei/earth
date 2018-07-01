@@ -19,7 +19,7 @@ export default class Details {
 
   handleDom () {
     let $header = $('.box-head'),
-      $footer = $('.box-foot')
+      $footer = $('.box-foot');
 
     this.childMap.$header = $header;
     this.childMap.$footer = $footer;

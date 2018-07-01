@@ -52,23 +52,23 @@ export default class Header {
       $nickname
     } = this.childMap;
 
-    let logined = method.getCookie('logined');
+    // let logined = method.getCookie('logined');
 
-    if (logined) {
-      userinfo()
-      .then(res => {
-        if (res.success) {
-          let data = res.data;
-          $login.hide();
-          $footer.hide();
-          $nickname.text(data.nickname).show();
-          $logout.show();
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-    }
+    // if (logined) {
+    userinfo()
+    .then(res => {
+      if (res.success) {
+        let data = res.data;
+        $login.hide();
+        $footer.hide();
+        $nickname.text(data.nickname).show();
+        $logout.show();
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+    // }
 
   }
 
