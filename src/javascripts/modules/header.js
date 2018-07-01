@@ -4,11 +4,16 @@ import i18next from 'i18next';
 import jqueryI18next from 'jquery-i18next';
 import en from '../../i18/en';
 import cn from '../../i18/cn';
+import getModule from './index';
 
 export default class Header {
   constructor(el) {
     this.$el = $(el);
     this.childMap = {};
+
+    $(() => {
+      this.baseForm = getModule('baseform');
+    });
 
     this.handleDom();
     this.headRender();
@@ -130,6 +135,7 @@ export default class Header {
     const {
       $switch,
       $langClose,
+      $login,
       $logout,
       $langs
     } = this.childMap;
@@ -137,6 +143,12 @@ export default class Header {
     // 侧边栏
     $switch.on('click', (e) => {
       this.execInAnimation();
+    });
+
+    // 登录
+    $login.on('click', (e) => {
+      this.execOutAnimation();
+      this.baseForm.execInAnimation();
     });
 
     // 关闭多语言

@@ -34,10 +34,7 @@ export default class Baseform {
       $regLink = $('.register-link'),
       $forgetLink = $('.forget-link'),
       $loginFoot = $('.f-login-btn'),
-      $closeForm = $('.form-close'),
-      $loginHead = $('.login'),
-      $langLayer = $('.lang-fixed-layer'),
-      $langWrap = $('.langs-wrap');
+      $closeForm = $('.form-close');
   
     this.childMap.$login = $login;
     this.childMap.$reg = $reg;
@@ -53,9 +50,6 @@ export default class Baseform {
     this.childMap.$container = $container;
     this.childMap.$loginFoot = $loginFoot;
     this.childMap.$closeForm = $closeForm;
-    this.childMap.$loginHead = $loginHead;
-    this.childMap.$langLayer = $langLayer;
-    this.childMap.$langWrap = $langWrap;
   }
 
   execInAnimation (callback) {
@@ -82,16 +76,6 @@ export default class Baseform {
     $container.stop().animate({ 'top': 0 });
 
     callback && callback();
-  }
-
-  slideExecOutAnimation (callback) {
-    const {
-      $langLayer,
-      $langWrap
-    } = this.childMap;
-
-    $langLayer.stop().animate({ opacity: 0 }, 300).hide(0);
-    $langWrap.stop().animate({ 'right': '-320px' });
   }
 
   // trim
@@ -167,18 +151,11 @@ export default class Baseform {
       $closeForm,
       $regLink,
       $loginLink,
-      $forgetLink,
-      $loginHead
+      $forgetLink
     } = this.childMap;
 
     // 底部登录事件
     $loginFoot.on('click', (e) => {
-      this.execInAnimation();
-    });
-
-    // 侧边栏登录事件
-    $loginHead.on('click', (e) => {
-      this.slideExecOutAnimation();
       this.execInAnimation();
     });
 
