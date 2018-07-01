@@ -1,4 +1,7 @@
 import { baseURL } from './constants';
+import method from './method';
+
+let lang = method.getCookie('international.language');
 
 const baseOptions = (options) => {
   let parseFormat = options.type == 'GET' ?
@@ -24,6 +27,11 @@ function request (options) {
   return $.ajax(baseOptions(options))
   .then(checkStatus)
   .catch((err, status) => {
+    if (err.status && err.status === 401 && method.getCookie('logined')) {
+      method.setCookie('logined', '', 30);
+      alert(lang == 'en' ? 'Your account has been logged on by other devices. Please login again.' : '您的账号已在其他设备登录，请重新登录!');
+      window.location.href = '/index.hmtl';
+    }
     return Promise.reject(err);
   });
 }

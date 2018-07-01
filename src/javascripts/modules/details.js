@@ -120,7 +120,7 @@ export default class Details {
       let $this = $(e.currentTarget),
         gid = $this.data('id');
       
-      window.location.href = `/sale.html?gid=${gid}`;
+      window.location.href = `./sale.html?gid=${gid}`;
     });
 
   }
