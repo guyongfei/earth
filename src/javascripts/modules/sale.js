@@ -362,6 +362,8 @@ export default class Sale {
         .then(res => {
           if (res.success) {
             this.wallet = true;
+            $steps.children().eq(0).removeClass('unfinished').addClass('finished');
+            $steps.children().eq(1).addClass('active').siblings().removeClass('active');
             $wallet.hide();
             $token.show();
             $result.hide();
@@ -427,7 +429,8 @@ export default class Sale {
               hopeGetAmount: getValue
             })
             .then(res => {
-              $steps.children().eq(2).addClass('finished').removeClass('unfinished');
+              $steps.children().eq(1).removeClass('unfinished').addClass('finished');
+              $steps.children().eq(2).addClass('active').siblings().removeClass('active');
               this.renderList(this.gid);
               $wallet.hide();
               $token.hide();
