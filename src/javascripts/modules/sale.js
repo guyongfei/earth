@@ -21,6 +21,8 @@ export default class Sale {
     this.payTx = null;
     this.txCount = null;
     this.wallet = false;
+    this.token = false;
+    this.result = false;
 
     this.validateMethod();
     this.handleDom();
@@ -89,6 +91,7 @@ export default class Sale {
         if (!method.isEmpty(payEthAddress) && !method.isEmpty(getTokenAddress)) {
           this.wallet = true;
           if (result.txCount > 0) {
+            this.result = true;
             $steps.children().eq(0).removeClass('unfinished').addClass('finished');
             $steps.children().eq(1).removeClass('unfinished').addClass('finished');
             $steps.children().eq(2).removeClass('unfinished').addClass('finished active');
@@ -96,6 +99,7 @@ export default class Sale {
             $token.hide();
             $result.show();
           } else {
+            this.token = true;
             $steps.children().eq(0).removeClass('unfinished').addClass('finished');
             $steps.children().eq(1).addClass('active');
             $wallet.hide();
@@ -103,6 +107,7 @@ export default class Sale {
             $result.hide();
           }
         } else {
+          this.wallet = false;
           $steps.children().eq(0).addClass('active');
           $wallet.show();
           $token.hide();
@@ -419,10 +424,24 @@ export default class Sale {
           }
         })
         .catch(err => {
-          console.log(er);
+          console.log(err);
         })
 
         return false;
+      }
+    });
+
+    // 取消事件
+    $tokenForm.on('click', '.btn-cancel', (e) => {
+      e.preventDefault();
+
+      if (!method.isEmpty($payId.val())) {
+        let message = '如果您导航离开 ，您输入的TX散列信息将丢失 ，您的订单可能无法确认。请点击以下的确认付款或取消按钮确认或取消您的订单。';
+        if (!confirm(message)) return
+        this.destroy();
+        if (this.wallet && this.token) {
+          $steps.children().eq(2).trigger('click');
+        }
       }
     });
 
