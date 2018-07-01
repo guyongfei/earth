@@ -1,5 +1,7 @@
 import 'jquery-validation';
+import EventEmitter from '../lib/event';
 import method from '../common/method';
+import { extendMethod } from '../common/utils';
 import { emailCode, login, register, forget, passRequest } from '../common/service';
 
 export default class Baseform {
@@ -14,6 +16,8 @@ export default class Baseform {
     this.handleDom();
     this.validateMethod();
     this.bindEvents();
+
+    EventEmitter.call(this);
   }
 
   handleDom () {
@@ -176,7 +180,7 @@ export default class Baseform {
     $loginHead.on('click', (e) => {
       this.slideExecOutAnimation();
       this.execInAnimation();
-    })
+    });
 
     // 关闭登录|注册|忘记密码弹窗
     $closeForm.on('click', (e) => {
@@ -401,3 +405,5 @@ export default class Baseform {
   }
 
 }
+
+extendMethod(Baseform.prototype, EventEmitter.prototype);
