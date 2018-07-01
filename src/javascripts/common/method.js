@@ -39,6 +39,9 @@ export default {
     }
     return null;
   },
+  removeCookie (name) {
+    this.setCookie(name, '', -1);
+  },
   getUrlParam (str) {
     let param,
       params = location.search.slice(1).split('&');

@@ -73,6 +73,9 @@ header {
         display: inline-block;
         cursor: pointer;
       }
+      .nickname {
+        display: none;
+      }
       .lang-close {
         margin-left: 10px;
         display: inline-block;
@@ -96,6 +99,19 @@ header {
           background: url('../../images/base/ui_checked.png') no-repeat;
           background-size: cover;
         }
+      }
+    }
+    .logout {
+      display: none;
+      margin-top: 100px;
+      text-align: center;
+      .btn-logout {
+        width: 150px;
+        height: 40px;
+        line-height: 40px;
+        border: 1px solid #FF5500;
+        background: transparent;
+        @include border-radius(20px);
       }
     }
   }

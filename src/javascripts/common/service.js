@@ -58,11 +58,10 @@ export function login (params) {
 }
 
 //退出
-export function logout (params) {
+export function logout () {
   return request({
     type: 'POST',
-    url: '/logout',
-    data: params
+    url: '/logout'
   });
 }
 
@@ -83,7 +82,7 @@ export function passRequest (action, email, password, verifyCode) {
 export function userinfo () {
   return request({
     type: 'GET',
-    url: '/user/user-info'
+    url: '/user-info'
   });
 }
 

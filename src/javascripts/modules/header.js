@@ -1,5 +1,9 @@
-import { userinfo } from '../common/service';
+import { userinfo, logout } from '../common/service';
 import method from '../common/method';
+import i18next from 'i18next';
+import jqueryI18next from 'jquery-i18next';
+import en from '../../i18/en';
+import cn from '../../i18/cn';
 
 export default class Header {
   constructor(el) {
@@ -7,7 +11,8 @@ export default class Header {
     this.childMap = {};
 
     this.handleDom();
-    this.render();
+    this.headRender();
+    this.languageInit();
     this.bindEvents();
   }
 
@@ -16,20 +21,40 @@ export default class Header {
       $langLayer = $('.lang-fixed-layer'),
       $langWrap = $('.langs-wrap'),
       $langClose = $('.close-btn'),
-      $langs = $('.langs');
+      $langs = $('.langs'),
+      $nickname = $('.nickname'),
+      $login = this.$el.find('.login'),
+      $logout = this.$el.find('.logout'),
+      $footer = $('#footer');
 
     this.childMap.$switch = $switch;
     this.childMap.$langLayer = $langLayer;
     this.childMap.$langWrap = $langWrap;
     this.childMap.$langClose = $langClose;
     this.childMap.$langs = $langs;
+    this.childMap.$nickname = $nickname;
+    this.childMap.$login = $login;
+    this.childMap.$logout = $logout;
+    this.childMap.$footer = $footer;
+
   }
 
-  render () {
+  headRender () {
+    const {
+      $login,
+      $logout,
+      $nickname,
+      $footer
+    } = this.childMap;
+
     userinfo()
     .then(res => {
       if (res.success) {
-
+        let data = res.data;
+        $login.hide();
+        $footer.hide();
+        $nickname.text(data.nickname).show();
+        $logout.show();
       }
     })
     .catch(err => {
@@ -37,10 +62,49 @@ export default class Header {
     });
   }
 
+  languageInit () {
+    const {
+      $switch,
+      $langs
+    } = this.childMap;
+
+    let i18;
+    let lang = method.getCookie('international.language');
+
+    if (method.isEmpty(lang)) {
+      lang = 'en';
+      method.setCookie('international.language', 'en');
+    }
+
+    if (lang == 'en') {
+      $switch.find('.lang-btn').text('English');
+      $langs.children().eq(0).addClass('l-active');
+    } else {
+      $switch.find('.lang-btn').text('简体中文');
+      $langs.children().eq(1).addClass('l-active');
+    }
+
+    i18 = lang == 'cn' ? cn : en;
+
+    // i18 next
+    // i18 next
+    i18next.init({
+      lng: lang,
+      resources: {
+        ...i18
+      }
+    }, function(err, t) {
+      jqueryI18next.init(i18next, $);
+      $(document).localize();
+    });
+
+  }
+
   execInAnimation (callback) {
     const {
       $langLayer,
-      $langWrap
+      $langWrap,
+      $logout
     } = this.childMap;
 
     $langLayer.show().stop().animate({ opacity: 1 }, 300);
@@ -60,10 +124,12 @@ export default class Header {
   bindEvents () {
     const {
       $switch,
-      $langClose
+      $langClose,
+      $logout,
+      $langs
     } = this.childMap;
 
-    // 多语言切换
+    // 侧边栏
     $switch.on('click', (e) => {
       this.execInAnimation();
     });
@@ -71,6 +137,30 @@ export default class Header {
     // 关闭多语言
     $langClose.on('click', (e) => {
       this.execOutAnimation();
+    });
+
+    // 多语言切换事件
+    $langs.on('click', '.lang', (e) => {
+      console.log(e);
+      let $this = $(e.currentTarget),
+        lang = $this.data('lang');
+      
+      if ($this.hasClass('l-active')) return;
+      method.setCookie('international.language', lang);
+      $this.addClass('l-active').siblings().removeClass('l-active');
+      location.reload();
+    });
+
+    // 退出登录
+    $logout.on('click', '.btn-logout', (e) => {
+      logout()
+      .then(res => {
+        method.removeCookie('logined');
+        location.href = '/index.html';
+      })
+      .catch(er => {
+        console.log(err);
+      });
     });
 
   }
