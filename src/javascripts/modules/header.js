@@ -24,7 +24,8 @@ export default class Header {
       $langs = $('.langs'),
       $nickname = $('.nickname'),
       $login = this.$el.find('.login'),
-      $logout = this.$el.find('.logout');
+      $logout = this.$el.find('.logout'),
+      $footer = $('#footer');
 
     this.childMap.$switch = $switch;
     this.childMap.$langLayer = $langLayer;
@@ -34,6 +35,7 @@ export default class Header {
     this.childMap.$nickname = $nickname;
     this.childMap.$login = $login;
     this.childMap.$logout = $logout;
+    this.childMap.$footer = $footer;
 
   }
 
@@ -41,6 +43,7 @@ export default class Header {
     const {
       $login,
       $logout,
+      $footer,
       $nickname
     } = this.childMap;
 

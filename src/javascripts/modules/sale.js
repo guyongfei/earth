@@ -255,7 +255,7 @@ export default class Sale {
       let $this = $(e.currentTarget),
         index = $this.index();
 
-      if ($this.hasClass('.unfinished')) return;
+      if ($this.hasClass('unfinished')) return;
       if (!method.isEmpty($payId.val()) && index != 1) {
         let message = '如果您导航离开 ，您输入的TX散列信息将丢失 ，您的订单可能无法确认。请点击以下的确认付款或取消按钮确认或取消您的订单。';
         if (!confirm(message)) return
@@ -264,15 +264,6 @@ export default class Sale {
 
       $this.addClass('active').siblings().removeClass('active');
       $('.container').eq(index).show().siblings('.container').hide();
-    });
-
-    // 钱包地址 下一步
-    $walletForm.on('click', '.btn-step', (e) => {
-      e.preventDefault();
-
-      if (this.wallet) {
-        $steps.children().eq(1).trigger('click');
-      }
     });
 
     // 购买代币输入框
@@ -347,6 +338,9 @@ export default class Sale {
       },
       submitHandler: (form) => {
         console.log('ajax');
+        if (this.wallet) {
+          return $steps.children().eq(1).trigger('click');
+        }
         setUserAddress({
           projectGid: this.gid,
           getTokenAddress: this.trim($('#receiving-wallet')),
