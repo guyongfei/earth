@@ -12,7 +12,7 @@ export default class Baseform {
     this.regValidator = null;
     this.forgetValidator = null;
     this.timer = null;
-    this.count = 60;
+    this.count = 90;
     this.handleDom();
     this.validateMethod();
     this.bindEvents();
@@ -90,7 +90,7 @@ export default class Baseform {
       $(el).text(this.count+'s');
       if (this.count == 0) {
         clearInterval(this.timer);
-        this.count = 60;
+        this.count = 90;
         $(el).removeAttr('disabled').text('重新获取');
       }
     }, 1000);
@@ -125,7 +125,7 @@ export default class Baseform {
     document.getElementById('regForm').reset();
     document.getElementById('forgetForm').reset();
 
-    this.count = 60;
+    this.count = 90;
     this.timer = null;
 
     $regForm.find('.send-code').removeAttr('disabled').text('获取验证码');
