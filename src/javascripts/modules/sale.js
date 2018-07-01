@@ -351,8 +351,8 @@ export default class Sale {
 
         if (this.wallet) {
           $steps.children().eq(1).trigger('click');
+          return false;
         }
-        return false;
   
         setUserAddress({
           projectGid: this.gid,
