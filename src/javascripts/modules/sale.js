@@ -339,8 +339,10 @@ export default class Sale {
       submitHandler: (form) => {
         console.log('ajax');
         if (this.wallet) {
-          return $steps.children().eq(1).trigger('click');
+          $steps.children().eq(1).trigger('click');
         }
+        return false;
+  
         setUserAddress({
           projectGid: this.gid,
           getTokenAddress: this.trim($('#receiving-wallet')),
@@ -409,7 +411,8 @@ export default class Sale {
         })
         .then(res => {
           if (res.success) {
-            
+            $steps.children().eq(2).addClass('finished').removeClass('unfinished');
+            this.renderList(this.gid);
             $wallet.hide();
             $token.hide();
             $result.show();

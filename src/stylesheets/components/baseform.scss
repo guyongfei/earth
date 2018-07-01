@@ -29,7 +29,7 @@
       display: inline-block;
       width: 16px;
       height: 16px;
-      background: url('../../images/base/ui_close.png') no-repeat;
+      background: url('../../images/bases/ui_close.png') no-repeat;
       background-size: cover;
       vertical-align: middle;
     }
@@ -117,7 +117,7 @@
         display: block;
         width: 20px;
         height: 20px;
-        background-image: url('../../images/base/ui_box_unchecked.png');
+        background-image: url('../../images/bases/ui_box_unchecked.png');
         background-repeat: no-repeat;
         background-size: cover;
         -webkit-transition: all ease .3s;
@@ -125,7 +125,7 @@
       }
       &:checked {
         &:after {
-          background-image: url('../../images/base/ui_box_checked.png');
+          background-image: url('../../images/bases/ui_box_checked.png');
         }
       }
     }

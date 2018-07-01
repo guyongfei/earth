@@ -1,10 +1,16 @@
 import { projectDetails } from '../common/service';
 import method from '../common/method';
+import getModule from './index';
 
 export default class Details {
   constructor(el) {
     this.$el = $(el);
     this.childMap = {};
+
+    $(() => {
+      this.userForm = getModule('baseform');
+    });
+
     this.handleDom();
     this.render();
     this.bindEvents();
@@ -118,9 +124,14 @@ export default class Details {
     $header.on('click', '.get-token-btn', (e) => {
       e.preventDefault();
       let $this = $(e.currentTarget),
-        gid = $this.data('id');
+        gid = $this.data('id'),
+        logined = method.getCookie('logined');
       
-      window.location.href = `./sale.html?gid=${gid}`;
+      if (logined) {
+        window.location.href = `./sale.html?gid=${gid}`;
+      } else {
+        this.userForm.execInAnimation();
+      }
     });
 
   }

@@ -47,19 +47,24 @@ export default class Header {
       $nickname
     } = this.childMap;
 
-    userinfo()
-    .then(res => {
-      if (res.success) {
-        let data = res.data;
-        $login.hide();
-        $footer.hide();
-        $nickname.text(data.nickname).show();
-        $logout.show();
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    let logined = method.getCookie('logined');
+
+    if (logined) {
+      userinfo()
+      .then(res => {
+        if (res.success) {
+          let data = res.data;
+          $login.hide();
+          $footer.hide();
+          $nickname.text(data.nickname).show();
+          $logout.show();
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    }
+
   }
 
   languageInit () {
@@ -156,7 +161,7 @@ export default class Header {
       logout()
       .then(res => {
         method.removeCookie('logined');
-        location.href = '/index.html';
+        location.href = './index.html';
       })
       .catch(er => {
         console.log(err);

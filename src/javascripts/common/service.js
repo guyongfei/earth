@@ -30,7 +30,7 @@ function request (options) {
     if (err.status && err.status === 401 && method.getCookie('logined')) {
       method.setCookie('logined', '', 30);
       alert(lang == 'en' ? 'Your account has been logged on by other devices. Please login again.' : '您的账号已在其他设备登录，请重新登录!');
-      window.location.href = '/index.hmtl';
+      window.location.href = './index.html';
     }
     return Promise.reject(err);
   });
