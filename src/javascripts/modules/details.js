@@ -1,4 +1,4 @@
-import { projectDetails } from '../common/service';
+import { projectDetails, getTransactionInfo } from '../common/service';
 import method from '../common/method';
 import getModule from './index';
 
@@ -6,9 +6,10 @@ export default class Details {
   constructor(el) {
     this.$el = $(el);
     this.childMap = {};
+    this.gid = null;
 
     $(() => {
-      this.userForm = getModule('baseform');
+      this.baseForm = getModule('baseform');
     });
 
     this.handleDom();
@@ -31,8 +32,8 @@ export default class Details {
       $footer
     } = this.childMap;
     
-    let gid = method.getUrlParam('gid');
-    projectDetails(gid)
+    this.gid = method.getUrlParam('gid');
+    projectDetails(this.gid)
     .then(({ success, data, message }) => {
       if (!success) { console.log('no data'); }; 
       let headTemp, proHeadTemp, proBodyTemp, proFootTemp;
@@ -124,14 +125,25 @@ export default class Details {
     $header.on('click', '.get-token-btn', (e) => {
       e.preventDefault();
       let $this = $(e.currentTarget),
-        gid = $this.data('id'),
-        logined = method.getCookie('logined');
-      
-      if (logined) {
-        window.location.href = `./sale.html?gid=${gid}`;
-      } else {
-        this.userForm.execInAnimation();
-      }
+        gid = $this.data('id');
+
+      getTransactionInfo(this.gid)
+      .then(res => {
+        // txCountLimit true 交易达到上限，不可再交易
+        if (res.data.txCountLimit) {
+          alert('交易次数达到上限，不能再次交易');
+        } else {
+          window.location.href = `./sale.html?gid=${gid}`;
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        if (err.status === 401) {
+          return this.baseForm.execInAnimation();
+        }
+        console.log(err);
+      });
+
     });
 
   }

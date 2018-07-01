@@ -1,5 +1,6 @@
 import QRCode from 'qrcodejs2';
 import 'jquery-validation';
+import moment from 'moment';
 import method from '../common/method';
 import Clipboard from 'clipboard';
 import {
@@ -9,6 +10,7 @@ import {
   getTransactions,
   ownerTransaction
 } from '../common/service';
+import getModule from './index';
 
 export default class Sale {
   constructor(el) {
@@ -23,6 +25,10 @@ export default class Sale {
     this.wallet = false;
     this.token = false;
     this.result = false;
+
+    $(() => {
+      this.baseForm = getModule('baseform');
+    });
 
     this.validateMethod();
     this.handleDom();
@@ -123,6 +129,8 @@ export default class Sale {
           colorLight: '#ffffff',
           correctLevel: QRCode.CorrectLevel.H
         });
+
+        $('.token-name').text(result.projectToken);
         
         $payInput.val(this.defaultEth);
         $getInput.val((this.defaultEth * this.priceRate).toFixed(5));
@@ -136,11 +144,9 @@ export default class Sale {
         $tokenForm.find('.platform-address').text(result.platformAddress);
 
         // 购买结果
-        if (result.txCount > 0) {
-          $result.find('.token-name').text(result.projectToken);
-          $result.find('.gmt-date').text(new Date(result.endTime));
-          this.renderList(this.gid);
-        }
+        $result.find('.gmt-date').text(moment.utc(new Date(result.endTime)).format('MMMM Do, h:mm A'));
+
+        result.txCount > 0 && this.renderList(this.gid)
 
       }
     })
@@ -176,7 +182,7 @@ export default class Sale {
             <div class="ui-item-head">
               <i class="dot"></i>
               <span class="order-id">订单号 ${item.payTx}</span>
-              <span class="order-time">Jun 10th, 5:48 PM</span>
+              <span class="order-time">${moment(item.createTime).format('MMMM Do, h:mm:ss A')}</span>
               <span class="order-status">${this.checkTxStatus(item.userTxStatus)}</span>
             </div>
             <div class="ui-item-body">
@@ -342,7 +348,7 @@ export default class Sale {
       highlight: (el) => {
       },
       submitHandler: (form) => {
-        console.log('ajax');
+
         if (this.wallet) {
           $steps.children().eq(1).trigger('click');
         }
@@ -402,44 +408,58 @@ export default class Sale {
       highlight: (el) => {
       },
       submitHandler: (form) => {
-        console.log(form);
         let payValue = parseFloat(this.trim($payInput)),
           getValue = parseFloat(this.trim($getInput));
 
-        submitTransaction({
-          projectGid: this.gid,
-          priceRate: this.priceRate,
-          payAmount: payValue,
-          payCoinType: 0,
-          payTx: this.payTx,
-          hopeGetAmount: getValue
-        })
+        getTransactionInfo(this.gid)
         .then(res => {
-          if (res.success) {
-            $steps.children().eq(2).addClass('finished').removeClass('unfinished');
-            this.renderList(this.gid);
-            $wallet.hide();
-            $token.hide();
-            $result.show();
+          // txCountLimit true 交易达到上限，不可再交易
+          if (res.data.txCountLimit) {
+            alert('交易次数达到上限，不能再次交易');
+          } else {
+            
+            submitTransaction({
+              projectGid: this.gid,
+              priceRate: this.priceRate,
+              payAmount: payValue,
+              payCoinType: 0,
+              payTx: this.payTx,
+              hopeGetAmount: getValue
+            })
+            .then(res => {
+              $steps.children().eq(2).addClass('finished').removeClass('unfinished');
+              this.renderList(this.gid);
+              $wallet.hide();
+              $token.hide();
+              $result.show();
+            })
+            .catch(err => {
+              alert(err.message);
+            });
+
           }
         })
         .catch(err => {
-          console.log(err);
-        })
-
-        return false;
+          if (err.status === 401) {
+            return this.baseForm.execInAnimation();
+          }
+        });
       }
     });
 
     // 取消事件
     $tokenForm.on('click', '.btn-cancel', (e) => {
       e.preventDefault();
-
+      console.log('32424');
       if (!method.isEmpty($payId.val())) {
         let message = '如果您导航离开 ，您输入的TX散列信息将丢失 ，您的订单可能无法确认。请点击以下的确认付款或取消按钮确认或取消您的订单。';
         if (!confirm(message)) return
         this.destroy();
         if (this.wallet && this.token) {
+          $steps.children().eq(2).trigger('click');
+        }
+      } else {
+        if (this.wallet) {
           $steps.children().eq(2).trigger('click');
         }
       }
@@ -449,8 +469,22 @@ export default class Sale {
     $result.on('click', '.btn-buy', (e) => {
       e.preventDefault();
 
-      $steps.children().eq(1).trigger('click');
-
+      getTransactionInfo(this.gid)
+      .then(res => {
+        // txCountLimit true 交易达到上限，不可再交易
+        if (res.data.txCountLimit) {
+          alert('交易次数达到上限，不能再次交易');
+        } else {
+          $steps.children().eq(1).trigger('click');
+        }
+      })
+      .catch(err => {
+        if (err.status === 401) {
+          return this.baseForm.execInAnimation();
+        }
+        console.log(err);
+      });
+  
     });
 
   }

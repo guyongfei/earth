@@ -19,7 +19,9 @@
   min-height: 100%;
   background: url('../../images/details/details_bg.png') no-repeat;
   background-size: cover;
-
+  @media (max-width: 767.9px) {
+    padding: 10px;
+  }
   section {
     position: relative;
     max-width: 375px;
@@ -41,10 +43,12 @@
         width: 33.3333%;
         text-align: center;
         cursor: pointer;
+        transition: all .3s ease;
 
         span {
           position: relative;
           z-index: 1;
+          transition: all .3s ease;
         }
 
         &.finished {
@@ -129,7 +133,7 @@
           border: 1px solid #999999;
           @include border-radius(4px);
           &:disabled {
-            background: #bbbbbb;
+            background: #E5E9F3;
           }
         }
       }
@@ -176,6 +180,12 @@
 
     .token-container {
       display: none;
+
+      .token-error {
+        display: none;
+        color: red;
+        margin-bottom: 10px;
+      }
       section {
         &:not(:last-child) {
           margin-bottom: 20px;
@@ -277,8 +287,11 @@
         }
         .copied {
           color: #ffffff;
-          background: #999999;
-          border-color: #999999;
+          background: #E5E9F3;
+          border-color: #E5E9F3;
+        }
+        .platform-address {
+          word-wrap: break-word;
         }
       }
 
