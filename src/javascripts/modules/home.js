@@ -31,9 +31,15 @@ export default class Home {
 
   //logo
   logoFormatter (value, row, index) {
-    return `<img src="${value}" alt="logo" class="logo" />`;
+    return `<a class="link" href="./details.html?gid=${row.projectGid}"><img src="${value}" alt="logo" class="logo" /></a>`;
   }
 
+  // name
+  nameFormatter (value, row, index) {
+    return `<a class="link" href="./details.html?gid=${row.projectGid}">${row.projectName}</a>`; 
+  }
+
+  // status
   statusFormatter (value, row, index) {
     return `<span>${method.checkStatus(value)}</span>`
   }
@@ -76,38 +82,40 @@ export default class Home {
           formatter: this.logoFormatter
         },
         {
-          title: 'Project satus',
-          field: 'projectStatus',
-          formatter: this.statusFormatter
-        },
-        {
-          title: 'Project name',
+          title: 'Name',
           field: 'projectName',
+          align: 'left',
+          formatter: this.nameFormatter
         },
         {
-          title: 'Description',
+          title: 'Token',
+          field: 'projectToken',
+          align: 'left'
+        },
+        {
+          title: 'Synopsis',
           field: 'projectInstruction',
           align: 'center',
           class: 'color-gray'
         },
         {
-          title: 'project Token',
-          field: 'projectToken',
-          align: 'center'
-        },
-        {
-          title: 'Start',
+          title: 'Start time',
           field: 'startTime',
           align: 'center',
           class: 'start-time',
           formatter: this.timerFormatter
         },
         {
-          title: 'End',
+          title: 'End time',
           field: 'endTime',
           align: 'center',
           class: 'end-time',
           formatter: this.timerFormatter
+        },
+        {
+          title: 'Satus',
+          field: 'projectStatus',
+          formatter: this.statusFormatter
         },
         {
           title: 'Operation',

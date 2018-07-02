@@ -91,7 +91,7 @@ export default class Baseform {
       if (this.count == 0) {
         clearInterval(this.timer);
         this.count = 90;
-        $(el).removeAttr('disabled').text('重新获取');
+        $(el).removeAttr('disabled').text($.t('common.again'));
       }
     }, 1000);
   }
@@ -128,8 +128,8 @@ export default class Baseform {
     this.count = 90;
     this.timer = null;
 
-    $regForm.find('.send-code').removeAttr('disabled').text('获取验证码');
-    $forgetForm.find('.send-code').removeAttr('disabled').text('获取验证码');
+    $regForm.find('.send-code').removeAttr('disabled').text($.t('common.get'));
+    $forgetForm.find('.send-code').removeAttr('disabled').text($.t('common.get'));
 
     this.loginValidator.resetForm();
     this.regValidator.resetForm();
@@ -183,7 +183,7 @@ export default class Baseform {
       $login.hide();
       $forget.show();
     });
-
+    console.log('213242')
     // 表单提交事件
     // 登录表单检验
     this.loginValidator = $loginForm.validate({
@@ -199,12 +199,12 @@ export default class Baseform {
       },
       messages: {
         email: {
-          required: '请输入您的邮箱地址',
-          email: '请输入正确的邮箱地址'
+          required: $.t('error.email1'),
+          email: $.t('error.email2')
         },
         password: {
-          required: '请输入您的密码',
-          pwdFormat: '请输入6-20位字母或者数字'
+          required: $.t('error.password1'),
+          pwdFormat: $.t('error.password2')
         }
       },
       // 给未通过验证的元素进行处理
@@ -253,23 +253,23 @@ export default class Baseform {
       },
       messages: {
         email: {
-          required: '请输入您的邮箱地址',
-          email: '请输入正确的邮箱地址'
+          required: $.t('error.email1'),
+          email: $.t('error.email2')
         },
         code: {
-          required: '请输入验证码',
+          required: $.t('error.code'),
         },
         password: {
-          required: '请输入您的密码',
-          pwdFormat: '请输入6-20位字母或者数字'
+          required: $.t('error.password1'),
+          pwdFormat: $.t('error.password2')
         },
         confirm_password: {
-          required: '请再次输入密码',
-          pwdFormat: '请输入6-20位字母或者数字',
-          equalTo: '两次输入的密码需要一致'
+          required: $.t('error.password3'),
+          pwdFormat: $.t('error.password2'),
+          equalTo: $.t('error.password4')
         },
         agree: {
-          required: '请同意条款和条件,以创建帐户'
+          required: $.t('error.terms')
         }
       },
       // 给未通过验证的元素进行处理
@@ -282,7 +282,7 @@ export default class Baseform {
           verifyCode: this.trim($('#regCode'))
         })
         .then(res => {
-          this.error($reg, 'Register successed!!')
+          this.error($reg, $.t('register.success'))
           method.setCookie('logined', true);
           // 强制页面刷新
           setTimeout(() => {
@@ -312,15 +312,15 @@ export default class Baseform {
       },
       messages: {
         email: {
-          required: '请输入您的邮箱地址',
-          email: '请输入正确的邮箱地址'
+          required: $.t('error.email1'),
+          email: $.t('error.email2')
         },
         code: {
-          required: '请输入验证码',
+          required: $.t('error.code'),
         },
         password: {
-          required: '请输入您的密码',
-          pwdFormat: '请输入6-20位字母或者数字'
+          required: $.t('error.password1'),
+          pwdFormat: $.t('error.password2')
         }
       },
       // 给未通过验证的元素进行处理
@@ -334,7 +334,7 @@ export default class Baseform {
 
         passRequest('reset', email, password, verifyCode)
         .then(res => {
-          this.error($forget, 'Reset password successed!');
+          this.error($forget, $.t('forget.success'));
           setTimeout(() => {
             $closeForm.trigger('click');
           }, 300);
@@ -355,7 +355,7 @@ export default class Baseform {
       emailCode('register', emailVal)
       .then(res => {
         this.countDown($regCodeBtn);
-        this.error($reg, '验证码已经发送至邮箱');
+        this.error($reg, $.t('common.sendSuccess'));
       })
       .catch(err => {
         this.error($reg, err.message);
@@ -372,7 +372,7 @@ export default class Baseform {
       emailCode('other', emailVal)
       .then(res => {
         this.countDown($forgetCodeBtn);
-        this.error($forget, '验证码已经发送至邮箱');
+        this.error($forget, $.t('common.sendSuccess'));
       })
       .catch(err => {
         this.error($forget, err.message);

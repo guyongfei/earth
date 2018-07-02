@@ -1,54 +1,64 @@
 export default {
-  en: {
+  cn: {
     translation: {
-      // 通用
       common: {
-        login: 'Log in',
+        login: 'Login',
         logout: 'Logout',
         register: 'Register',
+        projectName: 'Name',
+        token: 'Token',
+        status: 'Status',
+        operation: 'Operation',
         cancel: 'Cancel',
-        confirm: 'Confirm'
+        confirm: 'Confirm',
+        and: 'and',
+        send: 'Send code',
+        email: 'Please enter email',
+        code: 'Please enter code',
+        password: 'Please enter password',
+        confirmPassword: 'Please enter confirm password',
+        sendSuccess: 'Send code successed!',
+        close: 'Close',
+        get: 'Get verification code',
+        again: 'Reacquire'
       },
-      // 导航栏
-      nav: {
-        home: 'Home',
-        project: 'Project'
-      },
-      // 登录
       login: {
-        title: 'Login width your E-mail',
-        emailPholder: 'Please enter email',
-        passPholder: 'Please enter password',
-        emailError1: 'Mail cannot be empty!',
-        emailError2: 'Incorrect email format!',
-        passError: 'Please enter 6-20 letters or Numbers',
-        success: 'Login success!',
-        forgetHref: 'Forgot password!',
-        registerHref: 'Register now',
-        tip: 'Not a member yet?',
-        button: 'Login now!'
+        title: 'Login',
+        forgetPass: 'Forgot password?',
+        noAccount: "Don't have an account?",
+        create: 'Create Account',
+        tips: 'You haven’t logged in yet'
       },
-      // 注册
       register: {
-
+        title: 'Create Account',
+        terms: 'Token Terms',
+        policy: 'Privacy Policy',
+        agree1: 'I confirm that I have read and understood the',
+        agree2: ', and I expressly accept all terms, rights, and obligations described in these documents.',
+        agress3: 'I agree to provide my valid ID and residence for KYC before I receive my tokens.' ,
+        succuess: 'Register successed!',
+        hadAccount: 'Already have an account?'
       },
-      // 忘记密码
       forget: {
-
+        title: 'Forgot Password',
+        success: 'Password has been updated'
       },
-      // 页面标题
-      title: {
-
+      error: {
+        email1: 'Please enter your email address',
+        email2: 'Please input the correct email address',
+        code: 'Please enter code',
+        password1: 'Please enter password',
+        password2: 'Please enter 6-20 letters or numbers',
+        password3: 'Please enter password again',
+        password4: 'The password entered twice needs to be consistent',
+        terms: 'Please agree to the Terms and Conditions in order to create an account'
       },
-      // 首页
       home: {
 
       },
-      // 详情页
-      details: {
+      detail: {
 
       },
-      // 认筹页
       sale: {
 
       }

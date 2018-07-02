@@ -12,13 +12,14 @@ export default class Header {
     this.childMap = {};
 
     $(() => {
+      this.handleDom();
+      this.headRender();
+      this.languageInit();
+      this.bindEvents();
       this.baseForm = getModule('baseform');
     });
 
-    this.handleDom();
-    this.headRender();
-    this.languageInit();
-    this.bindEvents();
+    
   }
 
   handleDom () {

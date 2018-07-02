@@ -20,73 +20,75 @@
     <section class="form-fixed-layer" data-module="baseform">
   <div class="form-container">
     <div class="login-form-container">
-      <h3 class="form-head">Login with your E-mail</h3>
+      <h3 class="form-head" data-i18n="common.login"></h3>
       <p class="request-error"></p>
       <form id="loginForm" class="form-body form">
         <div class="form-group">
-          <input type="text" id="loginEmail" name="email" placeholder="请输入邮箱">
+          <input type="text" id="loginEmail" name="email" placeholder="" data-i18n="[placeholder]common.email">
         </div>
         <div class="form-group">
-          <input type="password" id="loginPassword" name="password" placeholder="请输入密码">
+          <input type="password" id="loginPassword" name="password" data-i18n="[placeholder]common.password">
         </div>
         <div class="form-group right">
-          <a href="javascript:;" class="color-orange forget-link">Forgot password？</a> 
+          <a href="javascript:;" class="color-orange forget-link" data-i18n="login.forgetPass"></a> 
         </div>
         <div class="form-group">
-          <button type="submit" class="l-submit-button">Login Now!</button>
+          <button type="submit" class="l-submit-button" data-i18n="common.login"></button>
         </div>
       </form>
       <div class="form-foot">
-        Not a member yet? <a href="javascript:;" class="color-orange register-link">Register now</a>
+        <span data-i18n="login.noAccount"></span><a href="javascript:;" class="color-orange register-link" data-i18n="login.create"></a>
       </div>
     </div>
     <div class="register-form-container">
-      <h3 class="form-head">Create your account</h3>
+      <h3 class="form-head" data-i18n="register.title"></h3>
       <p class="request-error"></p>
       <form id="regForm" class="form-body form"> 
         <div class="form-group">
-          <input type="text" id="regEmail" name="email" placeholder="Email">
-          <button type="submit" class="send-code">发送验证码</button>
+          <input type="text" id="regEmail" name="email" data-i18n="[placeholder]common.email">
+          <button type="submit" class="send-code" data-i18n="common.send"></button>
         </div>
         <div class="form-group">
-          <input type="text" id="regCode" name="code" placeholder="Code">
+          <input type="text" id="regCode" name="code" data-i18n="[placeholder]common.code">
         </div>
         <div class="form-group">
-          <input type="password" id="regPassword" name="password" placeholder="Password">
+          <input type="password" id="regPassword" name="password" data-i18n="[placeholder]common.password">
         </div>
         <div class="form-group">
-          <input type="password" id="regConfirmPassword" name="confirm_password"  placeholder="Confirm Password">
+          <input type="password" id="regConfirmPassword" name="confirm_password"  data-i18n="[placeholder]common.confirmPassword">
         </div>
         <div class="form-group">
           <label for="agree" class="agree">
-            我在此确认我已经阅读并理解了<a href="www.baidu.com" class="color-orange">令牌条款</a>我在此确认我已经阅读并理解了我在此确认我已经阅读并理解了
+            <span data-i18n="register.agree1"></span>
+            <a href="www.baidu.com" class="color-orange" data-i18n="register.terms"></a>
+            <span data-i18n="register.agree2"></span>
           </label>
           <input type="checkbox" id="agree" name="agree" class="r-checkbox">
         </div>
         <div class="form-group">
-          <button type="submit" class="r-submit-button">Register</button>
+          <button type="submit" class="r-submit-button" data-i18n="common.register"></button>
         </div>
       </form>
       <div class="form-foot">
-        Have account yet? <a href="javascript:;" class="color-orange login-link">Login now</a>
+        <span data-i18n="register.hadAccount"></span><a href="javascript:;" class="color-orange login-link" data-i18n="common.login"></a>
       </div>
     </div>
     <div class="forget-form-container">
-      <h3 class="form-head">Forgot the password</h3>
+      <h3 class="form-head" data-i18n="forget.title"></h3>
       <p class="request-error"></p>
       <form id="forgetForm" class="form-body form">
         <div class="form-group">
-          <input type="text" id="forgetEmail" name="email" placeholder="Email">
-          <button class="send-code">发送验证码</button>
+          <input type="text" id="forgetEmail" name="email" data-i18n="[placeholder]common.email">
+          <button class="send-code" data-i18n="common.send"></button>
         </div>
         <div class="form-group">
-          <input type="text" id="forgetCode" name="code" placeholder="Code">
+          <input type="text" id="forgetCode" name="code" data-i18n="[placeholder]common.code">
         </div>
         <div class="form-group">
-          <input type="password" id="forgetPassword" name="password" placeholder="Password">
+          <input type="password" id="forgetPassword" name="password" data-i18n="[placeholder]common.password">
         </div>
         <div class="form-group">
-          <button type="submit" class="f-submit-button">Confirm</button>
+          <button type="submit" class="f-submit-button" data-i18n="common.confirm"></button>
         </div>
       </form>
     </div>
@@ -109,28 +111,24 @@
     <div class="lang-fixed-layer">
       <div class="langs-wrap">
         <div class="login-wrap">
-          <span class="login">Login</span>
+          <span class="login" data-i18n="common.login"></span>
           <span class="nickname"></span>
-          <span class="close-btn">CLOSE <img src="./images/bases/ui_close.png" class="lang-close" /></span>
+          <span class="close-btn"><span data-i18n="common.close"></span><img src="./images/bases/ui_close.png" class="lang-close" /></span>
         </div>
         <ul class="langs">
           <li class="lang" data-lang="en">English<span></span></li>
           <li class="lang" data-lang="cn">简体中文<span></span></li>
         </ul>
         <div class="logout">
-          <button class="btn-logout">退出</button>
+          <button class="btn-logout" data-i18n="common.logout"></button>
         </div>
       </div>
     </div>
   </div>
 </header>
+
+    <div class="divider"></div>
     <section>
-      <div class="title">
-        <div class="container">
-          <h3 class="text">PROJECT</h3>
-          <span class="line"></span>
-        </div>
-      </div>
       <div class="main">
         <div class="projects container">
           <table id="table" class="table"></table>
@@ -139,10 +137,10 @@
     </section>
 
     <footer id="footer">
-      <div class="inner container">
-        <span class="f-text">You haven’t logged in yet</span><button class="f-login-btn">Log in</button>
-      </div>
-    </footer>
+  <div class="inner container">
+    <span class="f-text" data-i18n="login.tips"></span><button class="f-login-btn" data-i18n="common.login"></button>
+  </div>
+</footer>
   </div>
 
     
