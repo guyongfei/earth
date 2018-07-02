@@ -20,7 +20,6 @@ export default class Sale {
     this.gid = null;
     this.priceRate = null;
     this.defaultEth = 2;
-    this.payTx = null;
     this.txCount = null;
     this.wallet = false;
     this.token = false;
@@ -83,7 +82,6 @@ export default class Sale {
           getTokenAddress = result.getTokenAddress;
 
         this.priceRate = result.priceRate;
-        this.payTx = result.platformAddress;
         this.txCount = result.txCount;
 
         if (!method.isEmpty(payEthAddress)) {
@@ -425,7 +423,7 @@ export default class Sale {
               priceRate: this.priceRate,
               payAmount: payValue,
               payCoinType: 0,
-              payTx: this.payTx,
+              payTx: this.trim($payId),
               hopeGetAmount: getValue
             })
             .then(res => {
