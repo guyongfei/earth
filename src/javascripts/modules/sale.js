@@ -19,7 +19,7 @@ export default class Sale {
     this.flag = false;
     this.gid = null;
     this.priceRate = null;
-    this.defaultEth = 2;
+    this.defaultEth = null;
     this.txCount = null;
     this.wallet = false;
     this.token = false;
@@ -44,7 +44,8 @@ export default class Sale {
     $tokenForm = $('#token-form'),
     $payInput = $('#payAmount'),
     $getInput = $('#getAmount'),
-    $payId = $('#payId');
+    $payId = $('#payId'),
+    $loading = $('#loading');
 
     this.childMap.$steps = $steps;
     this.childMap.$wallet = $wallet;
@@ -55,6 +56,7 @@ export default class Sale {
     this.childMap.$payInput = $payInput;
     this.childMap.$getInput = $getInput;
     this.childMap.$payId = $payId;
+    this.childMap.$loading = $loading;
   }
 
   // 页面初始化
@@ -67,7 +69,8 @@ export default class Sale {
       $walletForm,
       $tokenForm,
       $getInput,
-      $payInput
+      $payInput,
+      $loading
     } = this.childMap;
 
     this.gid = method.getUrlParam('gid');
@@ -83,6 +86,7 @@ export default class Sale {
 
         this.priceRate = result.priceRate;
         this.txCount = result.txCount;
+        this.defaultEth = result.minPurchaseAmount;
 
         if (!method.isEmpty(payEthAddress)) {
           $('#sending-wallet').attr('disabled', true).val(payEthAddress);
@@ -147,6 +151,8 @@ export default class Sale {
         result.txCount > 0 && this.renderList(this.gid)
 
       }
+
+      $loading.hide();
     })
     .catch(err => {
       console.log(err);
@@ -179,7 +185,7 @@ export default class Sale {
           temp += `<li class="ui-item">
             <div class="ui-item-head">
               <i class="dot"></i>
-              <span class="order-id">订单号 ${item.payTx}</span>
+              <span class="order-id">订单号 <a href="">#${item.payTxId}</a></span>
               <span class="order-time">${moment(item.createTime).format('MMMM Do, h:mm:ss A')}</span>
               <span class="order-status">${this.checkTxStatus(item.userTxStatus)}</span>
             </div>
@@ -219,10 +225,10 @@ export default class Sale {
         message = '初始状态';
         break;
       case 1:
-        message = '认筹成功	';
+        message = '认筹成功';
         break;
       case 2:
-        message = '认筹成功但数量不符	';
+        message = '认筹成功但数量不符';
         break;
       case 3:
         message = '认筹失败';

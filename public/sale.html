@@ -17,6 +17,12 @@
   <body>
     
   <div class="sale-wrapper" data-module="sale">
+    <div class="loading-wrapper" id="loading">
+  <div class="loading-inner">
+    <span class="loading"></span>
+    <p>Loading…</p>
+  </div>
+</div>
     <section>
       <div class="section-inner">
         <div class="steps">
@@ -120,7 +126,11 @@
               <p class="token-error"></p>
               <div class="body">
                 <div class="form-group">
-                  <label>交易ID</label>
+                  <label>
+                    交易ID
+                    <b class="tips"></b>
+                    <p class="tips-description">交易ID是什么？</p>
+                  </label>
                   <input type="text" name="payId" id="payId">
                 </div>
               </div>
@@ -139,6 +149,8 @@
           <button class="btn btn-buy">买更多代币</button>
         </div>
       </div>
+      <div class="box-btm-one"></div>
+      <div class="box-btm-two"></div>
     </section>
   </div>
 

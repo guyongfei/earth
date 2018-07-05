@@ -1,4 +1,5 @@
 @import "../base/index.scss";
+@import "../components/loading.scss";
 
 @mixin line($color) {
   &:after {
@@ -24,13 +25,16 @@
   }
   section {
     position: relative;
-    max-width: 375px;
     margin: 0 auto;
-
+    padding: 5px;
+    max-width: 375px;
+    background: #F4F7F6;
+    overflow: hidden;
+    @include border-radius(5px);
     .section-inner {
-      padding: 20px;
-      background: #F4F7F6;
-      @include border-radius(5px);
+      max-height: 592px;
+      padding: 15px;
+      overflow-y: scroll;
     }
 
     .steps {
@@ -115,6 +119,7 @@
       .form-group {
         margin-bottom: 20px;
         label {
+          position: relative;
           display: block;
           color: #999999;
           &.error {
@@ -133,7 +138,7 @@
           border: 1px solid #999999;
           @include border-radius(4px);
           &:disabled {
-            background: #E5E9F3;
+            background: #d1d1d1;
           }
         }
       }
@@ -203,7 +208,7 @@
           position: absolute;
           top: 0;
           right: 0;
-          width: 90px;
+          width: 100px;
           line-height: 47px;
           color: #ffffff;
           background: url('../../images/sale/ui_btn.png') no-repeat;
@@ -233,6 +238,25 @@
           background: $color-orange;
           @include border-radius(100%);
           text-align: center;
+        }
+      }
+
+      .body {
+        .tips {
+          display: inline-block;
+          width: 14px;
+          height: 14px;
+          background: url('../../images/sale/ui_tips.png');
+          background-size: contain;
+          cursor: pointer;
+        }
+        .tips-description {
+          display: none;
+          width: 200px;
+          padding: 10px;
+          color: #ffffff;
+          background: rgba(0, 0, 0, .5);
+          @include border-radius(5px);
         }
       }
 
@@ -287,8 +311,8 @@
         }
         .copied {
           color: #ffffff;
-          background: #E5E9F3;
-          border-color: #E5E9F3;
+          background: #458fff;
+          border-color: #458fff;
         }
         .platform-address {
           word-wrap: break-word;
@@ -378,11 +402,15 @@
           }
           .order-id {
             margin-right: 10px;
-            width: 90px;
+            width: 100px;
             color: #000000;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
+            font-size: 13px;
+            // white-space: nowrap;
+            // text-overflow: ellipsis;
+            // overflow: hidden;
+            a {
+              cursor: pointer;
+            }
           }
           .order-time {
             font-size: 12px;
@@ -429,6 +457,14 @@
           }
         }
       }
+    }
+
+    .box-btm-one {
+
+    }
+
+    .box-btm-two {
+
     }
   }
 }

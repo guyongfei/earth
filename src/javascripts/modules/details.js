@@ -20,17 +20,20 @@ export default class Details {
 
   handleDom () {
     let $header = $('.box-head'),
-      $footer = $('.box-foot');
+      $footer = $('.box-foot'),
+      $loading = $('#loading');
 
     this.childMap.$header = $header;
     this.childMap.$footer = $footer;
+    this.childMap.$loading = $loading;
   }
 
   // 初始化
   render () {
     const {
       $header,
-      $footer
+      $footer,
+      $loading
     } = this.childMap;
   
     getIndex()
@@ -38,7 +41,12 @@ export default class Details {
       if (!success) { console.log('no data'); };
       let result = data.defaultProject;
       let headTemp, headCommonTemp, proHeadTemp, proBodyTemp, proFootTemp;
-
+      
+      this.gid = result.projectGid;
+      setTimeout(() => {
+        console.log($.t('detail.btnText'));
+      }, 3000);
+      
       // 根据status，显示不同的内容
       // result.projectStatus = 3;
       headCommonTemp = `
@@ -47,7 +55,7 @@ export default class Details {
         <div class="devide-line"></div>
         <label for="label" class="label">${method.checkStatus(result.projectStatus)}</label>
       `;
-      console.log(result.projectStatus);
+
       switch (result.projectStatus) {
         case 0:
         headTemp = `
@@ -65,7 +73,7 @@ export default class Details {
         case 1:
           headTemp = `
             ${headCommonTemp}
-            <p class="divide">目前代币的价格</p>
+            <p class="divide">${$.t('details.current')}</p>
             <div class="token-rate-items">
               <fieldset class="token-item eth">
                 <legend align="left" class="token-name">ETH</legend>
@@ -77,7 +85,7 @@ export default class Details {
                 ${result.priceRate}
               </fieldset>
             </div>
-            <button class="get-token-btn" data-id="${result.projectGid}">马上获得代币</button>
+            <button class="get-token-btn" data-id="${result.projectGid}">${$.t('detail.btnText')}</button>
             <p>已卖代币数：<span class="sale-numbers">${method.thousandsFormatter(result.soldAmount)}</span></p>
           `;
           break;
@@ -86,18 +94,18 @@ export default class Details {
         case 3:
           headTemp = `
             ${headCommonTemp}
-            <p>募集数量</p>
+            <p>${$.t('result.end')}</p>
             <div class="collect-total">
               <div class="collect-item">
                 <fieldset class="token-item eth">
                   <legend align="left" class="token-name">Token</legend>
-                  10000ETH
+                  ${this.numberFormat(result.soldAmount, result.priceRate)}ETH
                 </fieldset>
               </div>
               <div class="collect-item">
                 <fieldset class="token-item eth">
                   <legend align="left" class="token-name">Token</legend>
-                  500000SLT
+                  ${result.soldAmount}${result.projectToken}
                 </fieldset>
               </div>
             </div>
@@ -163,6 +171,8 @@ export default class Details {
       $footer.find('.project-body').html(proBodyTemp);
       $footer.find('.project-foot').html(proFootTemp);
       $footer.find('.desc-field').text(result.projectContent);
+
+      $loading.hide();
     })
     .catch(err => {
       console.log(err);
@@ -222,9 +232,8 @@ export default class Details {
     }
   }
 
-  timeFormat (value, type) {
-    let date = new Date(value);
-
+  numberFormat (val1, val2) {
+    return (parseFloat(val1) / parseFloat(val2)).toFixed(4);
   }
 
 }

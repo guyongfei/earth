@@ -1,0 +1,83 @@
+.loading-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  background: #f5f5f5;
+  overflow: hidden;
+  .loading-inner {
+    width: 220px;
+    height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background: transparent;
+    text-align: center;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    -webkit-transform-origin:50% 50%;
+    -moz-transform-origin:50% 50%;
+    -o-transform-origin:50% 50%;
+    -ms-transform-origin:50% 50%;
+    transform-origin:50% 50%;
+  }
+  .loading {
+    margin: 0 auto;
+    display: block;
+    width: 220px;
+    height: 17px;
+    background: url('../../images/bases/ui_loading.png') no-repeat;
+    background-size: 5280px auto;
+    -webkit-animation: ui-loading steps(24) 1.2s infinite;
+    -moz-animation: ui-loading steps(24) 1.2s infinite;
+    -o-animation: ui-loading steps(24) 1.2s infinite;
+    -ms-animation: ui-loading steps(24) 1.2s infinite;
+    animation: ui-loading steps(24) 1.2s infinite;
+  }
+  p {
+    margin-top: 10px;
+    color: #cecece;
+    font-size: 20px;
+    line-height: 1;
+  }
+}
+
+@keyframes ui-loading {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: -5280px 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .loading-wrapper {
+    .loading-inner {
+      width: 54px;
+      height: 54px;
+    }
+    .loading {
+      width: 52px;
+      height: 50px;
+      background-size: 1664px auto;
+    }
+    p {
+      font-size: 14px;
+    }
+  }
+
+  @keyframes ui-loading {
+    0% {
+      background-position: 0px 0px;
+    }
+    100% {
+      background-position: -1664px 0px;
+    }
+  }
+}

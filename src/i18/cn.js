@@ -57,10 +57,23 @@ export default {
 
       },
       detail: {
-
+        current: '目前代币的价格',
+        btnText: '马上获得代币',
+        saled: '已卖代币数',
+        end:  '募集数量'
       },
       sale: {
 
+      },
+      summaryStatus: {
+        one: '未开始',
+        two: '已开始',
+        three: '已完成'
+      },
+      totalStatus: {
+        one: '未开始',
+        two: '开始认筹还未到软顶',
+        three: '认筹完成且成功'
       }
     }
   }

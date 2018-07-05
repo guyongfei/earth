@@ -57,10 +57,23 @@ export default {
 
       },
       detail: {
-
+        current: 'Current token price',
+        btnText: 'Get tokens right away',
+        saled: 'Number of tokens sold',
+        end:  'Number of raises'
       },
       sale: {
 
+      },
+      summaryStatus: {
+        one: 'Has not started',
+        two: 'Started',
+        three: 'Completed'
+      },
+      totalStatus: {
+        one: 'Has not started',
+        two: 'Soft top has been reached',
+        three: 'Collection quactity'
       }
     }
   }
