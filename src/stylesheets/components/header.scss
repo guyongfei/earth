@@ -25,9 +25,53 @@ header {
     -webkit-box-pack: start;
     justify-content: flex-start;
     .nav-item {
-      
+      width: 50px;
+      text-align: center;
+      cursor: pointer;
+      &.nav-item-active {
+        position: relative;
+        color:#FF5500;
+        &:before {
+          content: "";
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50px;
+          border-top: 2px solid #FF5500;
+        }
+      }
     }
   }
+
+  .btns {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .login-wrap {
+    margin-right: 30px;
+    cursor: pointer;
+  }
+
+  .logined {
+    display: none;
+    img, i {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    img {
+      width: 20px;
+      height: 20px;
+    }
+    i {
+      font-style: normal;
+    }
+  }
+
   .lang-switch {
     .lang-btn {
       display: inline-block;
@@ -57,13 +101,18 @@ header {
     z-index: 1;
     z-index: 1000;
 
-    .login-wrap,
     .lang {
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    .close-btn {
+      padding: 0 40px;
+      line-height: 72px;
+      border-bottom: 1px solid #f0f0f0;
+      text-align: right;
     }
     .login-wrap {
       padding: 0 40px;
@@ -73,9 +122,8 @@ header {
         display: inline-block;
         cursor: pointer;
       }
-      .nickname {
-        display: none;
-      }
+    }
+    .close-btn {
       .lang-close {
         margin-left: 10px;
         display: inline-block;

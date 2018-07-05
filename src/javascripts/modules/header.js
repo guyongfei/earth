@@ -30,6 +30,7 @@ export default class Header {
       $langs = $('.langs'),
       $nickname = $('.nickname'),
       $login = this.$el.find('.login'),
+      $logined = this.$el.find('.logined'),
       $logout = this.$el.find('.logout'),
       $footer = $('#footer');
 
@@ -40,6 +41,7 @@ export default class Header {
     this.childMap.$langs = $langs;
     this.childMap.$nickname = $nickname;
     this.childMap.$login = $login;
+    this.childMap.$logined = $logined;
     this.childMap.$logout = $logout;
     this.childMap.$footer = $footer;
 
@@ -48,6 +50,7 @@ export default class Header {
   headRender () {
     const {
       $login,
+      $logined,
       $logout,
       $footer,
       $nickname
@@ -61,8 +64,9 @@ export default class Header {
       if (res.success) {
         let data = res.data;
         $login.hide();
+        $logined.show();
         $footer.hide();
-        $nickname.text(data.nickname).show();
+        $nickname.text(data.nickname);
         $logout.show();
       }
     })

@@ -1,0 +1,29 @@
+{% extends 'layouts/application.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="stylesheets/modules/index.css">
+{% endblock %}
+
+{% block content %}
+  <div class="home-wrapper" data-module="list">
+    {% include "shared/header.html" %}
+
+    <div class="divider"></div>
+    <section>
+      <div class="main">
+        <div class="projects container">
+          <table id="table" class="table"></table>
+        </div>
+      </div>
+    </section>
+
+    {% include "shared/base-form.html" %}
+  </div>
+  {% include "shared/footer.html" %}
+{% endblock %}
+
+{% block javascript %}
+  <script src="./javascripts/list.js"></script>
+{% endblock %}

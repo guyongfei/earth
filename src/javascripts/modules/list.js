@@ -3,7 +3,7 @@ import "bootstrap-table/dist/bootstrap-table-locale-all";
 import { baseURL } from '../common/constants';
 import method from '../common/method';
 
-export default class Home {
+export default class List {
   constructor(el) {
     this.$el = $(el);
     this.$table = $('#table');

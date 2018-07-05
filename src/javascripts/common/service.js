@@ -151,3 +151,11 @@ export function ownerTransaction (payTx) {
     url: `/transaction/${payTx}`
   });
 }
+
+// 首页信心
+export function getIndex () {
+  return request({
+    type: 'GET',
+    url: '/index'
+  });
+}

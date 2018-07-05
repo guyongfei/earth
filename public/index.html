@@ -3,21 +3,88 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Home</title>
-    <link rel="icon" href="" type="image/x-icon">
+    <title>首页</title>
+    <link rel="icon" href="./fav.ico" type="image/x-icon">
     <link rel="stylesheet" href="stylesheets/base/base.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Generate using http://realfavicongenerator.net/ -->
 
 
     
-  <link rel="stylesheet" href="stylesheets/modules/index.css">
+  <link rel="stylesheet" href="stylesheets/modules/details.css">
 
   </head>
   <body>
     
-  <div class="home-wrapper" data-module="home">
-    <section class="form-fixed-layer" data-module="baseform">
+  <div class="details-wrapper" data-module="details">
+    <header data-module="header">
+  <div class="inner">
+    <div class="logo">
+      <img src="./logo.png" alt="">
+    </div>
+    <div class="nav">
+      <div class="nav-item nav-item-active">
+        <span class="nav-item-txt">Home</span>
+      </div>
+    </div>
+    <div class="btns">
+      <div class="login-wrap">
+        <span class="login" data-i18n="common.login"></span>
+        <span class="logined">
+          <img src="./images/bases/ui_avatar.png" alt="">
+          <i class="nickname">444444</i>
+        </span>
+      </div>
+      <div class="lang-switch">
+        <span class="lang-btn">English</span>
+      </div>
+    </div>
+    
+    <div class="lang-fixed-layer">
+      <div class="langs-wrap">
+        <div class="close-btn">
+          <span data-i18n="common.close"></span><img src="./images/bases/ui_close.png" class="lang-close" />
+        </div>
+        <ul class="langs">
+          <li class="lang" data-lang="en">English<span></span></li>
+          <li class="lang" data-lang="cn">简体中文<span></span></li>
+        </ul>
+        <div class="logout">
+          <button class="btn-logout" data-i18n="common.logout"></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+    <section>
+      <div class="main">
+        <div class="container">
+          <div class="box-head"></div>
+          <div class="box-foot">
+            <div class="row">
+              <div class="col-md-8 area area-left">
+                <div class="project-head"></div>
+                <div class="project-body"></div>
+                <div class="project-foot"></div>
+              </div>
+              <div class="col-md-4 area area-right">
+                <h3 class="desc-title">Description</h3>
+                <p class="desc-field"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer">
+  <div class="inner container">
+    <span class="f-text" data-i18n="login.tips"></span><button class="f-login-btn" data-i18n="common.login"></button>
+  </div>
+</footer>
+  </div>
+  <section class="form-fixed-layer" data-module="baseform">
   <div class="form-container">
     <div class="login-form-container">
       <h3 class="form-head" data-i18n="common.login"></h3>
@@ -97,54 +164,9 @@
     <span class="ui-close"></span>
   </div>
 </section>
-    <header data-module="header">
-  <div class="inner">
-    <div class="logo"></div>
-    <div class="nav">
-      <div class="nav-item">
-        <span class="nav-item-txt">Home</span>
-      </div>
-    </div>
-    <div class="lang-switch">
-      <span class="lang-btn">English</span>
-    </div>
-    <div class="lang-fixed-layer">
-      <div class="langs-wrap">
-        <div class="login-wrap">
-          <span class="login" data-i18n="common.login"></span>
-          <span class="nickname"></span>
-          <span class="close-btn"><span data-i18n="common.close"></span><img src="./images/bases/ui_close.png" class="lang-close" /></span>
-        </div>
-        <ul class="langs">
-          <li class="lang" data-lang="en">English<span></span></li>
-          <li class="lang" data-lang="cn">简体中文<span></span></li>
-        </ul>
-        <div class="logout">
-          <button class="btn-logout" data-i18n="common.logout"></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</header>
-
-    <div class="divider"></div>
-    <section>
-      <div class="main">
-        <div class="projects container">
-          <table id="table" class="table"></table>
-        </div>
-      </div>
-    </section>
-
-    <footer id="footer">
-  <div class="inner container">
-    <span class="f-text" data-i18n="login.tips"></span><button class="f-login-btn" data-i18n="common.login"></button>
-  </div>
-</footer>
-  </div>
 
     
-  <script src="./javascripts/index.js"></script>
+  <script src="./javascripts/details.js"></script>
 
   </body>
 </html>

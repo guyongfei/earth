@@ -37,18 +37,25 @@
     color: $color-white;
     text-align: center;
     .name {
-      margin-bottom: 24px;
+      margin-bottom: 10px;
       line-height: 1;
       font-size: 26px;
     }
-    .divide {
+    .devide {
+      height: 20px;
       margin-bottom: 10px;
+    }
+    .devide-line {
+      margin: 0 auto 15px;
+      width: 100px;
+      height: 4px;
+      background: #ff5500;
     }
     .label {
       position: relative;
       display: inline-block;
       margin-bottom: 20px;
-      padding: 0 5px;
+      width: 180px;
       height: 30px;
       line-height: 30px;
       background: #927a63;
@@ -76,6 +83,90 @@
         background-size: cover;
       }
     }
+    .token-rate-items {
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      .token-item {
+        display: block;
+        position: relative;
+        width: 120px;
+        height: 58px;
+        text-align: center;
+        font-size: 18px;
+        border: 1px solid #C6B676;
+        @include border-radius(4px);
+        legend {
+          padding: 0 4px;
+          color: #FDBE00;
+          font-size: 16px;
+          line-height: 16px;
+        }
+      }
+      .equal-sign {
+        display: block;
+        padding: 0 20px;
+        font-size: 20px;
+      }
+    }
+    .countdown {
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      .time {
+        width: 66px;
+        height: 66px;
+        background: #ffffff;
+        text-align: center;
+        @include border-radius(4px);
+        .top {
+          margin: 6px;
+          color: #a9a9a9;
+          font-size: 12px;
+          text-align: left;
+        }
+        .bottom {
+          color: #ff5500;
+          font-size: 24px;
+        }
+      }
+      .delimiter {
+        padding: 0 8px;
+        color: #ffffff;
+      }
+    }
+    .collect-item {
+      text-align: center;
+      &:not(:last-child) {
+        margin-bottom: 34px;
+      }
+      fieldset {
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        width: 290px;
+        height: 58px;
+        text-align: center;
+        color: #C6B676;
+        font-size: 20px;
+        border: 1px solid #C6B676;
+        @include border-radius(4px);
+        legend {
+          padding: 0 4px;
+          color: #FDBE00;
+          font-size: 16px;
+          line-height: 16px;
+        }
+      }
+    }
     button {
       margin: 20px 0 10px;
       display: inline-block;
@@ -83,11 +174,12 @@
       height: 52px;
       line-height: 52px;
       background: $color-orange;
-      @include fc(20px, $color-white);
+      @include fc(18px, $color-white);
       @include border-radius(100px);
       cursor: pointer;
       &:disabled {
-        background: #999999;
+        background: #d1d1d1;
+        cursor: not-allowed;
       }
     }
   }

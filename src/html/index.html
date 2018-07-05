@@ -1,29 +1,41 @@
 {% extends 'layouts/application.html' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}首页{% endblock %}
 
 {% block head %}
-  <link rel="stylesheet" href="stylesheets/modules/index.css">
+  <link rel="stylesheet" href="stylesheets/modules/details.css">
 {% endblock %}
 
 {% block content %}
-  <div class="home-wrapper" data-module="home">
-    {% include "shared/base-form.html" %}
+  <div class="details-wrapper" data-module="details">
     {% include "shared/header.html" %}
 
-    <div class="divider"></div>
     <section>
       <div class="main">
-        <div class="projects container">
-          <table id="table" class="table"></table>
+        <div class="container">
+          <div class="box-head"></div>
+          <div class="box-foot">
+            <div class="row">
+              <div class="col-md-8 area area-left">
+                <div class="project-head"></div>
+                <div class="project-body"></div>
+                <div class="project-foot"></div>
+              </div>
+              <div class="col-md-4 area area-right">
+                <h3 class="desc-title">Description</h3>
+                <p class="desc-field"></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     {% include "shared/footer.html" %}
   </div>
+  {% include "shared/base-form.html" %}
 {% endblock %}
 
 {% block javascript %}
-  <script src="./javascripts/index.js"></script>
+  <script src="./javascripts/details.js"></script>
 {% endblock %}

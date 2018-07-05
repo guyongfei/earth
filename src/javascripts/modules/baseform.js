@@ -13,11 +13,15 @@ export default class Baseform {
     this.forgetValidator = null;
     this.timer = null;
     this.count = 90;
-    this.handleDom();
-    this.validateMethod();
-    this.bindEvents();
 
-    EventEmitter.call(this);
+    $(() => {
+      this.handleDom();
+      this.validateMethod();
+      this.bindEvents();
+
+      EventEmitter.call(this);
+    });
+    
   }
 
   handleDom () {

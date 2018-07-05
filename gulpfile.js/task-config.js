@@ -11,7 +11,7 @@ module.exports = {
     entry: {
       // files paths are relative to
       // javascripts.dest in path-config.json
-      index: ['./index.js'],
+      list: ['./list.js'],
       details: ['./details.js'],
       sale: ['./sale.js']
     },
