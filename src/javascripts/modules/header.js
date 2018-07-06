@@ -28,7 +28,7 @@ export default class Header {
       $langWrap = $('.langs-wrap'),
       $langClose = $('.close-btn'),
       $langs = $('.langs'),
-      $nickname = $('.nickname'),
+      $email = $('.email'),
       $login = this.$el.find('.login'),
       $logined = this.$el.find('.logined'),
       $logout = this.$el.find('.logout'),
@@ -40,7 +40,7 @@ export default class Header {
     this.childMap.$langWrap = $langWrap;
     this.childMap.$langClose = $langClose;
     this.childMap.$langs = $langs;
-    this.childMap.$nickname = $nickname;
+    this.childMap.$email = $email;
     this.childMap.$login = $login;
     this.childMap.$logined = $logined;
     this.childMap.$logout = $logout;
@@ -55,7 +55,7 @@ export default class Header {
       $logined,
       $logout,
       $footer,
-      $nickname,
+      $email,
       $userManage
     } = this.childMap;
 
@@ -69,7 +69,7 @@ export default class Header {
         $login.hide();
         $logined.show();
         $footer.hide();
-        $nickname.text(data.nickname);
+        $email.text(data.email);
         $userManage.attr('href', data.managementPage).show();
         $logout.show();
       }
