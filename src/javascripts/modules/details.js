@@ -38,9 +38,6 @@ export default class Details {
       $footer,
       $loading
     } = this.childMap;
-
-    let currentHeight = $(document).height();
-    $section.css('height', currentHeight - 60 + 'px');
     
     getIndex()
     .then(({ success, data, message }) => {

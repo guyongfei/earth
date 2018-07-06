@@ -19,12 +19,13 @@ export default {
         confirmPassword: 'Please enter confirm password',
         sendSuccess: 'Send code successed!',
         close: 'Close',
-        get: 'Get verification code',
+        get: 'Code',
         again: 'Reacquire',
         startTime: 'Start time',
         endTime: 'End time',
         order: 'Order',
-        next: 'Next'
+        next: 'Next',
+        admin: 'Admin'
       },
       login: {
         title: 'Login',
@@ -140,6 +141,9 @@ export default {
         1: 'In the play money',
         2: 'Success',
         3: 'Fail'
+      },
+      nav: {
+        home: 'Home'
       }
     }
   }

@@ -24,7 +24,8 @@ export default {
         startTime: '开始时间',
         endTime: '结束时间',
         order: '订单',
-        next: '下一步'
+        next: '下一步',
+        admin: '管理员'
       },
       login: {
         title: '登录',
@@ -140,6 +141,9 @@ export default {
         1: '打币中',
         2: '成功',
         3: '失败'
+      },
+      nav: {
+        home: '首页'
       }
     }
   }

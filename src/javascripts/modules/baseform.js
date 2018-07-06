@@ -68,7 +68,7 @@ export default class Baseform {
     $reg.hide();
     $forget.hide();
     this.$el.show().stop().animate({ opacity: 1 }, 300);
-    $container.stop().animate({ 'top': '20%' });
+    $container.stop().animate({ 'top': '15%' });
   }
 
   execOutAnimation (callback) {
@@ -187,7 +187,7 @@ export default class Baseform {
       $login.hide();
       $forget.show();
     });
-    console.log('213242')
+    
     // 表单提交事件
     // 登录表单检验
     this.loginValidator = $loginForm.validate({
