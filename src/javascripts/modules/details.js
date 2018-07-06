@@ -39,7 +39,7 @@ export default class Details {
       $loading
     } = this.childMap;
 
-    let currentHeight = $(window).height();
+    let currentHeight = $(document).height();
     $section.css('height', currentHeight - 60 + 'px');
     
     getIndex()
