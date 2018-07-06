@@ -73,7 +73,7 @@ export default class Details {
         case 1:
           headTemp = `
             ${headCommonTemp}
-            <p class="divide">${$.t('details.current')}</p>
+            <p class="devide">${$.t('detail.current')}</p>
             <div class="token-rate-items">
               <fieldset class="token-item eth">
                 <legend align="left" class="token-name">ETH</legend>
@@ -86,7 +86,7 @@ export default class Details {
               </fieldset>
             </div>
             <button class="get-token-btn" data-id="${result.projectGid}">${$.t('detail.btnText')}</button>
-            <p>已卖代币数：<span class="sale-numbers">${method.thousandsFormatter(result.soldAmount)}</span></p>
+            <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatter(result.soldAmount)}</span></p>
           `;
           break;
         case 2:
@@ -148,17 +148,17 @@ export default class Details {
       proFootTemp = `
         <div class="row">
           <div class="col-4">
-            <p class="top">Name</p>
+            <p class="top">${$.t('common.projectName')}</p>
             <p class="bottom">${result.projectName}</p>
           </div>
           <div class="col-4">
-            <p class="top">Start time</p>
+            <p class="top">${$.t('common.startTime')}</p>
             <p class="bottom">
               <i class="dot bg-color-green"></i><span class="start-time">${method.timeFormatter(result.startTime)}</span>
             </p>
           </div>
           <div class="col-4">
-            <p class="top">End time</p>
+            <p class="top">${$.t('common.endTime')}</p>
             <p class="bottom">
               <i class="dot bg-color-orange"></i><span class="end-time">${method.timeFormatter(result.endTime)}</span>
             </p>

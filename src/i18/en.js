@@ -1,5 +1,5 @@
 export default {
-  cn: {
+  en: {
     translation: {
       common: {
         login: 'Login',
@@ -20,7 +20,9 @@ export default {
         sendSuccess: 'Send code successed!',
         close: 'Close',
         get: 'Get verification code',
-        again: 'Reacquire'
+        again: 'Reacquire',
+        startTime: 'Start time',
+        endTime: 'End time'
       },
       login: {
         title: 'Login',
@@ -59,7 +61,7 @@ export default {
       detail: {
         current: 'Current token price',
         btnText: 'Get tokens right away',
-        saled: 'Number of tokens sold',
+        saled: 'Number of tokens sold：',
         end:  'Number of raises'
       },
       sale: {

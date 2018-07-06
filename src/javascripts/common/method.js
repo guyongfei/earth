@@ -73,16 +73,16 @@ export default {
     let result = null;
     switch (value) {
       case 0:
-        result = '未开始';
+        result = $.t('summaryStatus.one');
         break;
       case 1:
-        result = '已开始';
+        result = $.t('summaryStatus.two');
         break;
       case 2:
         result = '开始认筹还未到硬顶';
         break;
       case 3:
-        result = '已完成';
+        result = $.t('summaryStatus.three');
         break;
       case 4:
         result = '认筹完成但失败';
@@ -96,16 +96,16 @@ export default {
     let result = null;
     switch (value) {
       case 0:
-        result = '未开始';
+        result = $.t('totalStatus.one');
         break;
       case 1:
-        result = '开始认筹还未到软顶';
+        result = $.t('totalStatus.two');
         break;
       case 2:
         result = '开始认筹还未到硬顶';
         break;
       case 3:
-        result = '认筹完成且成功';
+        result = $.t('totalStatus.three');
         break;
       case 4:
         result = '认筹完成但失败';

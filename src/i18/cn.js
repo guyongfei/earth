@@ -20,7 +20,9 @@ export default {
         sendSuccess: '发送验证码成功！',
         close: '关闭',
         get: '获取验证码',
-        again: '重新获取'
+        again: '重新获取',
+        startTime: '开始时间',
+        endTime: '结束时间'
       },
       login: {
         title: '登录',
@@ -59,7 +61,7 @@ export default {
       detail: {
         current: '目前代币的价格',
         btnText: '马上获得代币',
-        saled: '已卖代币数',
+        saled: '已卖代币数：',
         end:  '募集数量'
       },
       sale: {
