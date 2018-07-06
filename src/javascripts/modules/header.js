@@ -70,7 +70,7 @@ export default class Header {
         $logined.show();
         $footer.hide();
         $email.text(data.email);
-        $userManage.attr('href', data.managementPage).show();
+        data.admin && $userManage.attr('href', data.managementPage).show();
         $logout.show();
       }
     })
