@@ -445,7 +445,9 @@ export default class Sale {
       },
       submitHandler: (form) => {
         let payValue = parseFloat(this.trim($payInput)),
-          getValue = parseFloat(this.trim($getInput));
+          getValue = parseFloat(this.trim($getInput)),
+          $step1 = $steps.children().eq(1),
+          $step2 = $steps.children().eq(2);
 
         getTransactionInfo(this.gid)
         .then(res => {
@@ -463,8 +465,13 @@ export default class Sale {
               hopeGetAmount: getValue
             })
             .then(res => {
-              $steps.children().eq(1).removeClass('unfinished').addClass('finished');
-              $steps.children().eq(2).addClass('active').siblings().removeClass('active');
+              if ($step1.hasClass('unfinished')) {
+                $step1.removeClass('unfinished').addClass('finished');
+              }
+              if ($step2.hasClass('unfinished')) {
+                $step2.removeClass('unfinished').addClass('finished');
+              }
+              $step2.addClass('active').siblings().removeClass('active')
               this.renderList(this.gid);
               $wallet.hide();
               $token.hide();

@@ -55,7 +55,8 @@ export default class Header {
       $logined,
       $logout,
       $footer,
-      $nickname
+      $nickname,
+      $userManage
     } = this.childMap;
 
     // let logined = method.getCookie('logined');
