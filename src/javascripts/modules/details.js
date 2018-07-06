@@ -198,19 +198,12 @@ export default class Details {
 
       getTransactionInfo(this.gid)
       .then(res => {
-        // txCountLimit true 交易达到上限，不可再交易
-        if (res.data.txCountLimit) {
-          alert('交易次数达到上限，不能再次交易');
-        } else {
-          window.location.href = `./sale.html?gid=${gid}`;
-        }
+        window.location.href = `./sale.html?gid=${gid}`;
       })
       .catch(err => {
-        console.log(err);
         if (err.status === 401) {
           return this.baseForm.execInAnimation();
         }
-        console.log(err);
       });
 
     });
