@@ -246,32 +246,6 @@ export default class Sale {
     return $.trim(el.val());
   }
 
-  // 认筹交易状态
-  checkTxStatus (num) {
-    let message;
-    switch (num) {
-      case 0:
-        message = 'Pending';
-        break;
-      case 1:
-        message = 'Success';
-        break;
-      case 2:
-        message = 'Success not in right amount';
-        break;
-      case 3:
-        message = 'Fail';
-        break;
-      case 4:
-        message = 'Fail';
-        break;
-      default:
-        message = '';
-        break;
-    }
-    return message;
-  }
-
   // destroy
   destroy () {
     const {
@@ -471,8 +445,11 @@ export default class Sale {
               if ($step2.hasClass('unfinished')) {
                 $step2.removeClass('unfinished').addClass('finished');
               }
+
               $step2.addClass('active').siblings().removeClass('active')
               this.renderList(this.gid);
+
+              this.destroy();
               $wallet.hide();
               $token.hide();
               $result.show();
