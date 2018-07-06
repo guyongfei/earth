@@ -231,7 +231,7 @@ export default class Sale {
           </li>`;
         });
 
-        $result.find('.ui-list').append(temp);
+        $result.find('.ui-list').html(temp);
 
         console.log(this);
       }
@@ -257,7 +257,7 @@ export default class Sale {
         message = 'Success';
         break;
       case 2:
-        message = '认筹成功但数量不符';
+        message = 'Success not in right amount';
         break;
       case 3:
         message = 'Fail';

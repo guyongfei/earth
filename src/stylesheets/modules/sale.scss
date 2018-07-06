@@ -32,7 +32,7 @@
     overflow: hidden;
     @include border-radius(5px);
     .section-inner {
-      max-height: 592px;
+     height: 590px;
       padding: 15px;
       overflow-y: scroll;
     }

@@ -20,10 +20,12 @@ export default class Details {
 
   handleDom () {
     let $header = $('.box-head'),
+      $section = $('.section'),
       $footer = $('.box-foot'),
       $loading = $('#loading');
 
     this.childMap.$header = $header;
+    this.childMap.$section = $section;
     this.childMap.$footer = $footer;
     this.childMap.$loading = $loading;
   }
@@ -32,10 +34,14 @@ export default class Details {
   render () {
     const {
       $header,
+      $section,
       $footer,
       $loading
     } = this.childMap;
-  
+
+    let currentHeight = $(window).height();
+    $section.css('height', currentHeight - 60 + 'px');
+    
     getIndex()
     .then(({ success, data, message }) => {
       if (!success) { console.log('no data'); };

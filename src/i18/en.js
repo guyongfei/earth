@@ -124,6 +124,22 @@ export default {
         one: 'Has not started',
         two: 'Soft top has been reached',
         three: 'Collection quactity'
+      },
+      userTxStatus: {
+        0: 'Did not check',
+        1: 'Unpackaged',
+        2: 'Success',
+        3: 'Fail',
+        4: 'No deal',
+        21: 'Fail',
+        22: 'Fail',
+        23: 'Fail'
+      },
+      platformTxStatus: {
+        0: 'Not to play money',
+        1: 'In the play money',
+        2: 'Success',
+        3: 'Fail'
       }
     }
   }
