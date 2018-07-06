@@ -216,7 +216,7 @@ export default class Sale {
               <i class="dot"></i>
               <span class="order-id">${$.t('confirmation.orderId')} <a traget="_blank" href="https://etherscan.io/tx/${item.payTx}">#${item.payTxId}</a></span>
               <span class="order-time">${moment(item.createTime).format('MMMM Do, h:mm:ss A')}</span>
-              <span class="order-status">${this.checkTxStatus(item.userTxStatus)}</span>
+              <span class="order-status">${method.userTxStatus(item.userTxStatus)}</span>
             </div>
             <div class="ui-item-body">
               <label>${$.t('confirmation.number')}</label>

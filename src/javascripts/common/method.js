@@ -69,7 +69,7 @@ export default {
   dateFormatter (timestamp) {
     
   },
-  checkStatus (value) {
+  checkStatus (value) { // projects
     let result = null;
     switch (value) {
       case 0:
@@ -92,7 +92,7 @@ export default {
     }
     return result;
   },
-  checkTxtStatus (value) {
+  checkTxtStatus (value) { // projects
     let result = null;
     switch (value) {
       case 0:
@@ -111,6 +111,60 @@ export default {
         result = '认筹完成但失败';
         break;
       default:
+        break;
+    }
+    return result;
+  },
+  userTxStatus (value) {
+    let result = null;
+    switch (value) {
+      case 0:
+        result = $.t('userTxStatus.0');
+        break;
+      case 1:
+        result = $.t('userTxStatus.1');
+        break;
+      case 2:
+        result = $.t('userTxStatus.2');
+        break;
+      case 3:
+        result = $.t('userTxStatus.3');
+        break;
+      case 4:
+        result = $.t('userTxStatus.4');
+        break;
+      case 21:
+        result = $.t('userTxStatus.21');
+        break;
+      case 22:
+        result = $.t('userTxStatus.22');
+        break;
+      case 23:
+        result = $.t('userTxStatus.23');
+        break;
+      default:
+        result = '';
+        break;
+    }
+    return result;
+  },
+  platformTxStatus (value) {
+    let result = null;
+    switch (value) {
+      case 0:
+        result = $.t('platformTxStatus.0');
+        break;
+      case 1:
+        result = $.t('platformTxStatus.1');
+        break;
+      case 2:
+        result = $.t('platformTxStatus.2');
+        break;
+      case 3:
+        result = $.t('platformTxStatus.3');
+        break;
+      default:
+        result = '';
         break;
     }
     return result;
