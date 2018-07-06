@@ -473,9 +473,11 @@
 
   .footer {
     margin: 0 auto;
-    width: 366px;
+    max-width: 366px;
     height: 10px;
-    background: url('../../images/sale/bg_btm.png') no-repeat;
-    background-size: cover;
+    img {
+      max-width: 100%;
+      vertical-align: middle;
+    }
   }
 }
