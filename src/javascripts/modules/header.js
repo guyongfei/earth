@@ -33,7 +33,7 @@ export default class Header {
       $logined = this.$el.find('.logined'),
       $logout = this.$el.find('.logout'),
       $footer = $('#footer'),
-      $userManage = $('.user-manage');
+      $userManage = $('.manage-link');
 
     this.childMap.$switch = $switch;
     this.childMap.$langLayer = $langLayer;
