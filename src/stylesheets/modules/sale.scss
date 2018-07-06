@@ -253,10 +253,11 @@
         .tips-description {
           position: absolute;
           top: -20px;
-          left: 120px;
+          left: 100px;
           display: none;
           width: 180px;
           padding: 10px;
+          font-size: 12px;
           color: #ffffff;
           background: rgba(0, 0, 0, .75);
           @include border-radius(5px);
