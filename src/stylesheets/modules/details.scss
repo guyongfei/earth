@@ -22,13 +22,8 @@
   margin: 0 auto;
 }
 
-.section {
-  height: 100%;
-}
-
 .details-wrapper {
-  height: 100%;
-  .main {
+  .section {
     padding-bottom: 55px;
     width: 100%;
     min-height: 100%;
@@ -36,7 +31,6 @@
     background-size: cover;
     background-position: center;
   }
-
   .box-head {
     margin: 0 auto;
     padding: 31px 0;

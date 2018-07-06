@@ -32,7 +32,8 @@ export default class Header {
       $login = this.$el.find('.login'),
       $logined = this.$el.find('.logined'),
       $logout = this.$el.find('.logout'),
-      $footer = $('#footer');
+      $footer = $('#footer'),
+      $userManage = $('.user-manage');
 
     this.childMap.$switch = $switch;
     this.childMap.$langLayer = $langLayer;
@@ -44,6 +45,7 @@ export default class Header {
     this.childMap.$logined = $logined;
     this.childMap.$logout = $logout;
     this.childMap.$footer = $footer;
+    this.childMap.$userManage = $userManage;
 
   }
 
@@ -67,6 +69,7 @@ export default class Header {
         $logined.show();
         $footer.hide();
         $nickname.text(data.nickname);
+        $userManage.attr('href', data.managementPage).show();
         $logout.show();
       }
     })

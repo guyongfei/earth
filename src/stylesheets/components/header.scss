@@ -3,6 +3,12 @@
 header {
   height: 60px;
   background: $color-white;
+  .fl {
+    float: left;
+  }
+  .fr {
+    float: right;
+  }
   .inner {
     margin: 0 auto;
     padding: 0 10px;
@@ -170,6 +176,11 @@ header {
         background: transparent;
         @include border-radius(20px);
       }
+    }
+  }
+  .user-manage {
+    a {
+      display: block;
     }
   }
 }
