@@ -117,14 +117,18 @@ export default {
         alert: 'If you navigate away, the TX hash information you entered will be lost and your order may not be confirmed. Please click the confirm payment or cancel button below to confirm or cancel your order.'
       },
       summaryStatus: {
-        one: 'Has not started',
-        two: 'Started',
-        three: 'Completed'
+        0: 'Has not started',
+        1: 'Started',
+        2: 'Started',
+        3: 'Completed',
+        4: 'Failed'
       },
       totalStatus: {
-        one: 'Has not started',
-        two: 'Soft top has been reached',
-        three: 'Collection quactity'
+        0: 'Has not started',
+        1: 'Soft cap has not been reached',
+        2: 'Hard cap has not been reached',
+        3: 'Completed',
+        4: 'Failed'
       },
       userTxStatus: {
         0: 'Did not check',
