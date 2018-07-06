@@ -15,6 +15,10 @@
   }
 }
 
+.section {
+  height: 100%;
+}
+
 .sale-wrapper {
   padding-top: 80px;
   min-height: 100%;
@@ -23,7 +27,7 @@
   @media (max-width: 767.9px) {
     padding: 10px;
   }
-  section {
+  .section {
     position: relative;
     margin: 0 auto;
     padding: 5px;
@@ -251,11 +255,14 @@
           cursor: pointer;
         }
         .tips-description {
+          position: absolute;
+          top: -20px;
+          left: 120px;
           display: none;
-          width: 200px;
+          width: 180px;
           padding: 10px;
           color: #ffffff;
-          background: rgba(0, 0, 0, .5);
+          background: rgba(0, 0, 0, .75);
           @include border-radius(5px);
         }
       }
@@ -466,5 +473,13 @@
     .box-btm-two {
 
     }
+  }
+
+  .footer {
+    margin: 0 auto;
+    width: 366px;
+    height: 10px;
+    background: url('../../images/sale/bg_btm.png') no-repeat;
+    background-size: cover;
   }
 }

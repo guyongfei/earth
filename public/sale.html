@@ -23,44 +23,44 @@
     <p>Loading…</p>
   </div>
 </div>
-    <section>
+    <section class="section">
       <div class="section-inner">
         <div class="steps">
           <div class="step step-wallet unfinished">
             <span></span>
-            <p>钱包地址</p>
+            <p data-i18n="wallet.name"></p>
           </div>
           <div class="step step-token unfinished">
             <span></span>
-            <p>购买代币</p>
+            <p data-i18n="buyTokens.name"></p>
           </div>
           <div class="step step-result unfinished">
             <span></span>
-            <p>结果</p>
+            <p data-i18n="confirmation.name"></p>
           </div>
         </div>
         <div class="container wallet-container">
           <form id="wallet-form">
             <div class="form">
               <div class="form-group">
-                <label>您的接受兼容ERC20的ETH钱包地址</label>
+                <label data-i18n="wallet.walletAddress"></label>
                 <input type="text" name="receiving" id="receiving-wallet">
               </div>
               <div class="form-group">
-                <label>您的支付ETH的钱包地址</label>
+                <label data-i18n="wallet.ethAddress"></label>
                 <input type="text" name="sending" id="sending-wallet">
               </div>
             </div>
             
             <div class="description">
-              <p>您认购的代币将会在项目认筹结束后，统一打到您提供的接收ERC20代币的钱包地址。</p>
-              <p>您需要填写两个以太坊钱包地址，一个是接收地址，用于接收改项目的ERC20代币；另一个是支付地址，用于支付ETH给项目方。</p>
-              <p>接收地址必须是能兼容ERC20的ETH钱包地址</p>
-              <p>支付地址与您实际支付的地址必须完全相同</p>
-              <p>两个地址一旦输入，不可更改</p>
-              <p>千万不要使用交易所提供的地址（e.g. Coinbase, Binance, etc）</p>
+              <p data-i18n="wallet.desc1"></p>
+              <p data-i18n="wallet.desc2"></p>
+              <p data-i18n="wallet.desc3"></p>
+              <p data-i18n="wallet.desc4"></p>
+              <p data-i18n="wallet.desc5"></p>
+              <p data-i18n="wallet.desc6"></p>
             </div>
-            <button type="submit" class="btn btn-step">下一步</button>
+            <button type="submit" class="btn btn-step" data-i18n="common.next"></button>
           </form>
         </div>
 
@@ -68,11 +68,14 @@
           <form id="token-form" onSubmit="return false;">
             <section>
               <h2 class="head">
-                <span class="index">1</span><span>认购比例</span>
+                <span class="index">1</span><span data-i18n="buyTokens.ratio"></span>
               </h2>
               <div class="body">
                 <div class="form-group">
-                  <label>当前<span class="token-name"></span>代币的认购比例为</label>
+                  <label data-i18n="buyTokens.current">
+                    <span class="token-name"></span>
+                    <span data-i18n="buyTokens.tokenRatio"></span>
+                </label>
                   <div class="field">
                     <div class="half-field">
                       <p class="top">1</p>
@@ -86,50 +89,64 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>您将支付</label>
+                  <label data-i18n="buyTokens.topay"></label>
                   <div class="form-group-control">
                     <input type="number" name="payAmount" id="payAmount" maxlength="18">
                     <span class="unit">ETH</span>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label>您将获得</label>
+                  <label data-i18n="buyTokens.toget"></label>
                   <div class="form-group-control">
                     <input type="number" name="getAmount" id="getAmount">
                     <span class="token"></span>
                   </div>
                 </div>
-                <p class="min-buy-eth">最少数额<span class="min-eth"></span>ETH</p>
+                <p class="min-buy-eth">
+                  <span data-i18n="buyTokens.min"></span>
+                  <span class="min-eth"></span>ETH
+                </p>
               </div>
             </section>
 
             <section>
               <h2 class="head">
-                <span class="index">2</span><span>支付</span>
+                <span class="index">2</span><span data-i18n="buyTokens.pay"></span>
               </h2>
               <div class="description">
-                <p>推荐使用的gas limit: <span class="gas-limit"></span></p>
-                <p>gas price不少于: <span class="gas-price"></span></p>
+                <p>
+                  <span data-i18n="buyTokens.gaslimit"></span>
+                  <span class="gas-limit"></span>
+                </p>
+                <p>
+                  <span data-i18n="buyTokens.gasPrice"></span>
+                  <span class="gas-price"></span>
+                </p>
               </div>
               <div class="payment">
-                <h3>发送<span class="pay-eth"></span>ETH到</h3>
+                <h3>
+                  <span data-i18n="buyTokens.send"></span>
+                  <span class="pay-eth"></span>
+                  ETH
+                  <span data-i18n="buyTokens.arrive"></span>
+                </h3>
                 <p class="platform-address"></p>
-                <button class="btn-copy">复制到剪切板</button>
+                <button class="btn-copy" data-i18n="buyTokens.copy"></button>
                 <div class="qrcode" id="qrcode"></div>
               </div>
             </section>
 
             <section>
               <h2 class="head">
-                <span class="index">3</span><span>提供支付证明</span>
+                <span class="index">3</span><span data-i18n="buyTokens.payId"></span>
               </h2>
               <p class="token-error"></p>
               <div class="body">
                 <div class="form-group">
                   <label>
-                    交易ID
+                    <span data-i18n="buyTokens.tradeId"></span>
                     <b class="tips"></b>
-                    <p class="tips-description">交易ID是什么？</p>
+                    <p class="tips-description" data-i18n="buyTokens.tradeIdDesc"></p>
                   </label>
                   <input type="text" name="payId" id="payId">
                 </div>
@@ -137,21 +154,26 @@
             </section>
             
             <footer>
-              <button class="btn-cancel" type="submit">取消</button>
-              <button class="btn-confirm" type="submit">确认</button>
+              <button class="btn-cancel" type="submit" data-i18n="common.cancel"></button>
+              <button class="btn-confirm" type="submit" data-i18n="common.confirm"></button>
             </footer>
           </form>
         </div>
 
         <div class="container result-container">
-          <p class="result-title">在代币销售的结束前<span class="token-name"></span>代币将会发送到你接收ETH（ERC20）的钱包地址（<span class="gmt-date"></span>格林威治标准时间）</p>
+          <p class="result-title">
+            <span data-i18n="confirmation.desc1"></span>
+            <span class="token-name"></span>
+            <span data-i18n="confirmation.desc2"></span>
+            (<span class="gmt-date"></span>
+            <span data-i18n="confirmation.gmt"></span>)
+          </p>
           <ul class="ui-list"></ul>
-          <button class="btn btn-buy">买更多代币</button>
+          <button class="btn btn-buy" data-i18n="confirmation.more"></button>
         </div>
       </div>
-      <div class="box-btm-one"></div>
-      <div class="box-btm-two"></div>
     </section>
+    <footer class="footer"></foote>
   </div>
 
     

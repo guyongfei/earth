@@ -8,22 +8,19 @@ header {
     padding: 0 10px;
     max-width: 1326px;
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    justify-content: space-between;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
+    line-height: 60px;
+  }
+  .logo {
+    float: left;
+    img {
+      vertical-align: middle;
+    }
   }
   .nav {
-    max-width: 800px;
-    width: 100%;
+    margin-left: 30px;
+    max-width: 100px;
     line-height: 60px;
-    display: -webkit-box;
-    display: flex;
-    -webkit-box-pack: start;
-    justify-content: flex-start;
+    float: left;
     .nav-item {
       width: 50px;
       text-align: center;
@@ -45,6 +42,7 @@ header {
   }
 
   .btns {
+    float: right;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -55,6 +53,12 @@ header {
   .login-wrap {
     margin-right: 30px;
     cursor: pointer;
+  }
+
+  @media (max-width: 767.9px) {
+    .login-wrap {
+      margin-right: 10px;
+    }
   }
 
   .logined {
@@ -69,6 +73,11 @@ header {
     }
     i {
       font-style: normal;
+    }
+    @media (max-width: 767.9px) {
+      i {
+        display: none;
+      }
     }
   }
 

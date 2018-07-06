@@ -22,7 +22,9 @@ export default {
         get: 'Get verification code',
         again: 'Reacquire',
         startTime: 'Start time',
-        endTime: 'End time'
+        endTime: 'End time',
+        order: 'Order',
+        next: 'Next'
       },
       login: {
         title: 'Login',
@@ -64,8 +66,54 @@ export default {
         saled: 'Number of tokens sold：',
         end:  'Number of raises'
       },
+      wallet: {
+        name: 'Wallet Address',
+        walletAddress: 'Your receiving ETH (ERC20) wallet address',
+        ethAddress: 'Your sending ETH wallet address',
+        desc1: 'The token you subscribed will be sent to the wallet address of ERC20 token you provided after the completion of the project subscription.',
+        desc2: 'You need to fill in two yitaifang wallet addresses, one is the receiving address, which is used to receive the ERC20 token of the change project. The other is the payment address, which is used to pay the ETH to the project party.',
+        desc3: 'The receiving address must be an ETH wallet address compatible with ERC20',
+        desc4: 'The payment address must be exactly the same as the actual payment address',
+        desc5: 'Once two addresses are entered, they cannot be changed',
+        desc6: 'Never use the address provided by the exchange（e.g. Coinbase, Binance, etc）',
+        inputTip1: '输入您的收款钱包地址',
+        inputTip2: '输入您的发送ETH的钱包地址',
+        inputTip3: '输入一个有效的ETH钱包地址(以0x开头及42个字符长度)'
+      },
+      buyTokens: {
+        name: 'Buy Tokens',
+        current: 'current',
+        ratio: 'Subscription ratio',
+        tokenRatio: 'The subscription rate for the token is',
+        pay: 'pay',
+        topay: 'You will pay',
+        toget: 'You will get',
+        min: 'The minimum amount',
+        gaslimit: 'Recommended gas limit',
+        gasPrice: 'Gas price is not less than:',
+        send: 'send',
+        arrive: 'arrive',
+        copy: 'Copy to the clipboard',
+        payId: 'Provide proof of payment',
+        tradeId: 'Transaction ID',
+        tradeIdDesc: 'What is the transaction ID?',
+        inputTip1: 'Enter a valid number',
+        inputTip2: 'Please enter a valid number',
+        inputTip3: 'The minimum purchase quantity is 10 000VRA(~0.22679 ETH)',
+        inputTip4: 'Enter a valid TX hash (a long string found next to your wallet)',
+        error: 'Trading is capped and cannot be repeated'
+      },
+      confirmation: {
+        name: 'Confirmation',
+        desc1: 'Before the end of the sale of the token',
+        desc2: 'The token will be sent to your wallet address where you receive the ETH (ERC20)',
+        gmt: 'GMT',
+        more: 'Buy more tokens',
+        orderId: 'Order ID',
+        number: 'Subscription amount'
+      },
       sale: {
-
+        alert: 'If you navigate away, the TX hash information you entered will be lost and your order may not be confirmed. Please click the confirm payment or cancel button below to confirm or cancel your order.'
       },
       summaryStatus: {
         one: 'Has not started',

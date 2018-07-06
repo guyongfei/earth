@@ -3,6 +3,10 @@ import 'jquery-validation';
 import moment from 'moment';
 import method from '../common/method';
 import Clipboard from 'clipboard';
+import i18next from 'i18next';
+import jqueryI18next from 'jquery-i18next';
+import en from '../../i18/en';
+import cn from '../../i18/cn';
 import {
   setUserAddress,
   getTransactionInfo,
@@ -27,12 +31,12 @@ export default class Sale {
 
     $(() => {
       this.baseForm = getModule('baseform');
+      this.validateMethod();
+      this.handleDom();
+      this.languageInit();
+      this.render();
+      this.bindEvents();
     });
-
-    this.validateMethod();
-    this.handleDom();
-    this.render();
-    this.bindEvents();
   }
 
   handleDom() {
@@ -159,6 +163,31 @@ export default class Sale {
     });
   }
 
+  languageInit () {
+    let i18;
+    let lang = method.getCookie('international.language');
+
+    if (method.isEmpty(lang)) {
+      lang = 'en';
+      method.setCookie('international.language', 'en');
+    }
+
+    i18 = lang == 'cn' ? cn : en;
+
+    // i18 next
+    // i18 next
+    i18next.init({
+      lng: lang,
+      resources: {
+        ...i18
+      }
+    }, function(err, t) {
+      jqueryI18next.init(i18next, $);
+      $(document).localize();
+    });
+
+  }
+
    // validate method
    validateMethod () {
     $.validator.addMethod('walletFormat', (value, el) => {
@@ -185,12 +214,12 @@ export default class Sale {
           temp += `<li class="ui-item">
             <div class="ui-item-head">
               <i class="dot"></i>
-              <span class="order-id">订单号 <a href="">#${item.payTxId}</a></span>
+              <span class="order-id">${$.t('confirmation.orderId')} <a traget="_blank" href="https://etherscan.io/tx/${item.payTx}">#${item.payTxId}</a></span>
               <span class="order-time">${moment(item.createTime).format('MMMM Do, h:mm:ss A')}</span>
               <span class="order-status">${this.checkTxStatus(item.userTxStatus)}</span>
             </div>
             <div class="ui-item-body">
-              <label>认购数量</label>
+              <label>${$.t('confirmation.number')}</label>
               <div class="subscription">
                 <div class="eth">
                   ~${item.payAmount}ETH
@@ -222,21 +251,22 @@ export default class Sale {
     let message;
     switch (num) {
       case 0:
-        message = '初始状态';
+        message = 'Pending';
         break;
       case 1:
-        message = '认筹成功';
+        message = 'Success';
         break;
       case 2:
         message = '认筹成功但数量不符';
         break;
       case 3:
-        message = '认筹失败';
+        message = 'Fail';
         break;
       case 4:
-        message = '认筹失败';
+        message = 'Fail';
         break;
       default:
+        message = '';
         break;
     }
     return message;
@@ -272,7 +302,7 @@ export default class Sale {
 
       if ($this.hasClass('unfinished')) return;
       if (!method.isEmpty($payId.val()) && index != 1) {
-        let message = '如果您导航离开 ，您输入的TX散列信息将丢失 ，您的订单可能无法确认。请点击以下的确认付款或取消按钮确认或取消您的订单。';
+        let message = $.t('sale.alert');
         if (!confirm(message)) return
         this.destroy();
       }
@@ -316,7 +346,7 @@ export default class Sale {
       clipboard.on('success', function(e) {
         $this.text('Copied!').addClass('copied');
         setTimeout(() => {
-          $this.text('复制到剪切板!').removeClass('copied');
+          $this.text($.t('buyTokens.copy')).removeClass('copied');
         }, 3000);
       });
 
@@ -340,12 +370,12 @@ export default class Sale {
       },
       messages: {
         receiving: {
-          required: '输入您的收款钱包地址',
-          walletFormat: '输入一个有效的ETH钱包地址(以0x开头及42个字符长度)'
+          required: $.t('wallet.inputTip1'),
+          walletFormat: $.t('wallet.inputTip3')
         },
         sending: {
-          required: '输入您的发送ETH的钱包地址',
-          walletFormat: '输入一个有效的ETH钱包地址(以0x开头及42个字符长度)'
+          required: $.t('wallet.inputTip2'),
+          walletFormat: $.t('wallet.inputTip3')
         }
       },
       // 给未通过验证的元素进行处理
@@ -398,16 +428,16 @@ export default class Sale {
       },
       messages: {
         payAmount: {
-          required: '输入有效号码',
-          number: '请输入合法的数字'
+          required: $.t('buyTokens.inputTip1'),
+          number: $.t('buyTokens.inputTip2')
         },
         getAmount: {
-          required: '输入有效号码',
-          min: '最小购买量为10 000VRA(~0.22679 ETH)'
+          required: $.t('buyTokens.inputTip1'),
+          min: $.t('buyTokens.inputTip3')
         },
         payId: {
-          required: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)',
-          hashFormat: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)'
+          required: $.t('buyTokens.inputTip4'),
+          hashFormat: $.t('buyTokens.inputTip4')
         }
       },
       // 给未通过验证的元素进行处理
@@ -421,7 +451,7 @@ export default class Sale {
         .then(res => {
           // txCountLimit true 交易达到上限，不可再交易
           if (res.data.txCountLimit) {
-            alert('交易次数达到上限，不能再次交易');
+            alert($.t('buyTokens.error'));
           } else {
             
             submitTransaction({
@@ -459,7 +489,7 @@ export default class Sale {
       e.preventDefault();
       console.log('32424');
       if (!method.isEmpty($payId.val())) {
-        let message = '如果您导航离开 ，您输入的TX散列信息将丢失 ，您的订单可能无法确认。请点击以下的确认付款或取消按钮确认或取消您的订单。';
+        let message = $.t('sale.alert');
         if (!confirm(message)) return
         this.destroy();
         if (this.wallet && this.token) {
@@ -480,7 +510,7 @@ export default class Sale {
       .then(res => {
         // txCountLimit true 交易达到上限，不可再交易
         if (res.data.txCountLimit) {
-          alert('交易次数达到上限，不能再次交易');
+          alert($.t('buyTokens.error'));
         } else {
           $steps.children().eq(1).trigger('click');
         }
@@ -492,6 +522,13 @@ export default class Sale {
         console.log(err);
       });
   
+    });
+    
+    // 交易号hover事件
+    $tokenForm.find('.tips').hover((e) => {
+      $('.tips-description').fadeIn(300);
+    }, (e) => {
+      $('.tips-description').fadeOut(300);
     });
 
   }
