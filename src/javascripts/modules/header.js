@@ -88,11 +88,11 @@ export default class Header {
     } = this.childMap;
 
     let i18;
-    let lang = method.getCookie('international.language');
+    let lang = method.getCookie('witshare.i18n.language');
 
     if (method.isEmpty(lang)) {
       lang = 'en';
-      method.setCookie('international.language', 'en');
+      method.setCookie('witshare.i18n.language', 'en');
     }
 
     if (lang == 'en') {
@@ -172,7 +172,7 @@ export default class Header {
         lang = $this.data('lang');
       
       if ($this.hasClass('l-active')) return;
-      method.setCookie('international.language', lang);
+      method.setCookie('witshare.i18n.language', lang);
       $this.addClass('l-active').siblings().removeClass('l-active');
       location.reload();
     });

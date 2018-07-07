@@ -46,9 +46,6 @@ export default class Details {
       let headTemp, headCommonTemp, proHeadTemp, proBodyTemp, proFootTemp;
       
       this.gid = result.projectGid;
-      setTimeout(() => {
-        console.log($.t('detail.btnText'));
-      }, 3000);
       
       // 根据status，显示不同的内容
       // result.projectStatus = 3;
@@ -136,7 +133,7 @@ export default class Details {
       proBodyTemp = `
         <div class="row">
           <a class="col-3" target="_blank" href="${result.websites.officialLink}"><img src="./images/details/website.png" alt=""><span>website</span></a>
-          <a class="col-3" target="_blank" href="${result.websites.whitePaperLink}"><img src="./images/details/whitebook.png" alt=""><span>white bool</span></a>
+          <a class="col-3" target="_blank" href="${result.websites.whitePaperLink}"><img src="./images/details/whitebook.png" alt=""><span>white book</span></a>
           <a class="col-3" target="_blank" href="${result.websites.twitter}"><img src="./images/details/twitter.png" alt=""><span>twitter</span></a>
           <a class="col-3" target="_blank" href="${result.websites.facebook}"><img src="./images/details/facebook.png" alt=""><span>facebook</span></a>
         </div>

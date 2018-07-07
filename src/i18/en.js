@@ -30,9 +30,9 @@ export default {
       login: {
         title: 'Login',
         forgetPass: 'Forgot password?',
-        noAccount: "Don't have an account?",
+        noAccount: "Do not have an account?",
         create: 'Create Account',
-        tips: 'You haven’t logged in yet'
+        tips: 'You have not logged in yet'
       },
       register: {
         title: 'Create Account',
@@ -77,9 +77,9 @@ export default {
         desc4: 'The payment address must be exactly the same as the actual payment address',
         desc5: 'Once two addresses are entered, they cannot be changed',
         desc6: 'Never use the address provided by the exchange（e.g. Coinbase, Binance, etc）',
-        inputTip1: '输入您的收款钱包地址',
-        inputTip2: '输入您的发送ETH的钱包地址',
-        inputTip3: '输入一个有效的ETH钱包地址(以0x开头及42个字符长度)'
+        inputTip1: 'Enter your payment wallet address',
+        inputTip2: 'Enter your ETH wallet address',
+        inputTip3: 'Enter a valid ETH wallet address (starting with 0x and 42 characters long)'
       },
       buyTokens: {
         name: 'Buy Tokens',
@@ -100,7 +100,7 @@ export default {
         tradeIdDesc: 'What is the transaction ID?',
         inputTip1: 'Enter a valid number',
         inputTip2: 'Please enter a valid number',
-        inputTip3: 'The minimum purchase quantity is 10 000VRA(~0.22679 ETH)',
+        inputTip3: 'The minimum purchase quantity is',
         inputTip4: 'Enter a valid TX hash (a long string found next to your wallet)',
         error: 'Trading is capped and cannot be repeated'
       },

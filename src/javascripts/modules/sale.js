@@ -209,12 +209,15 @@ export default class Sale {
     .then(res => {
       if (res.success) {
         let resData= res.data, temp = '';
+        
+        // 正式环境 https://etherscan.io/tx/
+        // 测试环境 https://ropsten.etherscan.io/tx/
 
         resData.list.forEach((item, index) => {
           temp += `<li class="ui-item">
             <div class="ui-item-head">
               <i class="dot"></i>
-              <span class="order-id">${$.t('confirmation.orderId')} <a traget="_blank" href="https://etherscan.io/tx/${item.payTx}">#${item.payTxId}</a></span>
+              <span class="order-id">${$.t('confirmation.orderId')} <a traget="_blank" href="https://ropsten.etherscan.io/tx/${item.payTx}">#${item.payTxId}</a></span>
               <span class="order-time">${moment(item.createTime).format('MMMM Do, h:mm:ss A')}</span>
               <span class="order-status">${method.userTxStatus(item.userTxStatus)}</span>
             </div>

@@ -1,3 +1,4 @@
+import './global';
 export default {
   isEmpty (value) {
     return (value === '' || value === null) ? true : false;
@@ -171,6 +172,7 @@ export default {
   },
   //千分位
   thousandsFormatter (number) {
+    if (!Number.isInteger(number)) return number;
     let num = (number || 0).toString(),
       result = '';
     while (num.length > 3) {
