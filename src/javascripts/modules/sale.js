@@ -165,11 +165,11 @@ export default class Sale {
 
   languageInit () {
     let i18;
-    let lang = method.getCookie('international.language');
+    let lang = method.getCookie('witshare.i18n.language');
 
     if (method.isEmpty(lang)) {
       lang = 'en';
-      method.setCookie('international.language', 'en');
+      method.setCookie('witshare.i18n.language', 'en');
     }
 
     i18 = lang == 'cn' ? cn : en;

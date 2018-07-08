@@ -1,7 +1,7 @@
 import { baseURL } from './constants';
 import method from './method';
 
-let lang = method.getCookie('international.language');
+let lang = method.getCookie('witshare.i18n.language');
 
 const baseOptions = (options) => {
   let parseFormat = options.type == 'GET' ?
