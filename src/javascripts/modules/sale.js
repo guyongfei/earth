@@ -86,11 +86,14 @@ export default class Sale {
         
         let result = res.data,
           payEthAddress = result.payEthAddress,
-          getTokenAddress = result.getTokenAddress;
+          getTokenAddress = result.getTokenAddress,
+          minPurchase = null;
 
         this.priceRate = result.priceRate;
         this.txCount = result.txCount;
         this.defaultEth = result.minPurchaseAmount;
+
+        minPurchase = (this.defaultEth * this.priceRate).toFixed(5);
 
         if (!method.isEmpty(payEthAddress)) {
           $('#sending-wallet').attr('disabled', true).val(payEthAddress);
@@ -139,7 +142,7 @@ export default class Sale {
         $('.token-name').text(result.projectToken);
         
         $payInput.val(this.defaultEth);
-        $getInput.val((this.defaultEth * this.priceRate).toFixed(5));
+        $getInput.val(minPurchase);
         $tokenForm.find('.btn-copy').attr('aria-label', result.platformAddress);
         $tokenForm.find('.pay-eth').text(this.defaultEth);
         $tokenForm.find('.number').text(result.priceRate);
@@ -199,7 +202,7 @@ export default class Sale {
     });
 
     $.validator.addMethod('decimalFormat', (value, el) => {
-      return /((^0)|(^[1-9]\d))((\.\d{1,9})|(\.?))?$/.test(value);
+      return /(^\d+)((\.\d{1,9})|(\.?))?$/.test(value);
     });
   }
 
@@ -264,6 +267,7 @@ export default class Sale {
     $payInput.val(this.defaultEth);
     $getInput.val((this.defaultEth * this.priceRate).toFixed(5));
     $payId.val('');
+    $tokenForm.find('.pay-eth').text(this.defaultEth);
   }
 
   // 绑定的事件
