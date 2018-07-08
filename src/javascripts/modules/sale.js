@@ -286,6 +286,7 @@ export default class Sale {
         index = $this.index();
 
       if ($this.hasClass('unfinished')) return;
+
       if (!method.isEmpty($payId.val()) && index != 1) {
         let message = $.t('sale.alert');
         if (!confirm(message)) return
@@ -369,7 +370,12 @@ export default class Sale {
       submitHandler: (form) => {
 
         if (this.wallet) {
-          $steps.children().eq(1).trigger('click');
+          // $steps.children().eq(1).trigger('click');
+          $steps.children().eq(1).addClass('active').siblings().removeClass('active');
+          $wallet.hide();
+          $token.show();
+          $result.hide();
+          this.destroy();
           return false;
         }
   
@@ -381,6 +387,8 @@ export default class Sale {
         .then(res => {
           if (res.success) {
             this.wallet = true;
+            $('#sending-wallet').attr('disabled', true);
+            $('#receiving-wallet').attr('disabled', true);
             $steps.children().eq(0).removeClass('unfinished').addClass('finished');
             $steps.children().eq(1).addClass('active').siblings().removeClass('active');
             $wallet.hide();
@@ -400,12 +408,12 @@ export default class Sale {
       rules: {
         payAmount: {
           required: true,
-          number: true,
+          // number: true,
           decimalFormat: true
         },
         getAmount: {
           required: true,
-          min: 1
+          // min: 1
         },
         payId: {
           required: true,
@@ -415,12 +423,12 @@ export default class Sale {
       messages: {
         payAmount: {
           required: $.t('buyTokens.inputTip1'),
-          number: $.t('buyTokens.inputTip2'),
+          // number: $.t('buyTokens.inputTip2'),
           decimalFormat: $.t('error.number')
         },
         getAmount: {
-          required: $.t('buyTokens.inputTip1'),
-          min: $.t('buyTokens.inputTip3')
+          required: $.t('buyTokens.inputTip1')
+          // min: $.t('buyTokens.inputTip3')
         },
         payId: {
           required: $.t('buyTokens.inputTip4'),
