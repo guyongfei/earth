@@ -261,7 +261,8 @@ export default class Sale {
     const {
       $payId,
       $payInput,
-      $getInput
+      $getInput,
+      $tokenForm
     } = this.childMap;
 
     $payInput.val(this.defaultEth);
