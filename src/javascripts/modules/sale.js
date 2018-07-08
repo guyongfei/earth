@@ -93,7 +93,7 @@ export default class Sale {
         this.txCount = result.txCount;
         this.defaultEth = result.minPurchaseAmount;
 
-        minPurchase = (this.defaultEth * this.priceRate).toFixed(5);
+        minPurchase = (this.defaultEth * this.priceRate).toFixed(9);
 
         if (!method.isEmpty(payEthAddress)) {
           $('#sending-wallet').attr('disabled', true).val(payEthAddress);
@@ -266,7 +266,7 @@ export default class Sale {
     } = this.childMap;
 
     $payInput.val(this.defaultEth);
-    $getInput.val((this.defaultEth * this.priceRate).toFixed(5));
+    $getInput.val((this.defaultEth * this.priceRate).toFixed(9));
     $payId.val('');
     $tokenForm.find('.pay-eth').text(this.defaultEth);
   }
@@ -305,7 +305,7 @@ export default class Sale {
     // 购买代币输入框
     $tokenForm.on('input', '#payAmount', (e) => {
       let value = this.trim($(e.currentTarget));
-      let total = (value * this.priceRate).toFixed(5);
+      let total = (value * this.priceRate).toFixed(9);
 
       total = total > 0 ? total : ''; 
       $('#getAmount').val(total);
@@ -314,7 +314,7 @@ export default class Sale {
 
     $tokenForm.on('input', '#getAmount', (e) => {
       let value = this.trim($(e.currentTarget));
-      let eth = (value / this.priceRate).toFixed(5);
+      let eth = (value / this.priceRate).toFixed(9);
 
       eth = eth > 0 ? eth : '';
       $('#payAmount').val(eth);
