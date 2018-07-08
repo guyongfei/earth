@@ -52,11 +52,13 @@ export default {
         email1: '输入你的电子邮箱地址',
         email2: '请输入正确的邮箱地址',
         code: '请输入验证码',
+        imgCode: '请输入图形验证码',
         password1: '请输入密码',
         password2: '请输入6-20位字母或者数字',
         password3: '请再次输入密码',
         password4: '两次输入的密码需要一致',
-        terms: '请同意条款和条件，以创建账户'
+        terms: '请同意条款和条件，以创建账户',
+        number: '只能输入小数点后九位'
       },
       home: {
 

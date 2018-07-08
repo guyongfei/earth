@@ -165,6 +165,42 @@
       @include border-radius(20px);
     }
 
+    .btn-eye,
+    .btn-pass-eye,
+    .btn-confirm-eye {
+      position: absolute;
+      right: 10px;
+      cursor: pointer;
+      &.close {
+        top: 18px;
+        width: 20px;
+        height: 10px;
+        background: url('../../images/bases/eye.png') no-repeat;
+        background-size: cover;
+      }
+      &.open {
+        top: 13px;
+        width: 20px;
+        height: 16px;
+        background: url('../../images/bases/eye_open.png') no-repeat;
+        background-size: cover;
+      }
+    }
+
+    .form-group-image{
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      width: 90px;
+      height: 36px;
+      img {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+      }
+    }
+
   }
   .form-foot {
   }

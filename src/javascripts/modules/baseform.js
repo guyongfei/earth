@@ -1,6 +1,7 @@
 import 'jquery-validation';
 import EventEmitter from '../lib/event';
 import method from '../common/method';
+import { baseURL } from '../common/constants';
 import { extendMethod } from '../common/utils';
 import { emailCode, login, register, forget, passRequest } from '../common/service';
 
@@ -13,12 +14,16 @@ export default class Baseform {
     this.forgetValidator = null;
     this.timer = null;
     this.count = 90;
+    this.lastTime = null;
+    this.remainTime = 301;
+    this.imgToken = null;
 
     $(() => {
       this.handleDom();
       this.validateMethod();
+      this.render();
       this.bindEvents();
-
+      
       EventEmitter.call(this);
     });
     
@@ -38,8 +43,9 @@ export default class Baseform {
       $regLink = $('.register-link'),
       $forgetLink = $('.forget-link'),
       $loginFoot = $('.f-login-btn'),
-      $closeForm = $('.form-close');
-  
+      $closeForm = $('.form-close'),
+      $valideCode = $('#valideImg');
+    
     this.childMap.$login = $login;
     this.childMap.$reg = $reg;
     this.childMap.$forget = $forget;
@@ -54,6 +60,30 @@ export default class Baseform {
     this.childMap.$container = $container;
     this.childMap.$loginFoot = $loginFoot;
     this.childMap.$closeForm = $closeForm;
+    this.childMap.$valideCode = $valideCode;
+  }
+
+  render () {
+    const { $valideCode } = this.childMap;
+
+    this.imgToken = this.uuidv4();
+    $valideCode.attr('src', `${baseURL}/verify-code/img?imgToken=${this.imgToken}`)
+  }
+
+  refreshCode () {
+    const { $valideCode } = this.childMap;
+
+    let date = new Date().getTime();
+
+    if (this.lastTime) {
+      this.remainTime = date - this.lastTime;
+    }
+
+    this.lastTime = date;
+    if (this.remainTime < 300) return;
+
+    this.imgToken = this.uuidv4();
+    $valideCode.attr('src', `${baseURL}/verify-code/img?imgToken=${this.imgToken}`);
   }
 
   execInAnimation (callback) {
@@ -107,12 +137,31 @@ export default class Baseform {
     })
   }
 
+  uuidv4() {
+    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+      return v.toString(16);
+    });
+  }
+
   // 错误提示
   error (el, message) {
     el.find('.request-error').text(message).fadeIn(300);
     setTimeout(() => {
       el.find('.request-error').fadeOut(300);
     }, 3000);
+  }
+
+  switchEye (e, id) {
+    let $this = $(e.currentTarget);
+
+    if ($this.hasClass('close')) {
+      $this.removeClass('close').addClass('open');
+      $(id).attr('type', 'text');
+    } else {
+      $this.removeClass('open').addClass('close');
+      $(id).attr('type', 'password');
+    }
   }
   
   // 销毁事件
@@ -155,8 +204,14 @@ export default class Baseform {
       $closeForm,
       $regLink,
       $loginLink,
-      $forgetLink
+      $forgetLink,
+      $valideCode
     } = this.childMap;
+
+    // 图片验证码
+    $valideCode.on('click', (e) => {
+      this.refreshCode();
+    });
 
     // 底部登录事件
     $loginFoot.on('click', (e) => {
@@ -242,6 +297,9 @@ export default class Baseform {
         code: {
           required: true
         },
+        imgCode: {
+          required: true
+        },
         password: {
           required: true,
           pwdFormat: true
@@ -263,6 +321,9 @@ export default class Baseform {
         code: {
           required: $.t('error.code'),
         },
+        imgCode: {
+          required: $.t('error.imgCode')
+        },
         password: {
           required: $.t('error.password1'),
           pwdFormat: $.t('error.password2')
@@ -283,7 +344,9 @@ export default class Baseform {
         register({
           email: this.trim($('#regEmail')),
           password: this.trim($('#regPassword')),
-          verifyCode: this.trim($('#regCode'))
+          verifyCode: this.trim($('#regCode')),
+          imgToken: this.imgToken,
+          imgVerifyCode: this.trim($('#imgCode'))
         })
         .then(res => {
           this.error($reg, $.t('register.success'))
@@ -294,6 +357,7 @@ export default class Baseform {
           }, 300);
         })
         .catch(err => {
+          this.refreshCode();
           this.error($reg, err.message);
         });
       }
@@ -348,6 +412,35 @@ export default class Baseform {
         });
       }
     });
+
+    // 登录 密码切换
+    $loginForm.on('click', '.btn-eye', (e) => {
+      e.preventDefault();
+
+      this.switchEye(e, '#loginPassword');
+    });
+
+    // 注册 密码切换
+    // 忘记密码 密码切换
+    $regForm.on('click', '.btn-pass-eye', (e) => {
+      e.preventDefault();
+
+      this.switchEye(e, '#regPassword');
+    });
+
+    $regForm.on('click', '.btn-confirm-eye', (e) => {
+      e.preventDefault();
+
+      this.switchEye(e, '#regConfirmPassword');
+    });
+
+    // 忘记密码 密码切换
+    $forgetForm.on('click', '.btn-eye', (e) => {
+      e.preventDefault();
+
+      this.switchEye(e, '#forgetPassword');
+    });
+
 
     // 注册时点击 获取验证码
     $regCodeBtn.on('click', (e) => {

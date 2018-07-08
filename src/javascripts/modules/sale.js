@@ -145,7 +145,7 @@ export default class Sale {
         $tokenForm.find('.number').text(result.priceRate);
         $tokenForm.find('.token').text(result.projectToken);
         $tokenForm.find('.gas-limit').text(method.thousandsFormatter(result.gasPrice.ethGasLimit));
-        $tokenForm.find('.gas-price').text(method.thousandsFormatter(result.gasPrice.gasPrice));
+        $tokenForm.find('.gas-price').text(result.gasPrice.gasPriceGWei);
         $tokenForm.find('.min-eth').text(result.minPurchaseAmount);
         $tokenForm.find('.platform-address').text(result.platformAddress);
 
@@ -196,6 +196,10 @@ export default class Sale {
 
     $.validator.addMethod('hashFormat', (value, el) => {
       return /^0x?([A-Fa-f0-9]{64})$/.test(value);
+    });
+
+    $.validator.addMethod('decimalFormat', (value, el) => {
+      return /((^0)|(^[1-9]\d))((\.\d{1,9})|(\.?))?$/.test(value);
     });
   }
 
@@ -252,9 +256,13 @@ export default class Sale {
   // destroy
   destroy () {
     const {
-      $payId
+      $payId,
+      $payInput,
+      $getInput
     } = this.childMap;
 
+    $payInput.val(this.defaultEth);
+    $getInput.val((this.defaultEth * this.priceRate).toFixed(5));
     $payId.val('');
   }
 
@@ -392,7 +400,8 @@ export default class Sale {
       rules: {
         payAmount: {
           required: true,
-          number: true
+          number: true,
+          decimalFormat: true
         },
         getAmount: {
           required: true,
@@ -406,7 +415,8 @@ export default class Sale {
       messages: {
         payAmount: {
           required: $.t('buyTokens.inputTip1'),
-          number: $.t('buyTokens.inputTip2')
+          number: $.t('buyTokens.inputTip2'),
+          decimalFormat: $.t('error.number')
         },
         getAmount: {
           required: $.t('buyTokens.inputTip1'),

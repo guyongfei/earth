@@ -52,11 +52,13 @@ export default {
         email1: 'Please enter your email address',
         email2: 'Please input the correct email address',
         code: 'Please enter code',
+        imgCode: 'Please enter verification code',
         password1: 'Please enter password',
         password2: 'Please enter 6-20 letters or numbers',
         password3: 'Please enter password again',
         password4: 'The password entered twice needs to be consistent',
-        terms: 'Please agree to the Terms and Conditions in order to create an account'
+        terms: 'Please agree to the Terms and Conditions in order to create an account',
+        number: 'Only nine decimal places can be entered'
       },
       home: {
 

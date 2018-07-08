@@ -38,7 +38,9 @@ export default class Details {
       $footer,
       $loading
     } = this.childMap;
-    
+    console.log(method.thousandsFormatters(123131444.323))
+    console.log(method.thousandsFormatters(123131444.00))
+    console.log(method.thousandsFormatters(12.4244))
     getIndex()
     .then(({ success, data, message }) => {
       if (!success) { console.log('no data'); };
@@ -86,7 +88,7 @@ export default class Details {
               </fieldset>
             </div>
             <button class="get-token-btn" data-id="${result.projectGid}">${$.t('detail.btnText')}</button>
-            <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatter(result.soldAmount)}</span></p>
+            <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatters(result.soldAmount)}</span></p>
           `;
           break;
         case 2:
@@ -94,7 +96,7 @@ export default class Details {
         case 3:
           headTemp = `
             ${headCommonTemp}
-            <p>${$.t('result.end')}</p>
+            <p>${$.t('detail.end')}</p>
             <div class="collect-total">
               <div class="collect-item">
                 <fieldset class="token-item eth">

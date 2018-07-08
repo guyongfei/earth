@@ -173,6 +173,7 @@ export default {
   //千分位
   thousandsFormatter (number) {
     if (!Number.isInteger(number)) return number;
+        
     let num = (number || 0).toString(),
       result = '';
     while (num.length > 3) {
@@ -181,5 +182,14 @@ export default {
     }
     if (num) { result = num + result; }
     return result;
+  },
+  thousandsFormatters (number) {
+    let res = number.toString().replace(/\d+/, function(n) {
+      return n.replace(/(\d)(?=(\d{3})+$)/g, function($1) {
+        return $1 + ",";
+      });
+    });
+
+    return res;
   }
 }
