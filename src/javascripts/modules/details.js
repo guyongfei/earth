@@ -73,6 +73,7 @@ export default class Details {
           `;
           break;
         case 1:
+        case 2:
           headTemp = `
             ${headCommonTemp}
             <p class="devide">${$.t('detail.current')}</p>
@@ -91,9 +92,8 @@ export default class Details {
             <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatters(result.soldAmount)}</span></p>
           `;
           break;
-        case 2:
-          break;
         case 3:
+        case 4:
           headTemp = `
             ${headCommonTemp}
             <p>${$.t('detail.end')}</p>
@@ -112,8 +112,6 @@ export default class Details {
               </div>
             </div>
           `;
-          break;
-        case 4:
           break;
         default:
           break;

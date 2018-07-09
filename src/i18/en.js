@@ -100,8 +100,7 @@ export default {
         payId: 'Provide proof of payment',
         tradeId: 'Transaction ID',
         tradeIdDesc: 'What is the transaction ID?',
-        inputTip1: 'Enter a valid number',
-        inputTip2: 'Please enter a valid number',
+        inputTip1: 'Please enter a valid number',
         inputTip3: 'The minimum purchase quantity is',
         inputTip4: 'Enter a valid TX hash (a long string found next to your wallet)',
         error: 'Trading is capped and cannot be repeated'

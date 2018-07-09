@@ -448,6 +448,7 @@
               width: 120px;
               background: #E5E9F3;
               @include border-radius(4px);
+              text-decoration: none;
             }
             .transfer {
               flex: 1;
@@ -457,6 +458,7 @@
               color: $color-white;
               background: #4392F9;
               @include border-radius(4px);
+              text-decoration: none;
             }
           }
         }

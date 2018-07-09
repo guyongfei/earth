@@ -21,7 +21,6 @@ export default class Baseform {
     $(() => {
       this.handleDom();
       this.validateMethod();
-      this.render();
       this.bindEvents();
       
       EventEmitter.call(this);
@@ -227,6 +226,7 @@ export default class Baseform {
 
     // 显示注册弹窗
     $regLink.on('click', (e) => {
+      this.render();
       $login.hide();
       $reg.show();
     });

@@ -35,7 +35,7 @@ export default class Sale {
       this.handleDom();
       this.languageInit();
       this.render();
-      this.bindEvents();
+      // this.bindEvents();
     });
   }
 
@@ -158,6 +158,8 @@ export default class Sale {
         result.txCount > 0 && this.renderList(this.gid)
 
       }
+
+      this.bindEvents();
 
       $loading.hide();
     })
@@ -383,7 +385,8 @@ export default class Sale {
           this.destroy();
           return false;
         }
-  
+        
+        $walletForm.find('.btn-step').attr('disabled', true);
         setUserAddress({
           projectGid: this.gid,
           getTokenAddress: this.trim($('#receiving-wallet')),
@@ -400,8 +403,10 @@ export default class Sale {
             $token.show();
             $result.hide();
           }
+          $walletForm.find('.btn-step').attr('disabled', false);
         })
         .catch(err => {
+          $walletForm.find('.btn-step').attr('disabled', false);
           console.log(err.message);
         });
 
@@ -413,12 +418,11 @@ export default class Sale {
       rules: {
         payAmount: {
           required: true,
-          // number: true,
-          decimalFormat: true
+          min: this.defaultEth,
+          decimalFormat: true,
         },
         getAmount: {
           required: true,
-          // min: 1
         },
         payId: {
           required: true,
@@ -428,12 +432,12 @@ export default class Sale {
       messages: {
         payAmount: {
           required: $.t('buyTokens.inputTip1'),
-          // number: $.t('buyTokens.inputTip2'),
+          min: `${$.t('buyTokens.inputTip3')}${this.defaultEth}ETH`,
           decimalFormat: $.t('error.number')
         },
         getAmount: {
-          required: $.t('buyTokens.inputTip1')
-          // min: $.t('buyTokens.inputTip3')
+          required: $.t('buyTokens.inputTip1'),
+          decimalFormat: $.t('error.number')
         },
         payId: {
           required: $.t('buyTokens.inputTip4'),
@@ -456,6 +460,7 @@ export default class Sale {
             alert($.t('buyTokens.error'));
           } else {
             
+            $tokenForm.find('.btn-confirm').attr('disabled', true);
             submitTransaction({
               projectGid: this.gid,
               priceRate: this.priceRate,
@@ -479,8 +484,10 @@ export default class Sale {
               $wallet.hide();
               $token.hide();
               $result.show();
+              $tokenForm.find('.btn-confirm').attr('disabled', false);
             })
             .catch(err => {
+              $tokenForm.find('.btn-confirm').attr('disabled', false);
               alert(err.message);
             });
 

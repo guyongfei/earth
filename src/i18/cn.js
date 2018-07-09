@@ -100,9 +100,8 @@ export default {
         payId: '提供支付证明',
         tradeId: '交易ID',
         tradeIdDesc: '交易ID是什么？',
-        inputTip1: '输入有效号码',
-        inputTip2: '请输入合法的数字',
-        inputTip3: '最小购买量为10 000VRA(~0.22679 ETH)',
+        inputTip1: '请输入合法的数字',
+        inputTip3: '最小购买量为',
         inputTip4: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)',
         error: '交易次数达到上限，不能再次交易'
       },
