@@ -64,6 +64,9 @@ header {
 
   .login-wrap {
     margin-right: 30px;
+    .login {
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 767.9px) {
