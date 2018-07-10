@@ -30,8 +30,7 @@ export default class Sale {
       this.baseForm = getModule('baseform');
       this.validateMethod();
       this.handleDom();
-      // this.render();
-      $('#loading').hide();
+      this.render();
     });
   }
 
