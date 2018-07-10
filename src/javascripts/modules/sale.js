@@ -35,7 +35,6 @@ export default class Sale {
       this.handleDom();
       this.languageInit();
       this.render();
-      // this.bindEvents();
     });
   }
 
@@ -244,8 +243,6 @@ export default class Sale {
         });
 
         $result.find('.ui-list').html(temp);
-
-        console.log(this);
       }
     })
     .catch(err => {
@@ -504,7 +501,7 @@ export default class Sale {
     // 取消事件
     $tokenForm.on('click', '.btn-cancel', (e) => {
       e.preventDefault();
-      console.log('32424');
+ 
       if (!method.isEmpty($payId.val())) {
         let message = $.t('sale.alert');
         if (!confirm(message)) return

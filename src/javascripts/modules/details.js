@@ -89,7 +89,7 @@ export default class Details {
               </fieldset>
             </div>
             <button class="get-token-btn" data-id="${result.projectGid}">${$.t('detail.btnText')}</button>
-            <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatters(result.soldAmount)}</span></p>
+            <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatters(result.soldTokenAmount)}</span></p>
           `;
           break;
         case 3:

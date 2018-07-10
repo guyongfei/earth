@@ -30,9 +30,9 @@
       <img src="./logo.png" alt="">
     </div>
     <div class="nav">
-      <div class="nav-item nav-item-active">
+      <a href="./index.html" class="nav-item nav-item-active">
         <span class="nav-item-txt" data-i18n="nav.home"></span>
-      </div>
+      </a>
     </div>
     <div class="btns">
       <div class="login-wrap">
@@ -125,19 +125,19 @@
     <div class="register-form-container">
       <h3 class="form-head" data-i18n="register.title"></h3>
       <p class="request-error"></p>
-      <form id="regForm" class="form-body form"> 
+      <form id="regForm" class="form-body form">
+        <div class="form-group">
+          <input type="text" id="imgCode" name="imgCode" data-i18n="[placeholder]common.code">
+          <div class="form-group-image">
+            <img src="" alt="code" id="valideImg">
+          </div>
+        </div>
         <div class="form-group">
           <input type="text" id="regEmail" name="email" data-i18n="[placeholder]common.email">
           <button type="submit" class="send-code" data-i18n="common.send"></button>
         </div>
         <div class="form-group">
           <input type="text" id="regCode" name="code" data-i18n="[placeholder]common.code">
-        </div>
-        <div class="form-group">
-          <input type="text" id="imgCode" name="imgCode" data-i18n="[placeholder]common.code">
-          <div class="form-group-image">
-            <img src="" alt="code" id="valideImg">
-          </div>
         </div>
         <div class="form-group">
           <input type="password" id="regPassword" name="password" maxlength="20" data-i18n="[placeholder]common.password">

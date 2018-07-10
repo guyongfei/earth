@@ -9,6 +9,8 @@
 {% block content %}
   <div class="sale-wrapper" data-module="sale">
     {% include "shared/loading.html" %}
+    {% include "shared/header.html" %}
+
     <section class="section">
       <div class="section-inner">
         <div class="steps">
@@ -162,6 +164,7 @@
       <img src="./images/sale/bg_btm.png" alt="">
     </foote>
   </div>
+  {% include "shared/base-form.html" %}
 {% endblock %}
 
 {% block javascript %}

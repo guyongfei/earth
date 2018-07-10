@@ -1,5 +1,7 @@
 @import "../base/index.scss";
 @import "../components/loading.scss";
+@import "../components/header.scss";
+@import "../components/baseform.scss";
 
 @mixin line($color) {
   &:after {
