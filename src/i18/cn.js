@@ -32,7 +32,8 @@ export default {
         forgetPass: '忘记密码？',
         noAccount: '没有账户？',
         create: '创建账户',
-        tips: '你还没登录？'
+        tips: '你还没登录？',
+        success: '登录成功'
       },
       register: {
         title: '创建账户',

@@ -276,7 +276,7 @@ export default class Baseform {
         })
         .then(res => {
           method.setCookie('logined', true);
-          this.error($login, 'Login successed!');
+          this.error($login, $.t('login.success'));
           setTimeout(() => {
             window.location.reload();
           }, 300);
