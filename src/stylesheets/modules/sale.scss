@@ -19,24 +19,40 @@
 
 .sale-wrapper {
   padding-top: 60px;
-  min-height: 100%;
-  background: url('../../images/details/bg.png') no-repeat;
-  background-size: cover;
-  @media (max-width: 767.9px) {
-    padding: 10px;
-  }
+  height: 100%;
+
   .section {
-    position: relative;
-    margin: 0 auto;
-    padding: 5px;
-    max-width: 375px;
-    background: #F4F7F6;
-    overflow: hidden;
-    @include border-radius(5px);
+    padding-top: 20px;
+    width: 100%;
+    min-height: 100%;
+    background: url('../../images/details/details_bg.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    @media (max-width: 767.9px) {
+      padding: 10px;
+    }
+    
     .section-inner {
-     height: 590px;
+      position: relative;
+      margin: 0 auto;
+      padding: 0;
+      max-width: 375px;
+      background: #F4F7F6;
+      overflow: hidden;
+      @include border-radius(5px);
+    }
+
+    .main {
+      height: 590px;
       padding: 15px;
       overflow-y: scroll;
+    }
+    
+
+    @media (min-width: 1367px) {
+      .main {
+        height: 750px;
+      }
     }
 
     .steps {
@@ -103,7 +119,7 @@
 
         &.disabled {
           span {
-            background-image: url('../../images/sale/ui_radio.png');
+            background-image: url('../../images/sale/ui_unradio.png');
           }
           &.step-token {
             @include line($color-orange);
@@ -475,7 +491,7 @@
     }
   }
 
-  .footer {
+  .section-btm {
     margin: 0 auto;
     max-width: 375px;
     font-size: 0;

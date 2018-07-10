@@ -3,10 +3,6 @@ import 'jquery-validation';
 import moment from 'moment';
 import method from '../common/method';
 import Clipboard from 'clipboard';
-import i18next from 'i18next';
-import jqueryI18next from 'jquery-i18next';
-import en from '../../i18/en';
-import cn from '../../i18/cn';
 import {
   setUserAddress,
   getTransactionInfo,
@@ -34,8 +30,8 @@ export default class Sale {
       this.baseForm = getModule('baseform');
       this.validateMethod();
       this.handleDom();
-      // this.languageInit();
-      this.render();
+      // this.render();
+      $('#loading').hide();
     });
   }
 
