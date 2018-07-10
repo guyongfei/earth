@@ -118,11 +118,15 @@
         }
 
         &.disabled {
+          pointer-events: none;
           span {
             background-image: url('../../images/sale/ui_unradio.png');
           }
           &.step-token {
             @include line($color-orange);
+          }
+          p {
+            color: #999999;
           }
         }
 
