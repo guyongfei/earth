@@ -99,11 +99,13 @@
           &.step-token {
             @include line(#999999);
           }
+        }
 
-          &.disabled {
-            span {
-              background-image: url('../../images/sale/ui_radio.png');
-            }
+        &.disabled {
+          span {
+            background-image: url('../../images/sale/ui_radio.png');
+          }
+          &.step-token {
             @include line($color-orange);
           }
         }
