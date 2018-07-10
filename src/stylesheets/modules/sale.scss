@@ -99,6 +99,13 @@
           &.step-token {
             @include line(#999999);
           }
+
+          &.disabled {
+            span {
+              background-image: url('../../images/sale/ui_radio.png');
+            }
+            @include line($color-orange);
+          }
         }
 
         span {
@@ -407,14 +414,12 @@
             @include border-radius(100%);
           }
           .order-id {
-            margin-right: 10px;
             width: 100px;
             color: #000000;
             font-size: 13px;
-            // white-space: nowrap;
-            // text-overflow: ellipsis;
-            // overflow: hidden;
+           
             a {
+              text-decoration: underline;
               cursor: pointer;
             }
           }
