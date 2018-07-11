@@ -89,7 +89,7 @@ export default class Details {
               </fieldset>
             </div>
             <button class="get-token-btn" data-id="${result.projectGid}">${$.t('detail.btnText')}</button>
-            <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatters(result.soldAmount)}</span></p>
+            <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatters(result.soldTokenAmount)}</span></p>
           `;
           break;
         case 3:
@@ -101,13 +101,13 @@ export default class Details {
               <div class="collect-item">
                 <fieldset class="token-item eth">
                   <legend align="left" class="token-name">Token</legend>
-                  ${this.numberFormat(result.soldAmount, result.priceRate)}ETH
+                  ${result.soldAmount}ETH
                 </fieldset>
               </div>
               <div class="collect-item">
                 <fieldset class="token-item eth">
                   <legend align="left" class="token-name">Token</legend>
-                  ${result.soldAmount}${result.projectToken}
+                  ${result.soldTokenAmount}${result.projectToken}
                 </fieldset>
               </div>
             </div>

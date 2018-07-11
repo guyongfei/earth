@@ -29,7 +29,7 @@
     padding-bottom: 55px;
     width: 100%;
     min-height: 100%;
-    background: url('../../images/details/bg.png') no-repeat;
+    background: url('../../images/details/bg_1.png') no-repeat;
     background-size: cover;
     background-position: center;
   }
@@ -39,6 +39,9 @@
     width: 350px;
     color: $color-white;
     text-align: center;
+    background: url('../../images/details/triangle_bg.png') no-repeat;
+    background-size: 364px 253px;
+    background-position: center bottom;
     .name {
       margin-bottom: 10px;
       line-height: 1;
@@ -192,6 +195,7 @@
   }
 
   .box-foot {
+    margin-top: 20px;
     padding: 20px 0;
     background: $color-white;
     @include border-radius(5px);

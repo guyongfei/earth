@@ -32,7 +32,8 @@ export default {
         forgetPass: 'Forgot password?',
         noAccount: "Do not have an account?",
         create: 'Create Account',
-        tips: 'You have not logged in yet'
+        tips: 'You have not logged in yet',
+        success: 'Login successful'
       },
       register: {
         title: 'Create Account',
@@ -41,7 +42,7 @@ export default {
         agree1: 'I confirm that I have read and understood the',
         agree2: ', and I expressly accept all terms, rights, and obligations described in these documents.',
         agress3: 'I agree to provide my valid ID and residence for KYC before I receive my tokens.' ,
-        succuess: 'Register successed!',
+        succuess: 'Registered successfully',
         hadAccount: 'Already have an account?'
       },
       forget: {

@@ -33,6 +33,7 @@ header {
     line-height: 60px;
     float: left;
     .nav-item {
+      display: block;
       width: 50px;
       text-align: center;
       cursor: pointer;
@@ -63,7 +64,9 @@ header {
 
   .login-wrap {
     margin-right: 30px;
-    cursor: pointer;
+    .login {
+      cursor: pointer;
+    }
   }
 
   @media (max-width: 767.9px) {
@@ -177,6 +180,7 @@ header {
         width: 150px;
         height: 40px;
         line-height: 40px;
+        color: #FF5500;
         border: 1px solid #FF5500;
         background: transparent;
         @include border-radius(20px);

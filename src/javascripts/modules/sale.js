@@ -3,10 +3,6 @@ import 'jquery-validation';
 import moment from 'moment';
 import method from '../common/method';
 import Clipboard from 'clipboard';
-import i18next from 'i18next';
-import jqueryI18next from 'jquery-i18next';
-import en from '../../i18/en';
-import cn from '../../i18/cn';
 import {
   setUserAddress,
   getTransactionInfo,
@@ -22,20 +18,19 @@ export default class Sale {
     this.childMap = {};
     this.flag = false;
     this.gid = null;
-    this.priceRate = null;
-    this.defaultEth = null;
-    this.txCount = null;
-    this.wallet = false;
-    this.token = false;
-    this.result = false;
+    this.priceRate = null; // 兑换比例
+    this.defaultEth = null; // 默认购买的最小ETH
+    this.txCount = null; // 购买次数
+    this.wallet = false; // 钱包是否已经完成
+    this.token = false; // 是否进行过购买
+    this.result = false; // 结果页
+    this.txCountLimit = false; // 是否可购买
 
     $(() => {
       this.baseForm = getModule('baseform');
       this.validateMethod();
       this.handleDom();
-      this.languageInit();
       this.render();
-      // this.bindEvents();
     });
   }
 
@@ -92,6 +87,7 @@ export default class Sale {
         this.priceRate = result.priceRate;
         this.txCount = result.txCount;
         this.defaultEth = result.minPurchaseAmount;
+        this.txCountLimit = result.txCountLimit;
 
         minPurchase = (this.defaultEth * this.priceRate).toFixed(9);
 
@@ -129,6 +125,13 @@ export default class Sale {
           $result.hide();
         }
 
+        // true 禁止认筹
+        if (this.txCountLimit) {
+          $steps.children().eq(1).removeClass('finished').addClass('disabled');
+          $token.hide();
+          $result.find('.btn-buy').hide();
+        }
+
         // 购买代币
         let qrcode = new QRCode(document.getElementById("qrcode"), {
           text: result.platformAddress,
@@ -154,43 +157,15 @@ export default class Sale {
 
         // 购买结果
         $result.find('.gmt-date').text(moment.utc(new Date(result.endTime)).format('MMMM Do, h:mm A'));
-
         result.txCount > 0 && this.renderList(this.gid)
-
       }
 
       this.bindEvents();
-
       $loading.hide();
     })
     .catch(err => {
       console.log(err);
     });
-  }
-
-  languageInit () {
-    let i18;
-    let lang = method.getCookie('witshare.i18n.language');
-
-    if (method.isEmpty(lang)) {
-      lang = 'en';
-      method.setCookie('witshare.i18n.language', 'en');
-    }
-
-    i18 = lang == 'cn' ? cn : en;
-
-    // i18 next
-    // i18 next
-    i18next.init({
-      lng: lang,
-      resources: {
-        ...i18
-      }
-    }, function(err, t) {
-      jqueryI18next.init(i18next, $);
-      $(document).localize();
-    });
-
   }
 
    // validate method
@@ -208,13 +183,32 @@ export default class Sale {
     });
   }
 
+  updateTransactionInfo () {
+    const {
+      $steps,
+      $result
+    } = this.childMap;
+
+    getTransactionInfo(this.gid)
+    .then(res => {
+      this.txCountLimit = res.data.txCountLimit;
+      if (this.txCountLimit) {
+        $steps.children().eq(1).removeClass('finished').addClass('disabled');
+        $result.find('.btn-buy').hide();
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }
+
   // 个人列表
-  renderList (id) {
+  renderList () {
     const {
       $result
     } = this.childMap;
 
-    getTransactions(id, 1, 10)
+    getTransactions(this.gid, 1, 10)
     .then(res => {
       if (res.success) {
         let resData= res.data, temp = '';
@@ -244,8 +238,6 @@ export default class Sale {
         });
 
         $result.find('.ui-list').html(temp);
-
-        console.log(this);
       }
     })
     .catch(err => {
@@ -292,6 +284,7 @@ export default class Sale {
       let $this = $(e.currentTarget),
         index = $this.index();
 
+      if ($this.hasClass('disabled')) return;
       if ($this.hasClass('unfinished')) return;
 
       if (!method.isEmpty($payId.val()) && index != 1) {
@@ -376,16 +369,22 @@ export default class Sale {
       },
       submitHandler: (form) => {
 
+        // 禁止购买，提示消息
+        if (this.txCountLimit) {
+          return alert($.t('buyTokens.error'));
+        }
+
+        // 钱包地址已填写，下一步到buy Tokens
         if (this.wallet) {
-          // $steps.children().eq(1).trigger('click');
           $steps.children().eq(1).addClass('active').siblings().removeClass('active');
           $wallet.hide();
           $token.show();
           $result.hide();
           this.destroy();
-          return false;
+          return;
         }
         
+        // 钱包地址未填写，请求数据
         $walletForm.find('.btn-step').attr('disabled', true);
         setUserAddress({
           projectGid: this.gid,
@@ -407,7 +406,9 @@ export default class Sale {
         })
         .catch(err => {
           $walletForm.find('.btn-step').attr('disabled', false);
-          console.log(err.message);
+          if (err.status === 401) {
+            return this.baseForm.execInAnimation();
+          }
         });
 
       }
@@ -452,59 +453,52 @@ export default class Sale {
           getValue = parseFloat(this.trim($getInput)),
           $step1 = $steps.children().eq(1),
           $step2 = $steps.children().eq(2);
-
-        getTransactionInfo(this.gid)
-        .then(res => {
-          // txCountLimit true 交易达到上限，不可再交易
-          if (res.data.txCountLimit) {
-            alert($.t('buyTokens.error'));
-          } else {
             
-            $tokenForm.find('.btn-confirm').attr('disabled', true);
-            submitTransaction({
-              projectGid: this.gid,
-              priceRate: this.priceRate,
-              payAmount: payValue,
-              payCoinType: 0,
-              payTx: this.trim($payId),
-              hopeGetAmount: getValue
-            })
-            .then(res => {
-              if ($step1.hasClass('unfinished')) {
-                $step1.removeClass('unfinished').addClass('finished');
-              }
-              if ($step2.hasClass('unfinished')) {
-                $step2.removeClass('unfinished').addClass('finished');
-              }
+          $tokenForm.find('.btn-confirm').attr('disabled', true);
+          submitTransaction({
+            projectGid: this.gid,
+            priceRate: this.priceRate,
+            payAmount: payValue,
+            payCoinType: 0,
+            payTx: this.trim($payId),
+            hopeGetAmount: getValue
+          })
+          .then(res => {
+            
+            if ($step1.hasClass('unfinished')) {
+              $step1.removeClass('unfinished').addClass('finished');
+            }
 
-              $step2.addClass('active').siblings().removeClass('active')
-              this.renderList(this.gid);
+            if ($step2.hasClass('unfinished')) {
+              $step2.removeClass('unfinished').addClass('finished');
+            }
 
-              this.destroy();
-              $wallet.hide();
-              $token.hide();
-              $result.show();
-              $tokenForm.find('.btn-confirm').attr('disabled', false);
-            })
-            .catch(err => {
-              $tokenForm.find('.btn-confirm').attr('disabled', false);
-              alert(err.message);
-            });
+            $step2.addClass('active').siblings().removeClass('active');
 
-          }
-        })
-        .catch(err => {
-          if (err.status === 401) {
-            return this.baseForm.execInAnimation();
-          }
-        });
+            // 更新 transactioninfo
+            this.updateTransactionInfo();
+            // 刷新购买列表
+            this.renderList();
+
+            this.destroy();
+            $wallet.hide();
+            $token.hide();
+            $result.show();
+            $tokenForm.find('.btn-confirm').attr('disabled', false);
+          })
+          .catch(err => {
+            $tokenForm.find('.btn-confirm').attr('disabled', false);
+            if (err.status === 401) {
+              return this.baseForm.execInAnimation();
+            }
+          });
       }
     });
 
     // 取消事件
     $tokenForm.on('click', '.btn-cancel', (e) => {
       e.preventDefault();
-      console.log('32424');
+ 
       if (!method.isEmpty($payId.val())) {
         let message = $.t('sale.alert');
         if (!confirm(message)) return
@@ -522,23 +516,8 @@ export default class Sale {
     // 购买更多代币
     $result.on('click', '.btn-buy', (e) => {
       e.preventDefault();
-
-      getTransactionInfo(this.gid)
-      .then(res => {
-        // txCountLimit true 交易达到上限，不可再交易
-        if (res.data.txCountLimit) {
-          alert($.t('buyTokens.error'));
-        } else {
-          $steps.children().eq(1).trigger('click');
-        }
-      })
-      .catch(err => {
-        if (err.status === 401) {
-          return this.baseForm.execInAnimation();
-        }
-        console.log(err);
-      });
-  
+      
+      $steps.children().eq(1).trigger('click');  
     });
     
     // 交易号hover事件

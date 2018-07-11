@@ -37,12 +37,14 @@ function request (options) {
 }
 
 //获取邮箱验证码
-export function emailCode (action, email) {
+export function emailCode (action, email, imgToken, imgVerifyCode) {
   return request({
     type: 'POST',
     url: `/verify-code/email?action=${action}`,
     data: {
-      email
+      email,
+      imgToken,
+      imgVerifyCode
     }
   });
 }

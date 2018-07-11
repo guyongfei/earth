@@ -276,7 +276,7 @@ export default class Baseform {
         })
         .then(res => {
           method.setCookie('logined', true);
-          this.error($login, 'Login successed!');
+          this.error($login, $.t('login.success'));
           setTimeout(() => {
             window.location.reload();
           }, 300);
@@ -395,7 +395,7 @@ export default class Baseform {
       highlight: (el) => {
       },
       submitHandler: (form) => {
-        console.log(form);
+
         let email = this.trim($('#forgetEmail')),
           password = this.trim($('#forgetPassword')),
           verifyCode = this.trim($('#forgetCode'));
@@ -446,15 +446,19 @@ export default class Baseform {
     $regCodeBtn.on('click', (e) => {
       e.preventDefault();
       let $email = $('#regEmail'),
-        emailVal = this.trim($email);
+        $imgCode = $('#imgCode'),
+        emailVal = this.trim($email),
+        imgCodeVal = this.trim($imgCode);
 
-      if (!$regForm.validate().element($email)) return;
-      emailCode('register', emailVal)
+      if (!$regForm.validate().element($imgCode) || !$regForm.validate().element($email)) return;
+      
+      emailCode('register', emailVal, this.imgToken, imgCodeVal)
       .then(res => {
         this.countDown($regCodeBtn);
         this.error($reg, $.t('common.sendSuccess'));
       })
       .catch(err => {
+        this.refreshCode();
         this.error($reg, err.message);
       });
     });
