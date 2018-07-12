@@ -66,7 +66,7 @@ export default {
       detail: {
         current: 'The token price',
         btnText: 'Buy tokens now',
-        saled: 'Raised：',
+        saled: 'Raised',
         end:  'Number of raises'
       },
       wallet: {
