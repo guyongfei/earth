@@ -10,30 +10,42 @@
 
   <div class="details-wrapper" data-module="details">
     {% include "shared/loading.html" %}
-    {% include "shared/header.html" %}
+    {% include "shared/base-header.html" %}
 
     <section class="section">
-      <div class="main">
-        <div class="container">
-          <div class="box-head"></div>
-          <div class="box-foot">
-            <div class="row">
-              <div class="col-md-8 area area-left">
-                <div class="project-head"></div>
-                <div class="project-body"></div>
-                <div class="project-foot"></div>
-              </div>
-              <div class="col-md-4 area area-right">
-                <h3 class="desc-title">Description</h3>
-                <p class="desc-field"></p>
-              </div>
-            </div>
+      <div class="s-container">
+        <div class="row">
+          <div class="col-md-7 area area-left">
+            <div class="project-head"></div>
+            <div class="project-body"></div>
+            <div class="project-foot"></div>
+          </div>
+          <div class="col-md-5 area area-right">
+            <div class="project-main"></div>
           </div>
         </div>
       </div>
     </section>
 
-    {% include "shared/footer.html" %}
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 row-lf">
+            <p class="copyright">Copyright 2018 WitShare Pte. Ltd. | All Rights Reserved</p>
+          </div>
+          <div class="col-md-6 row-rt">
+            <ul class="ui-list clearfix">
+              <li>
+                <img src="./images/bases/ui_contact.png" alt=""><span>support@tokenpie.io</span>
+              </li>
+              <li>
+                <img src="./images/bases/ui_privacy.png" alt=""><span data-i18n="agreement.privacy"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>
   {% include "shared/base-form.html" %}
 {% endblock %}

@@ -67,8 +67,8 @@ export default {
       detail: {
         current: '目前代币的价格',
         btnText: '马上获得代币',
-        saled: '已卖代币数：',
-        end:  '募集数量'
+        saled: '已卖代币数',
+        end:  '募集数量',
       },
       wallet: {
         name: '钱包地址',
@@ -150,6 +150,9 @@ export default {
       },
       nav: {
         home: '首页'
+      },
+      agreement: {
+        privacy: '隐私声明'
       }
     }
   }
