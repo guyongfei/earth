@@ -41,7 +41,7 @@ export default {
         agree1: 'I confirm that I have read and understood the',
         agree2: ', and I expressly accept all terms, rights, and obligations described in these documents.',
         agress3: 'I agree to provide my valid ID and residence for KYC before I receive my tokens.' ,
-        succuess: 'Acccount created!',
+        success: 'Acccount created!',
         hadAccount: 'Already have an account?'
       },
       forget: {
