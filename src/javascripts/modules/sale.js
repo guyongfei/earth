@@ -502,14 +502,9 @@ export default class Sale {
       if (!method.isEmpty($payId.val())) {
         let message = $.t('sale.alert');
         if (!confirm(message)) return
-        this.destroy();
-        if (this.wallet && this.token) {
-          $steps.children().eq(2).trigger('click');
-        }
+        location.href = './index.html';
       } else {
-        if (this.wallet) {
-          $steps.children().eq(2).trigger('click');
-        }
+        location.href = './index.html';
       }
     });
 
