@@ -100,7 +100,7 @@ export default {
         copy: 'Copy to the clipboard',
         payId: 'Proof of Payment',
         tradeId: 'Transaction ID',
-        tradeIdDesc: 'What is the transaction ID?',
+        tradeIdText: 'Transaction Hash',
         inputTip1: 'Please enter a valid number',
         inputTip3: 'The minimum purchase quantity is',
         inputTip4: 'Enter a valid TX hash (a long string found next to your wallet)',
