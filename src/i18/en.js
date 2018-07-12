@@ -153,6 +153,10 @@ export default {
       },
       agreement: {
         privacy: 'Privacy Policy'
+      },
+      links: {
+        website: 'Website',
+        whitepaper: 'White paper'
       }
     }
   }
