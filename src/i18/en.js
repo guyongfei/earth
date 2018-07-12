@@ -32,7 +32,8 @@ export default {
         forgetPass: 'Forgot password?',
         noAccount: "Do not have an account?",
         create: 'Create Account',
-        tips: 'You have not logged in yet'
+        tips: 'You have not logged in yet',
+        success: 'Login successful'
       },
       register: {
         title: 'Create Account',
