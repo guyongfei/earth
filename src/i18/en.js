@@ -150,6 +150,9 @@ export default {
       },
       nav: {
         home: 'Home'
+      },
+      agreement: {
+        privacy: 'Privacy Policy'
       }
     }
   }

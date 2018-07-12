@@ -150,6 +150,9 @@ export default {
       },
       nav: {
         home: '首页'
+      },
+      agreement: {
+        privacy: '隐私权政策'
       }
     }
   }
