@@ -152,7 +152,7 @@ export default {
         home: '首页'
       },
       agreement: {
-        privacy: '隐私权政策'
+        privacy: '隐私声明'
       }
     }
   }
