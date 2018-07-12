@@ -183,6 +183,7 @@ export default class Sale {
     });
   }
 
+  // 更新最新状态
   updateTransactionInfo () {
     const {
       $steps,
@@ -222,7 +223,7 @@ export default class Sale {
               <i class="dot"></i>
               <span class="order-id">${$.t('confirmation.orderId')} <a target="_blank" href="https://ropsten.etherscan.io/tx/${item.payTx}">#${item.payTxId}</a></span>
               <span class="order-time">${moment(item.createTime).format('MMMM Do, h:mm:ss A')}</span>
-              <span class="order-status">${method.userTxStatus(item.userTxStatus)}</span>
+              <span class="order-status ${this.className(item.userTxStatus)}">${method.userTxStatus(item.userTxStatus)}</span>
             </div>
             <div class="ui-item-body">
               <label>${$.t('confirmation.number')}</label>
@@ -248,6 +249,14 @@ export default class Sale {
   // trim
   trim (el) {
     return $.trim(el.val());
+  }
+
+  // className
+  className (val) {
+    if (val == 2) {
+      return 'color-green';
+    }
+    return 'color-gray';
   }
 
   // destroy
@@ -284,9 +293,11 @@ export default class Sale {
       let $this = $(e.currentTarget),
         index = $this.index();
 
+      // 是否还可购买
       if ($this.hasClass('disabled')) return;
+      // 是否已经完成
       if ($this.hasClass('unfinished')) return;
-
+      // 如果交易号已经提交，点tab，需要提示，否则跳走
       if (!method.isEmpty($payId.val()) && index != 1) {
         let message = $.t('sale.alert');
         if (!confirm(message)) return

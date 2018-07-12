@@ -52,7 +52,6 @@ export default class Details {
       this.gid = result.projectGid;
       
       // 根据status，显示不同的内容
-      // result.projectStatus = 1;
       commonTemp = `
         <h2 class="project-status">${method.checkStatus(result.projectStatus)}</h2>
       `;
