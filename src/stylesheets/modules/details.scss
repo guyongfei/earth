@@ -8,6 +8,12 @@
   color: #a9a9a9;
 }
 
+.point-events {
+  pointer-events: none;
+  cursor: default;
+  opacity: .6;
+}
+
 .bg-color-green {
   background: $color-green;
 }

@@ -148,16 +148,16 @@ export default class Details {
 
       proFootTemp = `
       <div class="btn-links">
-        <a href="${result.websites.officialLink}" target="_blank">${$.t('links.website')}</a>
-        <a href="${result.websites.whitePaperLink}" target="_blank" >${$.t('links.whitepaper')}</a>
+        <a href="${result.websites.officialLink}" target="_blank" class="${this.whetherClick(result.websites.officialLink)}">${$.t('links.website')}</a>
+        <a href="${result.websites.whitePaperLink}" target="_blank" class="${this.whetherClick(result.websites.whitePaperLink)}">${$.t('links.whitepaper')}</a>
       </div>
       <div class="links">
-        <a href="${result.websites.twitter}" target="_blank" class="icon twitter"></a>
-        <a href="${result.websites.facebook}" target="_blank" class="icon facebook"></a>
-        <a href="${result.websites.telegram}" target="_blank" class="icon telegram"></a>
-        <a href="${result.websites.reddit}" target="_blank" class="icon reddit"></a>
-        <a href="${result.websites.biYong}" target="_blank" class="icon biyong"></a>
-        <a href="${result.websites.gitHub}" target="_blank" class="icon github"></a>
+        <a href="${result.websites.twitter}" target="_blank" class="icon twitter ${this.whetherClick(result.websites.twitter)}"></a>
+        <a href="${result.websites.facebook}" target="_blank" class="icon facebook ${this.whetherClick(result.websites.facebook)}"></a>
+        <a href="${result.websites.telegram}" target="_blank" class="icon telegram ${this.whetherClick(result.websites.telegram)}"></a>
+        <a href="${result.websites.reddit}" target="_blank" class="icon reddit ${this.whetherClick(result.websites.reddit)}"></a>
+        <a href="${result.websites.biYong}" target="_blank" class="icon biyong ${this.whetherClick(result.websites.biYong)}"></a>
+        <a href="${result.websites.gitHub}" target="_blank" class="icon github ${this.whetherClick(result.websites.gitHub)}"></a>
       </div>
       `;
 
@@ -219,6 +219,12 @@ export default class Details {
 
   numberFormat (val1, val2) {
     return (parseFloat(val1) / parseFloat(val2)).toFixed(4);
+  }
+
+  whetherClick (val) {
+    if (val == null || val == '#') {
+      return 'point-events';
+    }
   }
 
 }

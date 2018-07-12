@@ -9,7 +9,7 @@
 {% block content %}
   <div class="sale-wrapper" data-module="sale">
     {% include "shared/loading.html" %}
-    {% include "shared/header.html" %}
+    {% include "shared/base-header.html" %}
 
     <section class="section">
       <div class="section-inner">
@@ -134,8 +134,10 @@
                   <div class="form-group">
                     <label>
                       <span data-i18n="buyTokens.tradeId"></span>
-                      <!-- <b class="tips"></b>
-                      <p class="tips-description" data-i18n="buyTokens.tradeIdDesc"></p> -->
+                      <span class="tips-wrap">
+                        <b class="tips"></b>
+                        <div class="tips-text" data-i18n="buyTokens.tradeIdDesc"></div>
+                      </span>
                     </label>
                     <input type="text" name="payId" id="payId">
                   </div>

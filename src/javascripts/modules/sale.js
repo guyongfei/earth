@@ -514,13 +514,6 @@ export default class Sale {
       
       $steps.children().eq(1).trigger('click');  
     });
-    
-    // 交易号hover事件
-    $tokenForm.find('.tips').hover((e) => {
-      $('.tips-description').fadeIn(300);
-    }, (e) => {
-      $('.tips-description').fadeOut(300);
-    });
 
   }
 }

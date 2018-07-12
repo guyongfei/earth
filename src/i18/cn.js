@@ -67,7 +67,7 @@ export default {
       detail: {
         current: '目前代币的价格',
         btnText: '马上获得代币',
-        saled: '已卖代币数',
+        saled: '已众筹数量',
         end:  '募集数量',
       },
       wallet: {
@@ -123,7 +123,7 @@ export default {
         1: '已开始',
         2: '已开始',
         3: '已完成',
-        4: '失败'
+        4: '已完成'
       },
       totalStatus: {
         0: '未开始',
