@@ -153,6 +153,10 @@ export default {
       },
       agreement: {
         privacy: '隐私声明'
+      },
+      links: {
+        website: '官网',
+        whitepaper: '白皮书'
       }
     }
   }

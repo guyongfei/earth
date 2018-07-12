@@ -148,8 +148,8 @@ export default class Details {
 
       proFootTemp = `
       <div class="btn-links">
-        <a href="${result.websites.officialLink}" target="_blank">website</a>
-        <a href="${result.websites.whitePaperLink}" target="_blank" >baipishu</a>
+        <a href="${result.websites.officialLink}" target="_blank">${$.t('links.website')}</a>
+        <a href="${result.websites.whitePaperLink}" target="_blank" >${$.t('links.whitepaper')}</a>
       </div>
       <div class="links">
         <a href="${result.websites.twitter}" target="_blank" class="icon twitter"></a>
