@@ -20,7 +20,7 @@ export default {
         sendSuccess: 'Send code successed!',
         close: 'Close',
         get: 'Code',
-        again: 'Buy more tokens',
+        again: 'Resend',
         startTime: 'Start time',
         endTime: 'End time',
         order: 'Order',
