@@ -19,7 +19,8 @@ export default class Sale {
     this.flag = false;
     this.gid = null;
     this.priceRate = null; // 兑换比例
-    this.defaultEth = null; // 默认购买的最小ETH
+    this.minPurchaseAmount = null; // 购买的最小ETH
+    this.maxPurchaseAmount = null; // 购买的最大ETH
     this.txCount = null; // 购买次数
     this.wallet = false; // 钱包是否已经完成
     this.token = false; // 是否进行过购买
@@ -86,10 +87,10 @@ export default class Sale {
 
         this.priceRate = result.priceRate;
         this.txCount = result.txCount;
-        this.defaultEth = result.minPurchaseAmount;
+        this.minPurchaseAmount = result.minPurchaseAmount;
         this.txCountLimit = result.txCountLimit;
 
-        minPurchase = (this.defaultEth * this.priceRate).toFixed(9);
+        minPurchase = (this.minPurchaseAmount * this.priceRate).toFixed(9);
 
         if (!method.isEmpty(payEthAddress)) {
           $('#sending-wallet').attr('disabled', true).val(payEthAddress);
@@ -144,15 +145,16 @@ export default class Sale {
 
         $('.token-name').text(result.projectToken);
         
-        $payInput.val(this.defaultEth);
+        $payInput.val(this.minPurchaseAmount);
         $getInput.val(minPurchase);
         $tokenForm.find('.btn-copy').attr('aria-label', result.platformAddress);
-        $tokenForm.find('.pay-eth').text(this.defaultEth);
+        $tokenForm.find('.pay-eth').text(this.minPurchaseAmount);
         $tokenForm.find('.number').text(result.priceRate);
         $tokenForm.find('.token').text(result.projectToken);
         $tokenForm.find('.gas-limit').text(method.thousandsFormatter(result.gasPrice.ethGasLimit));
         $tokenForm.find('.gas-price').text(result.gasPrice.gasPriceGWei);
         $tokenForm.find('.min-eth').text(result.minPurchaseAmount);
+        $tokenForm.find('.max-eth').text(result.maxPurchaseAmount);
         $tokenForm.find('.platform-address').text(result.platformAddress);
 
         // 购买结果
@@ -268,10 +270,10 @@ export default class Sale {
       $tokenForm
     } = this.childMap;
 
-    $payInput.val(this.defaultEth);
-    $getInput.val((this.defaultEth * this.priceRate).toFixed(9));
+    $payInput.val(this.minPurchaseAmount);
+    $getInput.val((this.minPurchaseAmount * this.priceRate).toFixed(9));
     $payId.val('');
-    $tokenForm.find('.pay-eth').text(this.defaultEth);
+    $tokenForm.find('.pay-eth').text(this.minPurchaseAmount);
   }
 
   // 绑定的事件
@@ -430,8 +432,9 @@ export default class Sale {
       rules: {
         payAmount: {
           required: true,
-          min: this.defaultEth,
-          decimalFormat: true,
+          min: this.minPurchaseAmount,
+          max: this.maxPurchaseAmount,
+          decimalFormat: true
         },
         getAmount: {
           required: true,
@@ -444,7 +447,8 @@ export default class Sale {
       messages: {
         payAmount: {
           required: $.t('buyTokens.inputTip1'),
-          min: `${$.t('buyTokens.inputTip3')}${this.defaultEth}ETH`,
+          min: `${$.t('buyTokens.inputTip3')}${this.minPurchaseAmount}ETH`,
+          max: `${$.t('buyTokens.inputTip4')}${this.maxPurchaseAmount}ETH`,
           decimalFormat: $.t('error.number')
         },
         getAmount: {
@@ -452,8 +456,8 @@ export default class Sale {
           decimalFormat: $.t('error.number')
         },
         payId: {
-          required: $.t('buyTokens.inputTip4'),
-          hashFormat: $.t('buyTokens.inputTip4')
+          required: $.t('buyTokens.inputTip5'),
+          hashFormat: $.t('buyTokens.inputTip5')
         }
       },
       // 给未通过验证的元素进行处理
