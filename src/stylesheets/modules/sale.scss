@@ -153,9 +153,10 @@
     .container {
       margin-top: 36px;
       .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         label {
           position: relative;
+          margin-bottom: 4px;
           display: block;
           color: #999999;
           &.error {
@@ -381,6 +382,10 @@
         .platform-address {
           word-wrap: break-word;
         }
+      }
+
+      .min-buy-eth {
+        margin-bottom: 5px;
       }
 
       .qrcode {

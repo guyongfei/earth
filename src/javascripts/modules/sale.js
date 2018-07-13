@@ -437,7 +437,7 @@ export default class Sale {
           decimalFormat: true
         },
         getAmount: {
-          required: true,
+          required: true
         },
         payId: {
           required: true,
