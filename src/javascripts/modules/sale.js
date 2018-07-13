@@ -448,8 +448,8 @@ export default class Sale {
       messages: {
         payAmount: {
           required: $.t('buyTokens.inputTip1'),
-          min: `${$.t('buyTokens.inputTip3')}${this.minPurchaseAmount}ETH`,
-          max: `${$.t('buyTokens.inputTip4')}${this.maxPurchaseAmount}ETH`,
+          min: `${$.t('buyTokens.inputTip3')} ${this.minPurchaseAmount}ETH`,
+          max: `${$.t('buyTokens.inputTip4')} ${this.maxPurchaseAmount}ETH`,
           decimalFormat: $.t('error.number')
         },
         getAmount: {
