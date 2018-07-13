@@ -88,6 +88,7 @@ export default class Sale {
         this.priceRate = result.priceRate;
         this.txCount = result.txCount;
         this.minPurchaseAmount = result.minPurchaseAmount;
+        this.maxPurchaseAmount = result.maxPurchaseAmount;
         this.txCountLimit = result.txCountLimit;
 
         minPurchase = (this.minPurchaseAmount * this.priceRate).toFixed(9);
