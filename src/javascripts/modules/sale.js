@@ -420,6 +420,7 @@ export default class Sale {
         })
         .catch(err => {
           $walletForm.find('.btn-step').attr('disabled', false);
+          if (!err.success) alert(err.message);
           if (err.status === 401) {
             return this.baseForm.execInAnimation();
           }
@@ -480,7 +481,6 @@ export default class Sale {
             hopeGetAmount: getValue
           })
           .then(res => {
-            console.log(res)
             if ($step1.hasClass('unfinished')) {
               $step1.removeClass('unfinished').addClass('finished');
             }
@@ -495,7 +495,6 @@ export default class Sale {
             this.updateTransactionInfo();
             // 刷新购买列表
             this.renderList();
-
             this.destroy();
             $wallet.hide();
             $token.hide();
@@ -503,8 +502,8 @@ export default class Sale {
             $tokenForm.find('.btn-confirm').attr('disabled', false);
           })
           .catch(err => {
-            console.log(err);
             $tokenForm.find('.btn-confirm').attr('disabled', false);
+            if (!err.success) alert(err.message);
             if (err.status === 401) {
               return this.baseForm.execInAnimation();
             }
