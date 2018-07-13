@@ -480,7 +480,7 @@ export default class Sale {
             hopeGetAmount: getValue
           })
           .then(res => {
-            
+            console.log(res)
             if ($step1.hasClass('unfinished')) {
               $step1.removeClass('unfinished').addClass('finished');
             }
@@ -503,6 +503,7 @@ export default class Sale {
             $tokenForm.find('.btn-confirm').attr('disabled', false);
           })
           .catch(err => {
+            console.log(err);
             $tokenForm.find('.btn-confirm').attr('disabled', false);
             if (err.status === 401) {
               return this.baseForm.execInAnimation();
