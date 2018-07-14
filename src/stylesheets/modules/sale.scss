@@ -1,6 +1,8 @@
 @import "../base/index.scss";
+@import "../base/grid.scss";
 @import "../components/loading.scss";
 @import "../components/base-header.scss";
+@import "../components/footer.scss";
 @import "../components/baseform.scss";
 
 @mixin line($color) {
@@ -30,11 +32,20 @@
   background: url('../../images/details/home_bg.png') no-repeat;
   background-size: cover;
   background-position: center;
-
+  .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
   .section {
     padding-top: 50px;
     @media (max-width: 767.9px) {
       padding: 10px;
+    }
+    @media (min-width: 768px) {
+      padding-bottom: 60px;
     }
     
     .section-inner {
