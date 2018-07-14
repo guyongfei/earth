@@ -19,7 +19,8 @@ export default class Sale {
     this.flag = false;
     this.gid = null;
     this.priceRate = null; // 兑换比例
-    this.defaultEth = null; // 默认购买的最小ETH
+    this.minPurchaseAmount = null; // 购买的最小ETH
+    this.maxPurchaseAmount = null; // 购买的最大ETH
     this.txCount = null; // 购买次数
     this.wallet = false; // 钱包是否已经完成
     this.token = false; // 是否进行过购买
@@ -86,10 +87,11 @@ export default class Sale {
 
         this.priceRate = result.priceRate;
         this.txCount = result.txCount;
-        this.defaultEth = result.minPurchaseAmount;
+        this.minPurchaseAmount = result.minPurchaseAmount;
+        this.maxPurchaseAmount = result.maxPurchaseAmount;
         this.txCountLimit = result.txCountLimit;
 
-        minPurchase = (this.defaultEth * this.priceRate).toFixed(9);
+        minPurchase = (this.minPurchaseAmount * this.priceRate).toFixed(9);
 
         if (!method.isEmpty(payEthAddress)) {
           $('#sending-wallet').attr('disabled', true).val(payEthAddress);
@@ -144,15 +146,16 @@ export default class Sale {
 
         $('.token-name').text(result.projectToken);
         
-        $payInput.val(this.defaultEth);
+        $payInput.val(this.minPurchaseAmount);
         $getInput.val(minPurchase);
         $tokenForm.find('.btn-copy').attr('aria-label', result.platformAddress);
-        $tokenForm.find('.pay-eth').text(this.defaultEth);
+        $tokenForm.find('.pay-eth').text(this.minPurchaseAmount);
         $tokenForm.find('.number').text(result.priceRate);
         $tokenForm.find('.token').text(result.projectToken);
         $tokenForm.find('.gas-limit').text(method.thousandsFormatter(result.gasPrice.ethGasLimit));
         $tokenForm.find('.gas-price').text(result.gasPrice.gasPriceGWei);
         $tokenForm.find('.min-eth').text(result.minPurchaseAmount);
+        $tokenForm.find('.max-eth').text(result.maxPurchaseAmount);
         $tokenForm.find('.platform-address').text(result.platformAddress);
 
         // 购买结果
@@ -183,6 +186,7 @@ export default class Sale {
     });
   }
 
+  // 更新最新状态
   updateTransactionInfo () {
     const {
       $steps,
@@ -222,7 +226,7 @@ export default class Sale {
               <i class="dot"></i>
               <span class="order-id">${$.t('confirmation.orderId')} <a target="_blank" href="https://ropsten.etherscan.io/tx/${item.payTx}">#${item.payTxId}</a></span>
               <span class="order-time">${moment(item.createTime).format('MMMM Do, h:mm:ss A')}</span>
-              <span class="order-status">${method.userTxStatus(item.userTxStatus)}</span>
+              <span class="order-status ${this.className(item.userTxStatus)}">${method.userTxStatus(item.userTxStatus)}</span>
             </div>
             <div class="ui-item-body">
               <label>${$.t('confirmation.number')}</label>
@@ -250,6 +254,14 @@ export default class Sale {
     return $.trim(el.val());
   }
 
+  // className
+  className (val) {
+    if (val == 2) {
+      return 'color-green';
+    }
+    return 'color-gray';
+  }
+
   // destroy
   destroy () {
     const {
@@ -259,10 +271,10 @@ export default class Sale {
       $tokenForm
     } = this.childMap;
 
-    $payInput.val(this.defaultEth);
-    $getInput.val((this.defaultEth * this.priceRate).toFixed(9));
+    $payInput.val(this.minPurchaseAmount);
+    $getInput.val((this.minPurchaseAmount * this.priceRate).toFixed(9));
     $payId.val('');
-    $tokenForm.find('.pay-eth').text(this.defaultEth);
+    $tokenForm.find('.pay-eth').text(this.minPurchaseAmount);
   }
 
   // 绑定的事件
@@ -284,9 +296,11 @@ export default class Sale {
       let $this = $(e.currentTarget),
         index = $this.index();
 
+      // 是否还可购买
       if ($this.hasClass('disabled')) return;
+      // 是否已经完成
       if ($this.hasClass('unfinished')) return;
-
+      // 如果交易号已经提交，点tab，需要提示，否则跳走
       if (!method.isEmpty($payId.val()) && index != 1) {
         let message = $.t('sale.alert');
         if (!confirm(message)) return
@@ -406,6 +420,7 @@ export default class Sale {
         })
         .catch(err => {
           $walletForm.find('.btn-step').attr('disabled', false);
+          if (!err.success) alert(err.message);
           if (err.status === 401) {
             return this.baseForm.execInAnimation();
           }
@@ -419,11 +434,12 @@ export default class Sale {
       rules: {
         payAmount: {
           required: true,
-          min: this.defaultEth,
-          decimalFormat: true,
+          min: this.minPurchaseAmount,
+          max: this.maxPurchaseAmount,
+          decimalFormat: true
         },
         getAmount: {
-          required: true,
+          required: true
         },
         payId: {
           required: true,
@@ -433,7 +449,8 @@ export default class Sale {
       messages: {
         payAmount: {
           required: $.t('buyTokens.inputTip1'),
-          min: `${$.t('buyTokens.inputTip3')}${this.defaultEth}ETH`,
+          min: `${$.t('buyTokens.inputTip3')} ${this.minPurchaseAmount}ETH`,
+          max: `${$.t('buyTokens.inputTip4')} ${this.maxPurchaseAmount}ETH`,
           decimalFormat: $.t('error.number')
         },
         getAmount: {
@@ -441,8 +458,8 @@ export default class Sale {
           decimalFormat: $.t('error.number')
         },
         payId: {
-          required: $.t('buyTokens.inputTip4'),
-          hashFormat: $.t('buyTokens.inputTip4')
+          required: $.t('buyTokens.inputTip5'),
+          hashFormat: $.t('buyTokens.inputTip5')
         }
       },
       // 给未通过验证的元素进行处理
@@ -464,7 +481,6 @@ export default class Sale {
             hopeGetAmount: getValue
           })
           .then(res => {
-            
             if ($step1.hasClass('unfinished')) {
               $step1.removeClass('unfinished').addClass('finished');
             }
@@ -479,7 +495,6 @@ export default class Sale {
             this.updateTransactionInfo();
             // 刷新购买列表
             this.renderList();
-
             this.destroy();
             $wallet.hide();
             $token.hide();
@@ -488,6 +503,7 @@ export default class Sale {
           })
           .catch(err => {
             $tokenForm.find('.btn-confirm').attr('disabled', false);
+            if (!err.success) alert(err.message);
             if (err.status === 401) {
               return this.baseForm.execInAnimation();
             }
@@ -513,13 +529,6 @@ export default class Sale {
       e.preventDefault();
       
       $steps.children().eq(1).trigger('click');  
-    });
-    
-    // 交易号hover事件
-    $tokenForm.find('.tips').hover((e) => {
-      $('.tips-description').fadeIn(300);
-    }, (e) => {
-      $('.tips-description').fadeOut(300);
     });
 
   }

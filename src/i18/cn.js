@@ -67,7 +67,7 @@ export default {
       detail: {
         current: '目前代币的价格',
         btnText: '马上获得代币',
-        saled: '已卖代币数',
+        saled: '已众筹数量',
         end:  '募集数量',
       },
       wallet: {
@@ -93,6 +93,7 @@ export default {
         topay: '您将支付',
         toget: '您将获得',
         min: '最少数额',
+        max: '最大数额',
         gaslimit: '推荐使用的gas limit',
         gasPrice: 'gas price不少于:',
         send: '发送',
@@ -100,10 +101,11 @@ export default {
         copy: '复制到剪切板',
         payId: '提供支付证明',
         tradeId: '交易ID',
-        tradeIdDesc: '交易ID是什么？',
+        tradeIdText: '交易哈希值',
         inputTip1: '请输入合法的数字',
         inputTip3: '最小购买量为',
-        inputTip4: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)',
+        inputTip4: '最大购买量为',
+        inputTip5: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)',
         error: '交易次数达到上限，不能再次交易'
       },
       confirmation: {
@@ -123,7 +125,7 @@ export default {
         1: '已开始',
         2: '已开始',
         3: '已完成',
-        4: '失败'
+        4: '已完成'
       },
       totalStatus: {
         0: '未开始',

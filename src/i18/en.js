@@ -93,6 +93,7 @@ export default {
         topay: 'You will pay',
         toget: 'You will get',
         min: 'The minimum quantity',
+        max: 'The maximum quantity',
         gaslimit: 'Recommended gas limit',
         gasPrice: 'Gas price is not less than:',
         send: 'send',
@@ -100,10 +101,11 @@ export default {
         copy: 'Copy to the clipboard',
         payId: 'Proof of Payment',
         tradeId: 'Transaction ID',
-        tradeIdDesc: 'What is the transaction ID?',
+        tradeIdText: 'Transaction Hash',
         inputTip1: 'Please enter a valid number',
         inputTip3: 'The minimum purchase quantity is',
-        inputTip4: 'Enter a valid TX hash (a long string found next to your wallet)',
+        inputTip4: 'The maximum purchase quantity is',
+        inputTip5: 'Enter a valid TX hash (a long string found next to your wallet)',
         error: 'Trading is capped and cannot be repeated'
       },
       confirmation: {

@@ -13,7 +13,8 @@ module.exports = {
       // javascripts.dest in path-config.json
       list: ['./list.js'],
       details: ['./details.js'],
-      sale: ['./sale.js']
+      sale: ['./sale.js'],
+      privacy: ['./privacy.js']
     },
     plugins: function (webpack) {
       return [
