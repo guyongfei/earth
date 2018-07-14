@@ -21,10 +21,12 @@ header {
     line-height: 40px;
   }
   .logo {
+    display: block;
     float: left;
     img {
-      width: 117px;
-      vertical-align: middle;
+      display: block;
+      margin: 6px 0;
+      width: 100%;
     }
   }
 
