@@ -40,13 +40,11 @@
   background-position: center;
   .section {
     padding-top: 150px;
-    padding-bottom: 55px;
-  }
-
-  @media (max-width: 767.9px) {
-    .section {
+    @media (max-width: 767.9px) {
       padding-top: 50px;
-      padding-bottom: 0;
+    }
+    @media (min-width: 768px) {
+      padding-bottom: 60px;
     }
   }
 
