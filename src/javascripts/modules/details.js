@@ -100,13 +100,13 @@ export default class Details {
               <div class="collect-item">
                 <fieldset class="token-item eth">
                   <legend align="left" class="token-name">Token</legend>
-                  ${result.soldAmount}ETH
+                  ${method.thousandsFormatters(result.soldAmount)}ETH
                 </fieldset>
               </div>
               <div class="collect-item">
                 <fieldset class="token-item eth">
                   <legend align="left" class="token-name">Token</legend>
-                  ${result.soldTokenAmount}${result.projectToken}
+                  ${method.thousandsFormatters(result.soldTokenAmount)}${result.projectToken}
                 </fieldset>
               </div>
             </div>
