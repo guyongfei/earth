@@ -1,12 +1,18 @@
 @import "../base/index.scss";
 @import "../base/grid.scss";
 @import "../components/loading.scss";
-@import "../components/header.scss";
+@import "../components/base-header.scss";
 @import "../components/footer.scss";
 @import "../components/baseform.scss";
 
 .color-gray {
   color: #a9a9a9;
+}
+
+.point-events {
+  pointer-events: none;
+  cursor: default;
+  opacity: .6;
 }
 
 .bg-color-green {
@@ -17,78 +23,214 @@
   background: $color-orange;
 }
 
-.container {
-  max-width: 1080px;
+.s-container {
   margin: 0 auto;
+  max-width: 780px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1280px;
 }
 
 .details-wrapper {
-  padding-top: 60px;
-  height: 100%;
+  min-height: 100%;
+  background: url('../../images/details/home_bg.png') no-repeat;
+  background-size: cover;
+  background-position: center;
   .section {
-    padding-bottom: 55px;
-    width: 100%;
-    min-height: 100%;
-    background: url('../../images/details/bg_1.png') no-repeat;
-    background-size: cover;
-    background-position: center;
+    padding-top: 150px;
+    @media (max-width: 767.9px) {
+      padding-top: 50px;
+    }
+    @media (min-width: 768px) {
+      padding-bottom: 60px;
+    }
   }
-  .box-head {
-    margin: 0 auto;
-    padding: 31px 0;
-    width: 350px;
-    color: $color-white;
-    text-align: center;
-    background: url('../../images/details/triangle_bg.png') no-repeat;
-    background-size: 364px 253px;
-    background-position: center bottom;
-    .name {
-      margin-bottom: 10px;
-      line-height: 1;
-      font-size: 26px;
+
+  .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    align-items: center;
+  
+    .area {
+      @media (max-width: 767.9px) {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
     }
-    .devide {
-      height: 20px;
-      margin-bottom: 10px;
+
+  }
+
+  .area-left {
+    padding-left: 20px;
+    padding-right: 60px;
+    @media (max-width: 767.9px) {
+      margin-bottom: 30px;
+      padding-right: 20px;
     }
-    .devide-line {
-      margin: 0 auto 15px;
-      width: 100px;
-      height: 4px;
-      background: #ff5500;
+    .head-details {
+      padding-bottom: 20px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      .project-logo {
+        display: block;
+        margin-right: 10px;
+        width: 60px;
+        height: 60px;
+        border: 2px solid #e9cdb4;
+        @include border-radius(100%);
+      }
+
+      .project-name {
+        margin-right: 5px;
+        font-size: 30px;
+        color: #ffffff;
+      }
     }
-    .label {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 20px;
-      width: 180px;
-      height: 30px;
-      line-height: 30px;
-      background: #927a63;
+
+    .project-instruction {
+      @include fc(16px, #ffffff);
+    }
+    
+    .project-body {
+      padding-top: 32px;
+      color: #ffffff;
       text-align: center;
-      &:before {
-        content: "";
-        display: block;
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        top: 0;
-        left: -30px;
-        background: url('../../images/details/triangle_lf.png') no-repeat;
-        background-size: cover;
-      }
-      &:after {
-        content: "";
-        display: block;
-        width: 30px;
-        height: 30px;
-        position: absolute;
-        top: 0;
-        right: -30px;
-        background: url('../../images/details/triangle_rt.png') no-repeat;
-        background-size: cover;
+      .row {
+        border-left: 1px solid #ffffff;
+        i, span {
+          display: inline-block;
+        }
+        p {
+          line-height: 1;
+        }
+        .top {
+          margin-bottom: 12px;
+        }
+        .dot {
+          margin-right: 4px;
+          width: 10px;
+          height: 10px;
+          @include border-radius(100%);
+        }
       }
     }
+
+    .project-foot {
+      margin-top: 24px;
+      .btn-links {
+        a {
+          display: inline-block;
+          width: 136px;
+          height: 40px;
+          line-height: 40px;
+          color: #ffffff;
+          background: url('../../images/details/ui_btn.png') no-repeat;
+          background-size: cover;
+          text-align: center;
+          &:first-child {
+            margin-right: 20px;
+          }
+        }
+      }
+      .links {
+        margin-top: 28px;
+        font-size: 0;
+        a {
+          display: inline-block;
+          max-width: 18px;
+          font-size: 14px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
+        }
+      }
+
+      .twitter {
+        @include wh(20px, 15px);
+        background-image: url('../../images/details/twitter.png');
+        &:hover {
+          background-image: url('../../images/details/twitter_active.png');
+        }
+      }
+
+      .facebook {
+        @include wh(17px, 17px);
+        background-image: url('../../images/details/facebook.png');
+        &:hover {
+          background-image: url('../../images/details/facebook_active.png');
+        }
+      }
+
+      .telegram {
+        @include wh(17px, 17px);
+        background-image: url('../../images/details/telegram.png');
+        &:hover {
+          background-image: url('../../images/details/telegram_active.png');
+        }
+      }
+
+      .reddit {
+        @include wh(17px, 17px);
+        background-image: url('../../images/details/reddit.png');
+        &:hover {
+          background-image: url('../../images/details/reddit_active.png');
+        }
+      }
+      
+      .biyong {
+        @include wh(14px, 17px);
+        background-image: url('../../images/details/biyong.png');
+        &:hover {
+          background-image: url('../../images/details/biyong_active.png');
+        }
+      }
+
+      .github {
+        @include wh(13px, 17px);
+        background-image: url('../../images/details/github.png');
+        &:hover {
+          background-image: url('../../images/details/github_active.png');
+        }
+      }
+    }
+  }
+
+  .area-right {
+    @media (max-width: 767.9px) {
+      width: 100%;
+      margin-bottom: 30px;
+    }
+    .project-main {
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 314px;
+      min-height: 330px;
+      color: #ffffff;
+      background: #333333;
+      @include border-radius(6px);
+    }
+
+    .project-status {
+      padding: 24px 0 32px;
+      @include fc(24px, #ffffff);
+      text-align: center;
+    }
+
+    .devide {
+      margin-bottom: 10px;
+    }
+
     .token-rate-items {
       display: flex;
       -webkit-box-pack: center;
@@ -158,11 +300,11 @@
         display: block;
         margin: 0 auto;
         position: relative;
-        width: 290px;
+        width: 270px;
         height: 58px;
         text-align: center;
         color: #C6B676;
-        font-size: 20px;
+        font-size: 18px;
         border: 1px solid #C6B676;
         @include border-radius(4px);
         legend {
@@ -174,16 +316,15 @@
       }
     }
     button {
-      margin: 20px 0 10px;
-      display: inline-block;
-      width: 300px;
-      height: 52px;
-      line-height: 52px;
+      margin: 30px auto 24px;
+      display: block;
+      width: 210px;
+      height: 40px;
+      line-height: 40px;
       background: -moz-linear-gradient(left,#FFB738,#FF2523);
       background: -o-linear-gradient(left,#FFB738,#FF2523);
       background: -ms-linear-gradient(left,#FFB738,#FF2523);
       background: -webkit-linear-gradient(left,#FFB738,#FF2523);
-      // background: linear-gradient(left,#FFB738,#FF2523);
       @include fc(18px, $color-white);
       @include border-radius(100px);
       cursor: pointer;
@@ -192,155 +333,16 @@
         cursor: not-allowed;
       }
     }
-  }
 
-  .box-foot {
-    margin-top: 20px;
-    padding: 20px 0;
-    background: $color-white;
-    @include border-radius(5px);
-  }
-
-  .row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-  
-    .area {
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-  
-    .area-left {
-      // width: 64%;
-      border-right: 1px solid $color-border;
-    }
-  
-    .area-right {
-      // width: 36%;
-    }
-  }
-
-  .area-left {
-    .project-head {
-      padding-bottom: 20px;
-      display: -webkit-box;
-      display: -ms-flexbox;
-      display: flex;
-      -webkit-box-align: center;
-      -ms-flex-align: center;
-      align-items: center;
-      border-bottom: 1px solid $color-border;
-      .project-logo {
-        margin-right: 20px;
-        width: 60px;
-        height: 60px;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      }
-
-      .project-details {
-        flex: 1;
-      }
-
-      .project-name {
-        margin-right: 5px;
-        display: inline-block;
-        font-size: 16px;
-      }
-
-      .project-infos {
-        margin-top: 8px;
-        @include fc(14px, $color-deep-gray);
-      }
+    .sale-numbers {
+      margin-bottom: 2px;
+      font-size: 20px;
     }
     
-    .project-body {
-      padding-bottom: 12px;
-      border-bottom: 1px solid $color-border;
-      .row {
-        margin-top: 12px;
-        -webkit-box-align: center;
-        -ms-flex-align: center;
-        align-items: center;
-        .col-3 {
-          img,
-          span {
-            vertical-align: middle;
-          }
-          span {
-            display: inline-block;
-            margin-left: 6px;
-          }
-        }
-        @media (max-width: 767.9px) {
-          .col-3 {
-            font-size: 8px;
-            img {
-              max-width: 15px;
-            }
-          }
-        }
-      }
-    }
-
-    .project-foot {
-      padding-top: 20px;
-      text-align: center;
-      .row {
-        i, span {
-          display: inline-block;
-        }
-        p {
-          line-height: 1;
-        }
-        .top {
-          margin-bottom: 12px;
-        }
-        .dot {
-          margin-right: 4px;
-          width: 10px;
-          height: 10px;
-          @include border-radius(100%);
-        }
-      }
+    .sale-txt {
+      color: #cccccc;
     }
   }
 
-  .area-right {
-    .desc-title {
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-    .desc-field {
-      min-height: 180px;
-      padding: 10px;
-      background: #f5f5f5;
-      line-height: 20px;
-    }
-  }
 }
 
-@media (max-width: 767.9px) {
-  .main {
-    padding: 0 10px;
-  }
-
-  .row {
-    .area-left {
-      margin-bottom: 20px;
-    }
-  }
-}
-
-@media (min-width: 768px) {
-  .row {
-    .area-left {
-      border-right: 1px solid $color-border;
-    }
-  }
-}

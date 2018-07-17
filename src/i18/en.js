@@ -4,7 +4,7 @@ export default {
       common: {
         login: 'Login',
         logout: 'Logout',
-        register: 'Register',
+        register: 'Sign Up',
         projectName: 'Name',
         token: 'Token',
         status: 'Status',
@@ -20,7 +20,7 @@ export default {
         sendSuccess: 'Send code successed!',
         close: 'Close',
         get: 'Code',
-        again: 'Reacquire',
+        again: 'Resend',
         startTime: 'Start time',
         endTime: 'End time',
         order: 'Order',
@@ -41,8 +41,8 @@ export default {
         policy: 'Privacy Policy',
         agree1: 'I confirm that I have read and understood the',
         agree2: ', and I expressly accept all terms, rights, and obligations described in these documents.',
-        agress3: 'I agree to provide my valid ID and residence for KYC before I receive my tokens.' ,
-        succuess: 'Registered successfully',
+        agree3: 'I agree to provide my valid ID and residence for KYC before I receive my tokens.' ,
+        success: 'Acccount created!',
         hadAccount: 'Already have an account?'
       },
       forget: {
@@ -51,7 +51,7 @@ export default {
       },
       error: {
         email1: 'Please enter your email address',
-        email2: 'Please input the correct email address',
+        email2: 'Please enter the correct email address',
         code: 'Please enter code',
         imgCode: 'Please enter verification code',
         password1: 'Please enter password',
@@ -59,26 +59,26 @@ export default {
         password3: 'Please enter password again',
         password4: 'The password entered twice needs to be consistent',
         terms: 'Please agree to the Terms and Conditions in order to create an account',
-        number: 'Only nine decimal places can be entered'
+        number: 'Only nine digits can be entered'
       },
       home: {
 
       },
       detail: {
-        current: 'Current token price',
-        btnText: 'Get tokens right away',
-        saled: 'Number of tokens sold：',
+        current: 'The token price',
+        btnText: 'Buy tokens now',
+        saled: 'Raised',
         end:  'Number of raises'
       },
       wallet: {
         name: 'Wallet Address',
         walletAddress: 'Your receiving ETH (ERC20) wallet address',
         ethAddress: 'Your sending ETH wallet address',
-        desc1: 'The token you subscribed will be sent to the wallet address of ERC20 token you provided after the completion of the project subscription.',
-        desc2: 'You need to fill in two yitaifang wallet addresses, one is the receiving address, which is used to receive the ERC20 token of the change project. The other is the payment address, which is used to pay the ETH to the project party.',
-        desc3: 'The receiving address must be an ETH wallet address compatible with ERC20',
+        desc1: 'The token you brought will be sent to your ETH (ERC20) wallet address once the project crowdfunding campaign completes.',
+        desc2: 'You need to fill in two Ethereum wallet addresses. The first one is to receive the ERC20 token from the project. The second one is the payment address that you transfer the ETH to the project.',
+        desc3: 'The receiving address must be a valid ETH wallet address compatible with ERC20',
         desc4: 'The payment address must be exactly the same as the actual payment address',
-        desc5: 'Once two addresses are entered, they cannot be changed',
+        desc5: 'These addresses cannot be changed once you click the Next button',
         desc6: 'Never use the address provided by the exchange（e.g. Coinbase, Binance, etc）',
         inputTip1: 'Enter your payment wallet address',
         inputTip2: 'Enter your ETH wallet address',
@@ -87,50 +87,52 @@ export default {
       buyTokens: {
         name: 'Buy Tokens',
         current: 'current',
-        ratio: 'Subscription ratio',
-        tokenRatio: 'The subscription rate for the token is',
-        pay: 'pay',
+        ratio: 'Price',
+        tokenRatio: 'The exchange rate for the token is',
+        pay: 'Purchase',
         topay: 'You will pay',
         toget: 'You will get',
-        min: 'The minimum amount',
+        min: 'The minimum quantity',
+        max: 'The maximum quantity',
         gaslimit: 'Recommended gas limit',
         gasPrice: 'Gas price is not less than:',
         send: 'send',
-        arrive: 'arrive',
+        arrive: 'to',
         copy: 'Copy to the clipboard',
-        payId: 'Provide proof of payment',
+        payId: 'Proof of Payment',
         tradeId: 'Transaction ID',
-        tradeIdDesc: 'What is the transaction ID?',
+        tradeIdText: 'Transaction Hash',
         inputTip1: 'Please enter a valid number',
         inputTip3: 'The minimum purchase quantity is',
-        inputTip4: 'Enter a valid TX hash (a long string found next to your wallet)',
+        inputTip4: 'The maximum purchase quantity is',
+        inputTip5: 'Enter a valid TX hash (a long string found next to your wallet)',
         error: 'Trading is capped and cannot be repeated'
       },
       confirmation: {
-        name: 'Confirmation',
-        desc1: 'Before the end of the sale of the token',
-        desc2: 'The token will be sent to your wallet address where you receive the ETH (ERC20)',
+        name: 'Confirm',
+        desc1: 'Once the project crowdfunding campaign completes',
+        desc2: ' be sent to your ETH (ERC20) wallet address',
         gmt: 'GMT',
         more: 'Buy more tokens',
         orderId: 'Order ID',
-        number: 'Subscription amount'
+        number: 'Order quantity'
       },
       sale: {
         alert: 'If you navigate away, the TX hash information you entered will be lost and your order may not be confirmed. Please click the confirm payment or cancel button below to confirm or cancel your order.'
       },
       summaryStatus: {
-        0: 'Has not started',
+        0: 'To be started',
         1: 'Started',
         2: 'Started',
         3: 'Completed',
-        4: 'Failed'
+        4: 'Completed'
       },
       totalStatus: {
-        0: 'Has not started',
-        1: 'Soft cap has not been reached',
-        2: 'Hard cap has not been reached',
+        0: 'To be started',
+        1: 'To reach the soft cap',
+        2: 'To reach the hard cap',
         3: 'Completed',
-        4: 'Failed'
+        4: 'Completed'
       },
       userTxStatus: {
         0: 'Did not check',
@@ -150,6 +152,13 @@ export default {
       },
       nav: {
         home: 'Home'
+      },
+      agreement: {
+        privacy: 'Privacy Policy'
+      },
+      links: {
+        website: 'Website',
+        whitepaper: 'White paper'
       }
     }
   }

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { projectDetails, getTransactionInfo, getIndex } from '../common/service';
+import { getTransactionInfo, getIndex } from '../common/service';
 import method from '../common/method';
 import getModule from './index';
 
@@ -19,49 +19,47 @@ export default class Details {
   }
 
   handleDom () {
-    let $header = $('.box-head'),
+    let $loading = $('#loading'),
       $section = $('.section'),
-      $footer = $('.box-foot'),
-      $loading = $('#loading');
-
-    this.childMap.$header = $header;
-    this.childMap.$section = $section;
-    this.childMap.$footer = $footer;
+      $proHead = $section.find('.project-head'),
+      $proBody = $section.find('.project-body'),
+      $proFoot = $section.find('.project-foot'),
+      $proMain = $section.find('.project-main');
+    
     this.childMap.$loading = $loading;
+    this.childMap.$section = $section;
+    this.childMap.$proHead = $proHead;
+    this.childMap.$proBody = $proBody;
+    this.childMap.$proFoot = $proFoot;
+    this.childMap.$proMain = $proMain;
   }
 
   // 初始化
   render () {
     const {
-      $header,
-      $section,
-      $footer,
-      $loading
+      $loading,
+      $proHead,
+      $proBody,
+      $proFoot,
+      $proMain
     } = this.childMap;
-    console.log(method.thousandsFormatters(123131444.323))
-    console.log(method.thousandsFormatters(123131444.00))
-    console.log(method.thousandsFormatters(12.4244))
+    
     getIndex()
     .then(({ success, data, message }) => {
-      if (!success) { console.log('no data'); };
       let result = data.defaultProject;
-      let headTemp, headCommonTemp, proHeadTemp, proBodyTemp, proFootTemp;
+      let proMainTemp, commonTemp, proHeadTemp, proBodyTemp, proFootTemp;
       
       this.gid = result.projectGid;
       
       // 根据status，显示不同的内容
-      // result.projectStatus = 3;
-      headCommonTemp = `
-        <h3 class="name">${result.projectName}</h3>
-        <p class="devide">${method.checkTxtStatus(result.projectStatus)}</p>
-        <div class="devide-line"></div>
-        <label for="label" class="label">${method.checkStatus(result.projectStatus)}</label>
+      commonTemp = `
+        <h2 class="project-status">${method.checkStatus(result.projectStatus)}</h2>
       `;
 
       switch (result.projectStatus) {
         case 0:
-        headTemp = `
-          ${headCommonTemp}
+        proMainTemp = `
+          ${commonTemp}
           <div class="countdown">
             <div class="time"><p class="top">Year</p><p class="bottom">${moment(result.startTime).format('YYYY')}</p></div>
             <span class="delimiter">:</span>
@@ -69,13 +67,13 @@ export default class Details {
             <span class="delimiter">:</span>
             <div class="time"><p class="top">Day</p><p class="bottom">${moment(result.startTime).format('DD')}</p></div>
           </div>
-          <button class="get-token-btn" data-id="${result.projectGid}" disabled="disabled">马上获得代币</button>
+          <button class="get-token-btn" data-id="${result.projectGid}" disabled="disabled">${$.t('detail.btnText')}</button>
           `;
           break;
         case 1:
         case 2:
-          headTemp = `
-            ${headCommonTemp}
+          proMainTemp = `
+            ${commonTemp}
             <p class="devide">${$.t('detail.current')}</p>
             <div class="token-rate-items">
               <fieldset class="token-item eth">
@@ -89,25 +87,26 @@ export default class Details {
               </fieldset>
             </div>
             <button class="get-token-btn" data-id="${result.projectGid}">${$.t('detail.btnText')}</button>
-            <p>${$.t('detail.saled')}<span class="sale-numbers">${method.thousandsFormatters(result.soldTokenAmount)}</span></p>
+            <p class="sale-numbers">${method.thousandsFormatters(result.soldTokenAmount)}</p>
+            <p class="sale-txt">${$.t('detail.saled')}</p>
           `;
           break;
         case 3:
         case 4:
-          headTemp = `
-            ${headCommonTemp}
+          proMainTemp = `
+            ${commonTemp}
             <p>${$.t('detail.end')}</p>
             <div class="collect-total">
               <div class="collect-item">
                 <fieldset class="token-item eth">
                   <legend align="left" class="token-name">Token</legend>
-                  ${result.soldAmount}ETH
+                  ${method.thousandsFormatters(result.soldAmount)}ETH
                 </fieldset>
               </div>
               <div class="collect-item">
                 <fieldset class="token-item eth">
                   <legend align="left" class="token-name">Token</legend>
-                  ${result.soldTokenAmount}${result.projectToken}
+                  ${method.thousandsFormatters(result.soldTokenAmount)}${result.projectToken}
                 </fieldset>
               </div>
             </div>
@@ -118,34 +117,14 @@ export default class Details {
       }
 
       proHeadTemp = `
-        <div class="project-logo">
-          <img src="${result.projectLogoLink}" alt="logo">
+        <div class="head-details">
+          <img src="${result.projectLogoLink}" alt="logo" class="project-logo">
+          <span class="project-name">${result.projectName}</span>
         </div>
-        <div class="project-details">
-          <h3>
-            <span class="project-name">${result.projectName}</span>
-            <span class="project-status">${method.checkStatus(result.projectStatus)}</span>
-          </h3>
-          <p class="project-infos">${result.projectInstruction}</p>
-        </div>
+        <p class="project-instruction">${result.projectInstruction}</p>
       `;
 
       proBodyTemp = `
-        <div class="row">
-          <a class="col-3" target="_blank" href="${result.websites.officialLink}"><img src="./images/details/website.png" alt=""><span>website</span></a>
-          <a class="col-3" target="_blank" href="${result.websites.whitePaperLink}"><img src="./images/details/whitebook.png" alt=""><span>white book</span></a>
-          <a class="col-3" target="_blank" href="${result.websites.twitter}"><img src="./images/details/twitter.png" alt=""><span>twitter</span></a>
-          <a class="col-3" target="_blank" href="${result.websites.facebook}"><img src="./images/details/facebook.png" alt=""><span>facebook</span></a>
-        </div>
-        <div class="row">
-          <a class="col-3" target="_blank" href="${result.websites.telegram}"><img src="./images/details/telegram.png" alt=""><span>telegram</span></a>
-          <a class="col-3" target="_blank" href="${result.websites.reddit}"><img src="./images/details/reddit.png" alt=""><span>reddit</span></a>
-          <a class="col-3" target="_blank" href="${result.websites.biYong}"><img src="./images/details/biyong.png" alt=""><span>biyong</span></a>
-          <a class="col-3" target="_blank" href="${result.websites.gitHub}"><img src="./images/details/github.png" alt=""><span>github</span></a>
-        </div>
-      `;
-
-      proFootTemp = `
         <div class="row">
           <div class="col-4">
             <p class="top">${$.t('common.projectName')}</p>
@@ -166,12 +145,25 @@ export default class Details {
         </div>
       `;
 
-      $header.html(headTemp);
-      $footer.find('.project-head').html(proHeadTemp);
-      $footer.find('.project-body').html(proBodyTemp);
-      $footer.find('.project-foot').html(proFootTemp);
-      $footer.find('.desc-field').text(result.projectContent);
+      proFootTemp = `
+      <div class="btn-links">
+        <a href="${result.websites.officialLink}" target="_blank" class="${this.whetherClick(result.websites.officialLink)}">${$.t('links.website')}</a>
+        <a href="${result.websites.whitePaperLink}" target="_blank" class="${this.whetherClick(result.websites.whitePaperLink)}">${$.t('links.whitepaper')}</a>
+      </div>
+      <div class="links">
+        <a href="${result.websites.twitter}" target="_blank" class="icon twitter ${this.whetherClick(result.websites.twitter)}"></a>
+        <a href="${result.websites.facebook}" target="_blank" class="icon facebook ${this.whetherClick(result.websites.facebook)}"></a>
+        <a href="${result.websites.telegram}" target="_blank" class="icon telegram ${this.whetherClick(result.websites.telegram)}"></a>
+        <a href="${result.websites.reddit}" target="_blank" class="icon reddit ${this.whetherClick(result.websites.reddit)}"></a>
+        <a href="${result.websites.biYong}" target="_blank" class="icon biyong ${this.whetherClick(result.websites.biYong)}"></a>
+        <a href="${result.websites.gitHub}" target="_blank" class="icon github ${this.whetherClick(result.websites.gitHub)}"></a>
+      </div>
+      `;
 
+      $proHead.html(proHeadTemp);
+      $proBody.html(proBodyTemp);
+      $proFoot.html(proFootTemp);
+      $proMain.html(proMainTemp);
       $loading.hide();
     })
     .catch(err => {
@@ -183,12 +175,11 @@ export default class Details {
   // 绑定的事件
   bindEvents () {
     const {
-      $header,
-      $footer
+      $proMain
     } = this.childMap;
 
     // 获取代币
-    $header.on('click', '.get-token-btn', (e) => {
+    $proMain.on('click', '.get-token-btn', (e) => {
       e.preventDefault();
       let $this = $(e.currentTarget),
         gid = $this.data('id');
@@ -227,6 +218,12 @@ export default class Details {
 
   numberFormat (val1, val2) {
     return (parseFloat(val1) / parseFloat(val2)).toFixed(4);
+  }
+
+  whetherClick (val) {
+    if (val == null || val == '#') {
+      return 'point-events';
+    }
   }
 
 }

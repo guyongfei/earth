@@ -131,4 +131,19 @@
     flex: 0 0 100%;
     max-width: 100%;
   }
+
+  .col-md-push-7 {
+    position: relative;
+    float: left;
+    width: 58.333333%;
+    right: 41.666667%;
+  }
+
+  .col-md-push-5 {
+    position: relative;
+    float: left;
+    width: 41.666667%;
+    left: 58.333333%;
+  }
 }
+

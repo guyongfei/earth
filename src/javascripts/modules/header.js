@@ -96,10 +96,10 @@ export default class Header {
     }
 
     if (lang == 'en') {
-      $switch.find('.lang-btn').text('English');
+      $switch.find('.lang-btn').text('简体中文');
       $langs.children().eq(0).addClass('l-active');
     } else {
-      $switch.find('.lang-btn').text('简体中文');
+      $switch.find('.lang-btn').text('English');
       $langs.children().eq(1).addClass('l-active');
     }
 
@@ -178,7 +178,7 @@ export default class Header {
     });
 
     // 退出登录
-    $logout.on('click', '.btn-logout', (e) => {
+    $logout.on('click', (e) => {
       logout()
       .then(res => {
         method.removeCookie('logined');

@@ -1,0 +1,55 @@
+@import "../base/index.scss";
+@import "../components/header.scss";
+@import "../components/baseform.scss";
+
+body, html {
+  background: #f0f0f0;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  background: #ffffff;
+}
+
+.privacy-wrapper {
+  padding-top: 50px;
+  font-size: 16px;
+  line-height: 1.5;
+  
+  .title {
+    padding-bottom: 20px;
+    font-size: 28px;
+    font-weight: 700;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .summary {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
+  .area {
+    margin-bottom: 30px;
+
+    .subtitle {
+      margin-bottom: 5px;
+      font-size: 18px;
+    }
+
+    p {
+      margin-bottom: 10px;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+    ul, ol, li {
+      list-style-type: disc;
+    }
+  }
+}

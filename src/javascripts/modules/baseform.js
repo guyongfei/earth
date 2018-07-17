@@ -41,7 +41,6 @@ export default class Baseform {
       $loginLink = $('.login-link'),
       $regLink = $('.register-link'),
       $forgetLink = $('.forget-link'),
-      $loginFoot = $('.f-login-btn'),
       $closeForm = $('.form-close'),
       $valideCode = $('#valideImg');
     
@@ -57,7 +56,6 @@ export default class Baseform {
     this.childMap.$regLink = $regLink;
     this.childMap.$forgetLink = $forgetLink;
     this.childMap.$container = $container;
-    this.childMap.$loginFoot = $loginFoot;
     this.childMap.$closeForm = $closeForm;
     this.childMap.$valideCode = $valideCode;
   }
@@ -199,7 +197,6 @@ export default class Baseform {
       $forgetForm,
       $regCodeBtn,
       $forgetCodeBtn,
-      $loginFoot,
       $closeForm,
       $regLink,
       $loginLink,
@@ -210,11 +207,6 @@ export default class Baseform {
     // 图片验证码
     $valideCode.on('click', (e) => {
       this.refreshCode();
-    });
-
-    // 底部登录事件
-    $loginFoot.on('click', (e) => {
-      this.execInAnimation();
     });
 
     // 关闭登录|注册|忘记密码弹窗
@@ -311,6 +303,9 @@ export default class Baseform {
         },
         agree: {
           required: true
+        },
+        agree2: {
+          required: true
         }
       },
       messages: {
@@ -334,6 +329,9 @@ export default class Baseform {
           equalTo: $.t('error.password4')
         },
         agree: {
+          required: $.t('error.terms')
+        },
+        agree2: {
           required: $.t('error.terms')
         }
       },

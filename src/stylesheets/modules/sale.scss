@@ -1,6 +1,8 @@
 @import "../base/index.scss";
+@import "../base/grid.scss";
 @import "../components/loading.scss";
-@import "../components/header.scss";
+@import "../components/base-header.scss";
+@import "../components/footer.scss";
 @import "../components/baseform.scss";
 
 @mixin line($color) {
@@ -17,19 +19,33 @@
   }
 }
 
-.sale-wrapper {
-  padding-top: 60px;
-  height: 100%;
+.color-gray {
+  background: #7A7C8D;
+}
 
+.color-green {
+  background: #21CE99;
+}
+
+.sale-wrapper {
+  min-height: 100%;
+  background: url('../../images/details/home_bg.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
   .section {
-    padding-top: 20px;
-    width: 100%;
-    min-height: 100%;
-    background: url('../../images/details/details_bg.png') no-repeat;
-    background-size: cover;
-    background-position: center;
+    padding-top: 50px;
     @media (max-width: 767.9px) {
       padding: 10px;
+    }
+    @media (min-width: 768px) {
+      padding-bottom: 60px;
     }
     
     .section-inner {
@@ -51,7 +67,7 @@
 
     @media (min-width: 1367px) {
       .main {
-        height: 750px;
+        height: 690px;
       }
     }
 
@@ -148,9 +164,10 @@
     .container {
       margin-top: 36px;
       .form-group {
-        margin-bottom: 20px;
+        margin-bottom: 16px;
         label {
           position: relative;
+          margin-bottom: 4px;
           display: block;
           color: #999999;
           &.error {
@@ -273,6 +290,16 @@
       }
 
       .body {
+        .tips-wrap {
+          position: relative;
+          display: inline-block;
+          &:hover {
+            .tips-text {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+        }
         .tips {
           display: inline-block;
           width: 14px;
@@ -281,17 +308,31 @@
           background-size: contain;
           cursor: pointer;
         }
-        .tips-description {
+        .tips-text {
+          display: block;
           position: absolute;
-          top: -20px;
-          left: 100px;
-          display: none;
+          top: -45px;
+          left: -14px;
           width: 180px;
           padding: 10px;
           font-size: 12px;
           color: #ffffff;
-          background: rgba(0, 0, 0, .75);
+          background: black;
           @include border-radius(5px);
+          visibility: hidden;
+          opacity: 0;
+          transition: all ease .3s;
+          &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            margin-left: 15px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+          }
         }
       }
 
@@ -352,6 +393,10 @@
         .platform-address {
           word-wrap: break-word;
         }
+      }
+
+      .min-buy-eth {
+        margin-bottom: 5px;
       }
 
       .qrcode {
@@ -454,7 +499,6 @@
             padding: 2px 4px;
             font-size: 12px;
             color: #ffffff;
-            background: #999999;
             @include border-radius(2px);
           }
         }
