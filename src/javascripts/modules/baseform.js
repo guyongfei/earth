@@ -303,6 +303,9 @@ export default class Baseform {
         },
         agree: {
           required: true
+        },
+        agree2: {
+          required: true
         }
       },
       messages: {
@@ -326,6 +329,9 @@ export default class Baseform {
           equalTo: $.t('error.password4')
         },
         agree: {
+          required: $.t('error.terms')
+        },
+        agree2: {
           required: $.t('error.terms')
         }
       },
