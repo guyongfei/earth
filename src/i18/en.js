@@ -110,8 +110,9 @@ export default {
       },
       confirmation: {
         name: 'Confirm',
-        desc1: 'Once the project crowdfunding campaign completes',
-        desc2: ' be sent to your ETH (ERC20) wallet address',
+        desc1: 'token will be sent to your ETH (ERC20) wallet address',
+        desc2: 'once the project crowdfunding campaign completes.',
+        desc3: 'The',
         gmt: 'GMT',
         more: 'Buy more tokens',
         orderId: 'Order ID',
@@ -151,7 +152,7 @@ export default {
         3: 'Fail'
       },
       nav: {
-        home: 'Home'
+        home: 'TokenPie'
       },
       agreement: {
         privacy: 'Privacy Policy'
