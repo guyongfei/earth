@@ -159,6 +159,7 @@ export default class Sale {
         $tokenForm.find('.platform-address').text(result.platformAddress);
 
         // 购买结果
+        $result.find('.result-infos').text(this.getConfirmation(result.projectToken));
         $result.find('.gmt-date').text(moment.utc(new Date(result.endTime)).format('MMMM Do, h:mm A'));
         result.txCount > 0 && this.renderList(this.gid)
       }
@@ -260,6 +261,21 @@ export default class Sale {
       return 'color-green';
     }
     return 'color-gray';
+  }
+
+  getConfirmation (token) {
+    let lang = method.getCookie('witshare.i18n.language'), text = null;
+    switch (lang) {
+      case 'en':
+        text = `${$.t('confirmation.desc3')} ${token} ${$.t('confirmation.desc1')} ${$.t('confirmation.desc2')}`;
+        break;
+      case 'cn':
+        text = `${$.t('confirmation.desc1')}，${token}${$.t('confirmation.desc2')}`;
+        break;
+      default:
+        break;
+    }
+    return text;
   }
 
   // destroy

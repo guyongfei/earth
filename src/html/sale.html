@@ -1,6 +1,6 @@
 {% extends 'layouts/application.html' %}
 
-{% block title %}Sale{% endblock %}
+{% block title %}TokenPie{% endblock %}
 
 {% block head %}
   <link rel="stylesheet" href="stylesheets/modules/sale.css">
@@ -157,10 +157,8 @@
 
           <div class="container result-container">
             <p class="result-title">
-              <span data-i18n="confirmation.desc1"></span>
-              <span class="token-name"></span>
-              <span data-i18n="confirmation.desc2"></span>
-              (<span class="gmt-date"></span><span data-i18n="confirmation.gmt"></span>)
+              <span class="result-infos"></span>
+              (<span class="gmt-date"></span> <span data-i18n="confirmation.gmt"></span>)
             </p>
             <ul class="ui-list"></ul>
             <button class="btn btn-buy" data-i18n="confirmation.more"></button>
