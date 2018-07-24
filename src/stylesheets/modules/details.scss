@@ -35,6 +35,11 @@
 
 .details-wrapper {
   padding-top: 50px;
+  min-height: 100%;
+  background-image: url('../../images/bases/top_lf_bg.png'), url('../../images/bases/btm_rt_bg.png');
+  background-repeat: no-repeat, no-repeat;
+  background-size: 377px 316px,377px 316px;
+  background-position: 0 50px, 100% 95%;
   .section {
     padding-top: 168px;
     @media (max-width: 767.9px) {
