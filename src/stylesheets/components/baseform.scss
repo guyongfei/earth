@@ -52,7 +52,7 @@
 
   .form-container {
     width: 470px;
-    padding: 50px 0;
+    padding: 30px 0;
     position: fixed;
     top: 0;
     left: 50%;
@@ -62,8 +62,8 @@
     text-align: center;
   }
 
-  .color-orange {
-    color: $color-orange;
+  .color-blue {
+    color: #3fb9ec;
   }
 
   .form-head {
@@ -80,10 +80,14 @@
     position: relative;
     margin-bottom: 10px;
 
+    &.space {
+      margin-bottom: 20px;
+    }
+
     input[type="text"],
     input[type="password"] {
       width: 100%;
-      padding: 10px;
+      padding: 5px 10px;
       line-height: 24px;
       border: 1px solid #E3E7E6;
     }
@@ -92,7 +96,7 @@
       width: 100%;
       line-height: 44px;
       color: $color-white;
-      background: $color-orange;
+      background: #3fb9ec;
       cursor: pointer;
       &:disabled {
         background: #999999;
@@ -117,7 +121,7 @@
         display: block;
         width: 20px;
         height: 20px;
-        background-image: url('../../images/bases/ui_box_unchecked.png');
+        background-image: url('../../images/bases/icon_unchecked.png');
         background-repeat: no-repeat;
         background-size: cover;
         -webkit-transition: all ease .3s;
@@ -125,7 +129,7 @@
       }
       &:checked {
         &:after {
-          background-image: url('../../images/bases/ui_box_checked.png');
+          background-image: url('../../images/bases/icon_checked.png');
         }
       }
     }
@@ -147,7 +151,7 @@
     label {
       &.error {
         display: block;
-        margin-top: 5px;
+        margin-top: 2px;
         color: red;
         font-size: 12px;
         text-align: left;
@@ -156,12 +160,12 @@
 
     .send-code {
       position: absolute;
-      top: 11px;
+      top: 6px;
       right: 10px;
       width: 90px;
       line-height: 24px;
       color: $color-white;
-      background: $color-orange;
+      background: #68b541;
       font-size: 12px;
       @include border-radius(20px);
     }
@@ -173,14 +177,14 @@
       right: 10px;
       cursor: pointer;
       &.close {
-        top: 18px;
+        top: 13px;
         width: 20px;
         height: 10px;
         background: url('../../images/bases/eye.png') no-repeat;
         background-size: cover;
       }
       &.open {
-        top: 13px;
+        top: 10px;
         width: 20px;
         height: 16px;
         background: url('../../images/bases/eye_open.png') no-repeat;
@@ -190,8 +194,8 @@
 
     .form-group-image{
       position: absolute;
-      top: 5px;
-      right: 10px;
+      top: 0;
+      right: 0;
       width: 90px;
       height: 36px;
       img {
