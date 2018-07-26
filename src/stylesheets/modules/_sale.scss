@@ -1,0 +1,553 @@
+@import "../base/index.scss";
+@import "../base/grid.scss";
+@import "../components/loading.scss";
+@import "../components/header.scss";
+@import "../components/footer.scss";
+@import "../components/baseform.scss";
+
+@mixin line($color) {
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 10px;
+    right: -60px;
+    width: 120px;
+    height: 2px;
+    background: $color;
+    z-index: 0;
+  }
+}
+
+.color-gray {
+  background: #7A7C8D;
+}
+
+.color-green {
+  background: #21CE99;
+}
+
+.sale-wrapper {
+  min-height: 100%;
+  background: url('../../images/details/home_bg.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  .row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  }
+  .section {
+    padding-top: 50px;
+    @media (max-width: 767.9px) {
+      padding: 10px;
+    }
+    @media (min-width: 768px) {
+      padding-bottom: 60px;
+    }
+    
+    .section-inner {
+      position: relative;
+      margin: 0 auto;
+      padding: 0;
+      max-width: 375px;
+      background: #F4F7F6;
+      overflow: hidden;
+      @include border-radius(5px);
+    }
+
+    .main {
+      height: 590px;
+      padding: 15px;
+      overflow-y: scroll;
+    }
+    
+
+    @media (min-width: 1367px) {
+      .main {
+        height: 690px;
+      }
+    }
+
+    .steps {
+      display: -webkit-box;
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      .step {
+        position: relative;
+        width: 33.3333%;
+        text-align: center;
+        cursor: pointer;
+        transition: all .3s ease;
+
+        span {
+          position: relative;
+          z-index: 1;
+          transition: all .3s ease;
+        }
+
+        &.finished {
+          &:not(.active) {
+            span {
+              background-image: url('../../images/bases/ui_box_checked.png');
+            }
+          }
+
+          &.active {
+            span {
+              background-image: url('../../images/sale/ui_radio.png');
+            }
+          }
+
+          &.step-wallet {
+            @include line($color-orange);
+          }
+
+          &.step-token {
+            @include line($color-orange);
+          }
+
+        }
+
+        &.unfinished {
+          &:not(.active) {
+            span {
+              background-image: url('../../images/sale/ui_unradio.png');
+            }
+          }
+          &.active {
+            span {
+              background-image: url('../../images/sale/ui_radio.png');
+            }
+          }
+
+          &.step-wallet {
+            @include line(#999999);
+          }
+
+          &.step-token {
+            @include line(#999999);
+          }
+        }
+
+        &.disabled {
+          pointer-events: none;
+          span {
+            background-image: url('../../images/sale/ui_unradio.png');
+          }
+          &.step-token {
+            @include line($color-orange);
+          }
+          p {
+            color: #999999;
+          }
+        }
+
+        span {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          vertical-align: middle;
+        }
+        p {
+          margin-top: 6px;
+          line-height: 1;
+        }
+      }
+    }
+
+    .container {
+      margin-top: 36px;
+      .form-group {
+        margin-bottom: 16px;
+        label {
+          position: relative;
+          margin-bottom: 4px;
+          display: block;
+          color: #999999;
+          &.error {
+            display: block;
+            margin-top: 5px;
+            color: red;
+            font-size: 12px;
+            text-align: left;
+          }
+        }
+        input {
+          display: block;
+          padding: 10px;
+          width: 100%;
+          line-height: 25px;
+          border: 1px solid #999999;
+          @include border-radius(4px);
+          &:disabled {
+            background: #d1d1d1;
+          }
+        }
+      }
+      
+      .btn {
+        display: block;
+        width: 100%;
+        line-height: 44px;
+        font-size: 16px;
+        color: $color-white;
+        background: $color-orange;
+        text-align: center;
+        @include border-radius(25px);
+        cursor: pointer;
+      }
+
+      .description {
+        margin-bottom: 40px;
+        p {
+          position: relative;
+          padding-left: 18px;
+          line-height: 18px;
+          color: #000000;
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+          &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 4px;
+            left: 0;
+            width: 8px;
+            height: 8px;
+            @include border-radius(100%);
+            background: $color-orange;
+          }
+        }
+      }
+    }
+    .wallet-container {
+      // display: none;
+    }
+
+    .token-container {
+      display: none;
+
+      .token-error {
+        display: none;
+        color: red;
+        margin-bottom: 10px;
+      }
+      section {
+        &:not(:last-child) {
+          margin-bottom: 20px;
+        }
+      }
+
+      .form-group-control {
+        position: relative;
+        input {
+          padding-right: 100px;
+        }
+        .unit,
+        .token {
+          display: block;
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 100px;
+          line-height: 47px;
+          color: #ffffff;
+          background: url('../../images/sale/ui_btn.png') no-repeat;
+          background-size: cover;
+          text-align: center;
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+        }
+      }
+
+      .head {
+        margin-bottom: 20px;
+        font-size: 0;
+        color: #000000;
+        span {
+          display: inline-block;
+          font-size: 18px;
+          vertical-align: middle;
+        }
+        .index {
+          margin-right: 10px;
+          width: 24px;
+          height: 24px;
+          line-height: 24px;
+          font-style: italic;
+          color: $color-white;
+          background: $color-orange;
+          @include border-radius(100%);
+          text-align: center;
+        }
+      }
+
+      .body {
+        .tips-wrap {
+          position: relative;
+          display: inline-block;
+          &:hover {
+            .tips-text {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
+        }
+        .tips {
+          display: inline-block;
+          width: 14px;
+          height: 14px;
+          background: url('../../images/sale/ui_tips.png');
+          background-size: contain;
+          cursor: pointer;
+        }
+        .tips-text {
+          display: block;
+          position: absolute;
+          top: -45px;
+          left: -14px;
+          width: 180px;
+          padding: 10px;
+          font-size: 12px;
+          color: #ffffff;
+          background: black;
+          @include border-radius(5px);
+          visibility: hidden;
+          opacity: 0;
+          transition: all ease .3s;
+          &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            margin-left: 15px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: black transparent transparent transparent;
+          }
+        }
+      }
+
+      .field {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 10px 0;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        background: #ffffff;
+        @include border-radius(4px);
+        .half-field {
+          width: 40%;
+          text-align: center;
+        }
+        .unit {
+          padding: 0 8px;
+        }
+        .top {
+          margin-bottom: 4px;
+          font-size: 16px;
+        }
+        .btm {
+          font-size: 14px;
+          color: #999999;
+        }
+      }
+
+      .payment {
+        h3 {
+          margin-bottom: 5px;
+          font-size: 16px;
+          color: $color-orange;
+        }
+        .btn-copy {
+          display: block;
+          margin: 24px 0;
+          width: 100%;
+          line-height: 44px;
+          font-size: 16px;
+          color: $color-orange;
+          background: $color-white;
+          border: 1px solid $color-orange;
+          @include border-radius(40px);
+          text-align: center;
+          cursor: pointer;
+        }
+        .copied {
+          color: #ffffff;
+          background: #458fff;
+          border-color: #458fff;
+        }
+        .platform-address {
+          word-wrap: break-word;
+        }
+      }
+
+      .min-buy-eth {
+        margin-bottom: 5px;
+      }
+
+      .qrcode {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto;
+        padding: 8px;
+        border: 1px solid #f0f0f0;
+        background: #ffffff;
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      footer {
+        margin-top: 40px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        button {
+          width: 50%;
+          display: block;
+          line-height: 44px;
+          text-align: center;
+        }
+        .btn-cancel {
+          color: #000000;
+          background: transparent;
+        }
+        .btn-confirm {
+          color: $color-white;
+          background: $color-orange;
+          @include border-radius(40px);
+        }
+      }
+
+    }
+
+    .result-container {
+      display: none;
+
+      .ui-transfer {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        background: url('../../images/sale/ui_transfer.png') no-repeat;
+        background-size: contain;
+        vertical-align: middle;
+      }
+
+      .ui-list {
+      }
+
+      .ui-item {
+        padding: 10px 0;
+        &:not(:last-child) {
+          border-bottom: 1px solid #EAEAEA;
+        }
+        .ui-item-head {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          margin-bottom: 10px;
+          -webkit-box-align: center;
+          -ms-flex-align: center;
+          align-items: center;
+          i, span {
+            display: block;
+          }
+          .dot {
+            margin-right: 10px;
+            width: 8px;
+            height: 8px;
+            background: $color-orange;
+            @include border-radius(100%);
+          }
+          .order-id {
+            width: 100px;
+            color: #000000;
+            font-size: 13px;
+           
+            a {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+          .order-time {
+            font-size: 12px;
+            color: #999999;
+            flex: 1;
+          }
+          .order-status {
+            padding: 2px 4px;
+            font-size: 12px;
+            color: #ffffff;
+            @include border-radius(2px);
+          }
+        }
+
+        .ui-item-body {
+          label {
+            color: #999999;
+          }
+          .subscription {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 10px;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            line-height: 34px;
+            text-align: center;
+            .eth {
+              width: 120px;
+              background: #E5E9F3;
+              @include border-radius(4px);
+              text-decoration: none;
+            }
+            .transfer {
+              flex: 1;
+            }
+            .curreny {
+              width: 154px;
+              color: $color-white;
+              background: #4392F9;
+              @include border-radius(4px);
+              text-decoration: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .section-btm {
+    margin: 0 auto;
+    max-width: 375px;
+    font-size: 0;
+    text-align: center;
+    img {
+      display: inline-block;
+      max-width: 98%;
+      vertical-align: middle;
+    }
+  }
+}

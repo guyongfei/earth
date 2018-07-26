@@ -16,13 +16,14 @@
   </head>
   <body>
     
+
   <div class="sale-wrapper" data-module="sale">
-    <div class="loading-wrapper" id="loading">
+    <!-- <div class="loading-wrapper" id="loading">
   <div class="loading-inner">
     <span class="loading"></span>
     <p>Loading…</p>
   </div>
-</div>
+</div> -->
     <header data-module="header">
   <div class="inner clearfix">
     <a class="logo" href="./index.html">
@@ -63,167 +64,106 @@
   </div>
 </header>
 
-    <section class="section">
-      <div class="section-inner">
-        <div class="main">
-          <div class="steps">
-            <div class="step step-wallet unfinished">
-              <span></span>
-              <p data-i18n="wallet.name"></p>
-            </div>
-            <div class="step step-token unfinished">
-              <span></span>
-              <p data-i18n="buyTokens.name"></p>
-            </div>
-            <div class="step step-result unfinished">
-              <span></span>
-              <p data-i18n="confirmation.name"></p>
+    <div class="container">
+      <form class="form" id="submit-form" onsubmit="return false;">
+        <section class="section wallet-container">
+          <div class="head">
+            <label class="label">1</label>
+            <span class="name">Wallet Address</span>
+            <span class="icon-tips"></span>
+            <a href="" class="btn-order">My Order</a>
+          </div>
+          <div class="body">
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" class="receiving-wallet" name="receiving">
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="sending-wallet" name="sending">
+              </div>
             </div>
           </div>
-          <div class="container wallet-container">
-            <form id="wallet-form" onSubmit="return false;">
-              <div class="form">
-                <div class="form-group">
-                  <label data-i18n="wallet.walletAddress"></label>
-                  <input type="text" name="receiving" id="receiving-wallet">
-                </div>
-                <div class="form-group">
-                  <label data-i18n="wallet.ethAddress"></label>
-                  <input type="text" name="sending" id="sending-wallet">
-                </div>
-              </div>
-              
-              <div class="description">
-                <p data-i18n="wallet.desc1"></p>
-                <p data-i18n="wallet.desc2"></p>
-                <p data-i18n="wallet.desc3"></p>
-                <p data-i18n="wallet.desc4"></p>
-                <p data-i18n="wallet.desc5"></p>
-                <p data-i18n="wallet.desc6"></p>
-              </div>
-              <button type="submit" class="btn btn-step" data-i18n="common.next"></button>
-            </form>
+        </section>
+
+        <section class="section tokens-container">
+          <div class="head">
+            <label class="label">2</label>
+            <span class="name">Buy Tokens</span>
+            <span class="icon-tips"></span>
           </div>
-
-          <div class="container token-container">
-            <form id="token-form" onSubmit="return false;">
-              <section>
-                <h2 class="head">
-                  <span class="index">1</span><span data-i18n="buyTokens.ratio"></span>
-                </h2>
-                <div class="body">
-                  <div class="form-group">
-                    <label data-i18n="buyTokens.current">
-                      <span class="token-name"></span>
-                      <span data-i18n="buyTokens.tokenRatio"></span>
-                  </label>
-                    <div class="field">
-                      <div class="half-field">
-                        <p class="top">1</p>
-                        <p class="btm">ETH</p>
-                      </div>
-                      <div class="unit">:</div>
-                      <div class="half-field">
-                        <p class="top number"></p>
-                        <p class="btm token"></p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-i18n="buyTokens.topay"></label>
-                    <div class="form-group-control">
-                      <input type="number" name="payAmount" id="payAmount">
-                      <span class="unit">ETH</span>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label data-i18n="buyTokens.toget"></label>
-                    <div class="form-group-control">
-                      <input type="number" name="getAmount" id="getAmount">
-                      <span class="token"></span>
-                    </div>
-                  </div>
-                  <p class="min-buy-eth">
-                    <span data-i18n="buyTokens.min"></span>
-                    <span class="min-eth"></span>ETH
-                  </p>
-                  <p class="max-buy-eth">
-                    <span data-i18n="buyTokens.max"></span>
-                    <span class="max-eth"></span>ETH
-                  </p>
-                </div>
-              </section>
-
-              <section>
-                <h2 class="head">
-                  <span class="index">2</span><span data-i18n="buyTokens.pay"></span>
-                </h2>
-                <div class="description">
-                  <p>
-                    <span data-i18n="buyTokens.gaslimit"></span>
-                    <span class="gas-limit"></span>
-                  </p>
-                  <p>
-                    <span data-i18n="buyTokens.gasPrice"></span>
-                    <span class="gas-price"></span>
-                  </p>
-                </div>
-                <div class="payment">
-                  <h3>
-                    <span data-i18n="buyTokens.send"></span>
-                    <span class="pay-eth"></span>
-                    ETH
-                    <span data-i18n="buyTokens.arrive"></span>
+          <div class="body">
+            <div class="price">
+              <span class="price-txt">Price</span>
+              <i class="icon-circle"></i>
+              <span class="one">1ETH</span>=<span class=" proportion">8000 SLT</span>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <span class="category eth">ETH</span>
+                <input type="text" class="payAmount" name="payAmount">
+              </div>
+              <div class="col-md-6">
+                <span class="category token">SLT</span>
+                <input type="text" class="getAmount" name="getAmount">
+              </div>
+            </div>
+            <div class="payment">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3 class="pay-head">
+                    <span class="name">Payment</span>
+                    <span class="icon-tips"></span>
                   </h3>
-                  <p class="platform-address"></p>
-                  <button class="btn-copy" data-i18n="buyTokens.copy"></button>
-                  <div class="qrcode" id="qrcode"></div>
-                </div>
-              </section>
-
-              <section>
-                <h2 class="head">
-                  <span class="index">3</span><span data-i18n="buyTokens.payId"></span>
-                </h2>
-                <p class="token-error"></p>
-                <div class="body">
-                  <div class="form-group">
-                    <label>
-                      <span data-i18n="buyTokens.tradeId"></span>
-                      <span class="tips-wrap">
-                        <b class="tips"></b>
-                        <div class="tips-text" data-i18n="buyTokens.tradeIdText"></div>
-                      </span>
-                    </label>
-                    <input type="text" name="payId" id="payId">
+                  <div class="pay-body">
+                    <p class="color-blue">
+                      <span class="send">Send</span>
+                      <span class="buy-amount">2.0</span>
+                      <span class="eth">ETH</span>
+                      <span class="arrive">to</span>
+                    </p>
+                    <p class="platform-address"></p>
+                    <button class="btn-copy">Copy to clipboard</button>
                   </div>
                 </div>
-              </section>
-              
-              <footer>
-                <button class="btn-cancel" type="submit" data-i18n="common.cancel"></button>
-                <button class="btn-confirm" type="submit" data-i18n="common.confirm"></button>
-              </footer>
-            </form>
+                <div class="col-md-6">
+                  <div class="barcode"></div>
+                </div>
+              </div>
+            </div>
           </div>
+        </section>
 
-          <div class="container result-container">
-            <p class="result-title">
-              <span class="result-infos"></span>
-              (<span class="gmt-date"></span> <span data-i18n="confirmation.gmt"></span>)
-            </p>
-            <ul class="ui-list"></ul>
-            <button class="btn btn-buy" data-i18n="confirmation.more"></button>
+        <section class="section prove-container">
+          <div class="head">
+            <label class="label">3</label>
+            <span class="name">Prove</span>
+            <span class="icon-tips"></span>
           </div>
-        </div>
-      </div>
-      <div class="section-btm">
-        <img src="./images/sale/bg_btm.png" alt="">
-      </div>
-    </section>
+          <div class="body">
+            <div class="row">
+              <div class="col-md-6">
+                <input type="text" class="trade-id">
+              </div>
+            </div>
+            <div class="invitation">
+              <h3>invitation(Optional)</h3>
+              <div class="row">
+                <div class="col-md-6">
+                  <input type="text" name="invitation" class="invite-code">
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </form>
+
+      <footer class="footer">
+        <button class="btn-submit">Confirm</button>
+      </footer>
+    </div>
 
     <footer class="footer">
-  <div class="container">
+  <div class="f-container">
     <div class="row">
       <div class="col-md-6 row-lf">
         <p class="copyright">Copyright 2018 WitShare Pte. Ltd. | All Rights Reserved</p>
@@ -243,7 +183,6 @@
     </div>
   </div>
 </footer>
-    
   </div>
   <section class="form-fixed-layer" data-module="baseform">
   <div class="form-container">
