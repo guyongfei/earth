@@ -7,74 +7,108 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="sale-wrapper" data-module="sale">
     <!-- {% include "shared/loading.html" %} -->
     {% include "shared/header.html" %}
 
     <div class="container">
-      <form class="form" id="submit-form" onsubmit="return false;">
+      <form class="form" id="submit-form">
         <section class="section wallet-container">
-          <div class="head">
+          <div class="sec-head">
             <label class="label">1</label>
-            <span class="name">Wallet Address</span>
-            <span class="icon-tips"></span>
-            <a href="" class="btn-order">My Order</a>
-          </div>
-          <div class="body">
-            <div class="row">
-              <div class="col-md-6">
-                <input type="text" class="receiving-wallet" name="receiving">
+            <span class="name" data-i18n="wallet.name"></span>
+            <span class="tooltips tooltips-wallet">
+              <i class="icon-tips"></i>
+              <div class="tooltips-box tooltips-wallet-box">
+                <p data-i18n="wallet.desc1"></p>
+                <p data-i18n="wallet.desc2"></p>
+                <p data-i18n="wallet.desc3"></p>
+                <p data-i18n="wallet.desc4"></p>
+                <p data-i18n="wallet.desc5"></p>
+                <p data-i18n="wallet.desc6"></p>
               </div>
-              <div class="col-md-6">
-                <input type="text" class="sending-wallet" name="sending">
+            </span>
+            <a href="javascript:;" class="fr btn-order" data-i18n="common.order"></a>
+          </div>
+          <div class="sec-body">
+            <div class="s-row">
+              <div class="s-col-6">
+                <input type="text" class="receiving-wallet" name="receiving" data-i18n="[placeholder]wallet.inputTip1">
+              </div>
+              <div class="s-col-6">
+                <input type="text" class="fr sending-wallet" name="sending" data-i18n="[placeholder]wallet.inputTip2">
               </div>
             </div>
           </div>
         </section>
 
         <section class="section tokens-container">
-          <div class="head">
+          <div class="sec-head">
             <label class="label">2</label>
-            <span class="name">Buy Tokens</span>
-            <span class="icon-tips"></span>
+            <span class="name" data-i18n="buyTokens.name"></span>
+            <span class="tooltips tooltips-tokens">
+              <i class="icon-tips"></i>
+              <div class="tooltips-box tooltips-tokens-box">
+                <p>
+                  <span data-i18n="buyTokens.min"></span><span class="buy-min-eth"></span>ETH
+                </p>
+                <p>
+                  <span data-i18n="buyTokens.max"></span><span class="buy-max-eth"></span>ETH
+                </p>
+              </div>
+            </span>
           </div>
-          <div class="body">
+          <div class="sec-body">
             <div class="price">
               <span class="price-txt">Price</span>
               <i class="icon-circle"></i>
-              <span class="one">1ETH</span>=<span class=" proportion">8000 SLT</span>
+              <span class="one-eth">1 ETH</span>
+              <span class="icon-equal">=</span>
+              <span class="proportion"></span>
+              <span class="token"></span>
             </div>
-            <div class="row">
-              <div class="col-md-6">
+            <div class="s-row">
+              <div class="s-col-6">
                 <span class="category eth">ETH</span>
-                <input type="text" class="payAmount" name="payAmount">
+                <input type="text" class="payAmount" name="payAmount" data-i18n="[placeholder]buyTokens.pholder1">
               </div>
-              <div class="col-md-6">
-                <span class="category token">SLT</span>
-                <input type="text" class="getAmount" name="getAmount">
+              <div class="s-col-6">
+                <span class="category token"></span>
+                <input type="text" class="fr getAmount" name="getAmount" data-i18n="[placeholder]buyTokens.pholder2">
               </div>
             </div>
             <div class="payment">
-              <div class="row">
-                <div class="col-md-6">
+              <div class="s-row">
+                <div class="s-col-6">
                   <h3 class="pay-head">
-                    <span class="name">Payment</span>
-                    <span class="icon-tips"></span>
+                    <span class="name" data-i18n="buyTokens.payment"></span>
+                    <span class="tooltips tooltips-pay">
+                      <i class="icon-tips"></i>
+                      <div class="tooltips-box tooltips-pay-box">
+                        <p>
+                          <span data-i18n="buyTokens.gaslimit"></span>
+                          <span class="gas-limit"></span>
+                        </p>
+                        <p>
+                          <span data-i18n="buyTokens.gasPrice"></span>
+                          <span class="gas-price"></span>
+                        </p>
+                      </div>
+                    </span>
                   </h3>
                   <div class="pay-body">
                     <p class="color-blue">
-                      <span class="send">Send</span>
-                      <span class="buy-amount">2.0</span>
+                      <span class="send" data-i18n="buyTokens.send"></span>
+                      <span class="buy-eth-amount"></span>
                       <span class="eth">ETH</span>
-                      <span class="arrive">to</span>
+                      <span class="arrive" data-i18n="buyTokens.arrive"></span>
                     </p>
                     <p class="platform-address"></p>
-                    <button class="btn-copy">Copy to clipboard</button>
+                    <button class="btn-copy" data-i18n="buyTokens.copy"></button>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="barcode"></div>
+                <div class="s-col-6">
+                  <div class="barcode" id="qrcode"></div>
                 </div>
               </div>
             </div>
@@ -82,22 +116,27 @@
         </section>
 
         <section class="section prove-container">
-          <div class="head">
+          <div class="sec-head">
             <label class="label">3</label>
-            <span class="name">Prove</span>
-            <span class="icon-tips"></span>
+            <span class="name" data-i18n="prove.name"></span>
+            <span class="tooltips tooltips-prove">
+              <i class="icon-tips"></i>
+              <div class="tooltips-box tooltips-prove-box">
+                <p data-i18n="buyTokens.tradeIdText"></p>
+              </div>
+            </span>
           </div>
-          <div class="body">
-            <div class="row">
-              <div class="col-md-6">
-                <input type="text" class="trade-id">
+          <div class="sec-body">
+            <div class="s-row">
+              <div class="s-col-6">
+                <input type="text" class="trade-id" name="tradeId" data-i18n="[placeholder]prove.pholder1">
               </div>
             </div>
             <div class="invitation">
-              <h3>invitation(Optional)</h3>
-              <div class="row">
-                <div class="col-md-6">
-                  <input type="text" name="invitation" class="invite-code">
+              <h3><span data-i18n="common.invitation"></span><span class="optional" data-i18n="common.optional"></span></h3>
+              <div class="s-row">
+                <div class="s-col-6">
+                  <input type="text" name="invitation" class="invite-code" maxlength="6" data-i18n="[placeholder]prove.pholder2">
                 </div>
               </div>
             </div>
@@ -105,8 +144,8 @@
         </section>
       </form>
 
-      <footer class="footer">
-        <button class="btn-submit">Confirm</button>
+      <footer class="s-footer">
+        <button class="btn-submit" data-i18n="common.confirm"></button>
       </footer>
     </div>
 

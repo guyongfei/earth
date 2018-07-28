@@ -25,7 +25,13 @@ export default {
         endTime: '结束时间',
         order: '订单',
         next: '下一步',
-        admin: '管理员'
+        admin: '管理员',
+        order: '我的订单',
+        invitation: '邀请码',
+        optional: '（选填）',
+        price: '价格',
+        softcap: '软顶',
+        hardcap: '硬顶'
       },
       login: {
         title: '登录',
@@ -61,9 +67,6 @@ export default {
         terms: '请同意条款和条件，以创建账户',
         number: '只能输入小数点后九位'
       },
-      home: {
-
-      },
       detail: {
         current: '当前代币价格',
         btnText: '开始认筹',
@@ -74,15 +77,15 @@ export default {
         name: '钱包地址',
         walletAddress: '您的接受兼容ERC20的ETH钱包地址',
         ethAddress: '您的支付ETH的钱包地址',
-        desc1: '您认购的代币将会在项目认筹结束后，统一打到您提供的接收ERC20代币的钱包地址；',
-        desc2: '您需要填写两个以太坊钱包地址，一个是接收地址，用于接收该项目的ERC20代币；另一个是支付地址，用于支付ETH给项目方；',
-        desc3: '接收地址必须是能兼容ERC20的ETH钱包地址；',
-        desc4: '支付地址与您实际支付的地址必须完全相同；',
-        desc5: '两个地址一旦输入，不可更改；',
-        desc6: '请勿使用交易所提供的地址（e.g. Coinbase, Binance, etc）',
+        desc1: '1. 您认购的代币将会在项目认筹结束后，统一打到您提供的接收ERC20代币的钱包地址；',
+        desc2: '2. 您需要填写两个以太坊钱包地址，一个是接收地址，用于接收该项目的ERC20代币；另一个是支付地址，用于支付ETH给项目方；',
+        desc3: '3. 接收地址必须是能兼容ERC20的ETH钱包地址；',
+        desc4: '4. 支付地址与您实际支付的地址必须完全相同；',
+        desc5: '5. 两个地址一旦输入，不可更改；',
+        desc6: '6. 请勿使用交易所提供的地址（e.g. Coinbase, Binance, etc）',
         inputTip1: '输入您的收款钱包地址',
         inputTip2: '输入您的发送ETH的钱包地址',
-        inputTip3: '输入一个有效的ETH钱包地址(以0x开头及42个字符长度)'
+        inputTip3: '输入一个有效的ETH钱包地址(以0x开头及42个字符长度)',
       },
       buyTokens: {
         name: '认筹代币',
@@ -99,6 +102,8 @@ export default {
         send: '发送',
         arrive: '到',
         copy: '复制到剪切板',
+        copiedSuccess: '复制成功',
+        copiedFail: '复制失败',
         payId: '提供支付证明',
         tradeId: '交易ID',
         tradeIdText: '交易哈希值',
@@ -106,7 +111,10 @@ export default {
         inputTip3: '最小购买量为',
         inputTip4: '最大购买量为',
         inputTip5: '输入一个有效的TX散列(在您的钱包旁边找到的一个长字符串)',
-        error: '交易次数达到上限，不能再次交易'
+        error: '交易次数达到上限，不能再次交易',
+        pholder1: '您将支付',
+        pholder2: '您将获得',
+        payment: '交易'
       },
       confirmation: {
         name: '验证',
@@ -117,6 +125,12 @@ export default {
         more: '继续认筹',
         orderId: '订单号',
         number: '认筹数量',
+      },
+      prove: {
+        name: '证明',
+        pholder1: '输入一个幼小的TX散列',
+        pholder2: '请输入邀请码',
+        inputTip2: '输入小写字母或者数字'
       },
       sale: {
         alert: '如果您导航离开 ，您输入的TX散列信息将丢失 ，您的订单可能无法确认。请点击以下的确认付款或取消按钮确认或取消您的订单。'

@@ -26,7 +26,7 @@
 </div>
     <header data-module="header">
   <div class="inner clearfix">
-    <a class="logo" href="./index.html">
+    <a class="logo" href="javascript:;">
       <img src="./logo.png" alt="tokenpie">
     </a>
     <div class="btns">
@@ -74,6 +74,19 @@
             <div class="project-head"></div>
             <div class="project-body"></div>
             <div class="project-foot"></div>
+          </div>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-bg"></div>
+          <div class="progress-bar">
+            <span class="circle-outer">
+              <i class="circle-inner"></i>
+            </span>
+          </div>
+          <div class="progress-status">
+            <span class="current"></span>
+            <span class="softcap"><i class="circle blue"></i><i data-i18n="common.softcap"></i></span>
+            <span class="hardcap"><i class="circle green"></i><i data-i18n="common.hardcap"></i></span>
           </div>
         </div>
       </div>
@@ -149,6 +162,9 @@
         <div class="form-group">
           <input type="password" id="regConfirmPassword" name="confirm_password" maxlength="20"  data-i18n="[placeholder]common.confirmPassword">
           <span class="btn-confirm-eye close"></span>
+        </div>
+        <div class="form-group">
+          <input type="text" id="regInvitation" name="invitation" maxlength="6"  data-i18n="[placeholder]prove.pholder2">
         </div>
         <div class="form-group">
           <label for="agree" class="agree">

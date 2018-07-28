@@ -1,0 +1,29 @@
+{% extends 'layouts/application.html' %}
+
+{% block title %}TokenPie{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="stylesheets/modules/order.css">
+{% endblock %}
+
+{% block content %}
+  <div class="order-wrapper" data-module="order">
+    {% include "shared/loading.html" %}
+    {% include "shared/header.html" %}
+
+    <div class="container">
+      <h3 class="title" data-i18n="common.order"></h3>
+      <div class="list"></div>
+      <div class="btn-wrapper">
+        <button class="btn btn-more" data-i18n="confirmation.more"></button>
+      </div>
+    </div>
+
+    {% include "shared/footer.html" %}
+  </div>
+  {% include "shared/base-form.html" %}
+{% endblock %}
+
+{% block javascript %}
+  <script src="./javascripts/order.js"></script>
+{% endblock %}

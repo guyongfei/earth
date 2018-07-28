@@ -5,16 +5,100 @@
 @import "../components/footer.scss";
 @import "../components/baseform.scss";
 
-.row {
+.s-row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  
+  .s-col-6 {
+    width: 50%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  label.error {
+    display: block;
+    margin-top: 5px;
+    color: red;
+    font-size: 12px;
+    text-align: left;
+  }
+}
+
+.color-blue {
+  color: #5768C0;
+}
+
+.tooltips {
+  position: relative;
+  .icon-tips {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url('../../images/sale/ui_tips.png');
+    background-size: contain;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+  .tooltips-box {
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 30px;
+    min-width: 300px;
+    min-height: 30px;
+    padding: 10px;
+    font-size: 13px;
+    color: #333333;
+    background: #ffffff;
+    z-index: 99;
+    border: 1px solid #E9E9E9;
+    @include border-radius(5px);
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease .3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 20px;
+      left: -17px;
+      width: 0;
+      height: 0;
+      border-width: 8px;
+      border-style: solid;
+      border-color: transparent #e9e9e9 transparent transparent;
+    }
+
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 20px;
+      left: -16px;
+      width: 0;
+      height: 0;
+      border-width: 8px;
+      border-style: solid;
+      border-color: transparent #ffffff transparent transparent;
+    }
+
+    p {
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+    }
+  }
 }
 
 .sale-wrapper {
   padding-top: 60px;
+  padding-bottom: 60px;
   min-height: 100%;
   background-image: url('../../images/bases/top_lf_bg.png'), url('../../images/bases/btm_rt_bg.png');
   background-repeat: no-repeat, no-repeat;
@@ -23,13 +107,240 @@
 
   .container {
     margin: 0 auto;
-    padding: 15px 70px;
+    padding: 15px 90px;
     max-width: 1000px;
     background: #ffffff;
     border: 1px solid #E9E9E9;
     @include border-radius(6px);
   }
 
+  .section {
+    margin-bottom: 24px;
+    input[type="text"] {
+      display: block;
+      width: 377px;
+      padding: 11px 20px;
+      line-height: 20px;
+      border: 1px solid #E9E9E9;
+      @include border-radius(100px);
+      &:disabled {
+        background: #EBEBEB;
+      }
+    }
+    .sec-head {
+      font-size: 0;
+      label,
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+      .label {
+        margin-right: 10px;
+        @include wh(24px, 24px);
+        line-height: 24px;
+        font-size: 16px;
+        color: #68B541;
+        background: #ffffff;
+        text-align: center;
+        @include border-radius(100%);
+        -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.14); 
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.14); 
+      }
+      .name {
+        margin-right: 5px;
+        font-size: 16px;
+      }
+      .btn-order {
+        font-size: 16px;
+        color: #3FB9EC;
+        text-decoration: underline;
+      }
+    }
 
+    .sec-body {
+      margin-top: 12px;
+    }
+
+    .price {
+      margin-bottom: 24px;
+      font-size: 0;
+      i, span {
+        display: inline-block;
+        font-size: 16px;
+        vertical-align: middle;
+      }
+
+      .price-txt {
+        margin-right: 20px;
+      }
+
+      .icon-circle {
+        margin-right: 10px;
+        width: 10px;
+        height: 10px;
+        background: #68B541;
+        @include border-radius(100%);
+        vertical-align: middle;
+      }
+
+      .icon-equal {
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+
+      .proportion {
+        margin-right: 4px;
+      }
+    }
+
+    .category {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 70px;
+      height: 36px;
+      line-height: 36px;
+      color: #ffffff;
+      background: #68B541;
+      text-align: center;
+      @include border-radius(100px);
+      &.token {
+        left: 36px;
+      }
+    }
+
+    .payment {
+      margin-top: 28px;
+      span {
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .pay-head {
+        margin-bottom: 24px;
+        font-size: 16px;
+      }
+
+      .color-blue {
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+
+      .platform-address {
+
+      }
+
+      .btn-copy {
+        display: block;
+        margin-top: 24px;
+        width: 257px;
+        line-height: 44px;
+        font-size: 16px;
+        color: #3FB9EC;
+        background: #ffffff;
+        border: 1px solid #3FB9EC;
+        text-align: center;
+        @include border-radius(100px);
+    
+        &.copied {
+          color: #ffffff;
+          background: #458fff;
+          border-color: #458fff;
+        }
+      }
+    }
+
+    .barcode {
+      width: 125px;
+      height: 125px;
+      margin: 0 auto;
+      padding: 5px;
+      background: #ffffff;
+      border: 1px solid #E9E9E9;
+      @include border-radius(5px);
+    }
+
+    .invitation {
+      margin-top: 16px;
+
+      h3 {
+        margin-bottom: 16px;
+      }
+
+      .optional {
+        margin-left: 5px;
+        display: inline-block;
+        color: #999999;
+      }
+    }
+  }
+
+  .s-footer {
+    margin-top: 30px;
+    text-align: center;
+    .btn-submit {
+      width: 180px;
+      line-height: 44px;
+      font-size: 16px;
+      color: #ffffff;
+      background: #3FB9EC;
+      text-align: center;
+      @include border-radius(100px);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);
+      &:disabled {
+        background: #EBEBEB;
+      }
+    }
+  }
+
+  .tooltips-wallet {
+    &:hover {
+      .tooltips-wallet-box {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  .tooltips-tokens {
+    &:hover {
+      .tooltips-tokens-box {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  .tooltips-pay {
+    &:hover {
+      .tooltips-pay-box {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+
+  .tooltips-prove {
+    &:hover {
+      .tooltips-prove-box {
+        top: -10px;
+        visibility: visible;
+        opacity: 1;
+        &:before {
+          top: 10px;
+        }
+        &:after {
+          top: 10px;
+        }
+      }
+    }
+  }
+
+  .tokens-container {
+    input[type="text"] {
+      padding-left: 96px;
+      padding-right: 12px;
+    }
+  }
 
 }

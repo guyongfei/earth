@@ -14,7 +14,8 @@ module.exports = {
       list: ['./list.js'],
       details: ['./details.js'],
       sale: ['./sale.js'],
-      privacy: ['./privacy.js']
+      privacy: ['./privacy.js'],
+      order: ['./order.js']
     },
     plugins: function (webpack) {
       return [

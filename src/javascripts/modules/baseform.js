@@ -9,6 +9,7 @@ export default class Baseform {
   constructor(el) {
     this.$el = $(el);
     this.childMap = {};
+    this.code = method.getUrlParam('channel') || '';
     this.loginValidator = null;
     this.regValidator = null;
     this.forgetValidator = null;
@@ -64,7 +65,9 @@ export default class Baseform {
     const { $valideCode } = this.childMap;
 
     this.imgToken = this.uuidv4();
-    $valideCode.attr('src', `${baseURL}/verify-code/img?imgToken=${this.imgToken}`)
+    $valideCode.attr('src', `${baseURL}/verify-code/img?imgToken=${this.imgToken}`);
+
+    !method.isEmpty(this.code) && $('#regInvitation').val(this.code);
   }
 
   refreshCode () {
@@ -131,7 +134,11 @@ export default class Baseform {
   validateMethod () {
     $.validator.addMethod('pwdFormat', (value, el) => {
       return /[0-9a-zA-Z]{6,20}$/.test(value);
-    })
+    });
+
+    $.validator.addMethod('codeFormat', (value, el) => {
+      return method.isEmpty(value) || /^[0-9a-z]{6}$/.test(value);
+    });
   }
 
   uuidv4() {
@@ -301,6 +308,9 @@ export default class Baseform {
           pwdFormat: true,
           equalTo: '#regPassword'
         },
+        invitation: {
+          codeFormat: true
+        },
         agree: {
           required: true
         },
@@ -328,6 +338,9 @@ export default class Baseform {
           pwdFormat: $.t('error.password2'),
           equalTo: $.t('error.password4')
         },
+        invitation: {
+          codeFormat: $.t('prove.inputTip2')
+        },
         agree: {
           required: $.t('error.terms')
         },
@@ -344,7 +357,8 @@ export default class Baseform {
           password: this.trim($('#regPassword')),
           verifyCode: this.trim($('#regCode')),
           imgToken: this.imgToken,
-          imgVerifyCode: this.trim($('#imgCode'))
+          imgVerifyCode: this.trim($('#imgCode')),
+          channel: this.trim($('#regInvitation')) || ''
         })
         .then(res => {
           this.error($reg, $.t('register.success'))

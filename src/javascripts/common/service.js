@@ -154,10 +154,28 @@ export function ownerTransaction (payTx) {
   });
 }
 
-// 首页信心
+// 首页信息
 export function getIndex () {
   return request({
     type: 'GET',
     url: '/index'
+  });
+}
+
+// 获取首页交易信息
+export function getIndexTransaction (gid, pageNum, pageSize) {
+  return request({
+    type: 'GET',
+    url: `/index-transaction?projectGid=${gid}&pageNum=${pageNum}&pageSize=${pageSize}`,
+  });
+}
+
+
+// 首页提交交易信息
+export function submitIndexTransaction (params) {
+  return request({
+    type: 'POST',
+    url: '/index-transaction',
+    data: params
   });
 }

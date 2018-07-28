@@ -25,7 +25,13 @@ export default {
         endTime: 'End time',
         order: 'Order',
         next: 'Next',
-        admin: 'Admin'
+        admin: 'Admin',
+        order: 'Order',
+        invitation: 'Invitation',
+        optional: '(Optional)',
+        price: 'Price',
+        softcap: 'Soft cap',
+        hardcap: 'Hard cap'
       },
       login: {
         title: 'Login',
@@ -61,9 +67,6 @@ export default {
         terms: 'Please agree to the Terms and Conditions in order to create an account',
         number: 'Only nine digits can be entered'
       },
-      home: {
-
-      },
       detail: {
         current: 'The token price',
         btnText: 'Buy tokens now',
@@ -74,12 +77,12 @@ export default {
         name: 'Wallet Address',
         walletAddress: 'Your receiving ETH (ERC20) wallet address',
         ethAddress: 'Your sending ETH wallet address',
-        desc1: 'The token you brought will be sent to your ETH (ERC20) wallet address once the project crowdfunding campaign completes.',
-        desc2: 'You need to fill in two Ethereum wallet addresses. The first one is to receive the ERC20 token from the project. The second one is the payment address that you transfer the ETH to the project.',
-        desc3: 'The receiving address must be a valid ETH wallet address compatible with ERC20',
-        desc4: 'The payment address must be exactly the same as the actual payment address',
-        desc5: 'These addresses cannot be changed once you click the Next button',
-        desc6: 'Never use the address provided by the exchange（e.g. Coinbase, Binance, etc）',
+        desc1: '1. The token you brought will be sent to your ETH (ERC20) wallet address once the project crowdfunding campaign completes.',
+        desc2: '2. You need to fill in two Ethereum wallet addresses. The first one is to receive the ERC20 token from the project. The second one is the payment address that you transfer the ETH to the project.',
+        desc3: '3. The receiving address must be a valid ETH wallet address compatible with ERC20',
+        desc4: '4. The payment address must be exactly the same as the actual payment address',
+        desc5: '5. These addresses cannot be changed once you click the Next button',
+        desc6: '6. Never use the address provided by the exchange（e.g. Coinbase, Binance, etc）',
         inputTip1: 'Enter your payment wallet address',
         inputTip2: 'Enter your ETH wallet address',
         inputTip3: 'Enter a valid ETH wallet address (starting with 0x and 42 characters long)'
@@ -99,6 +102,8 @@ export default {
         send: 'send',
         arrive: 'to',
         copy: 'Copy to the clipboard',
+        copiedSuccess: 'Copied successful',
+        copiedFail: 'Copied failed',
         payId: 'Proof of Payment',
         tradeId: 'Transaction ID',
         tradeIdText: 'Transaction Hash',
@@ -106,7 +111,10 @@ export default {
         inputTip3: 'The minimum purchase quantity is',
         inputTip4: 'The maximum purchase quantity is',
         inputTip5: 'Enter a valid TX hash (a long string found next to your wallet)',
-        error: 'Trading is capped and cannot be repeated'
+        error: 'Trading is capped and cannot be repeated',
+        pholder1: 'You will pay',
+        pholder2: 'You will get',
+        payment: 'Payment'
       },
       confirmation: {
         name: 'Confirm',
@@ -117,6 +125,12 @@ export default {
         more: 'Buy more tokens',
         orderId: 'Order ID',
         number: 'Order quantity'
+      },
+      prove: {
+        name: 'Prove',
+        pholder1: 'Enter a valid Tx hash',
+        pholder2: 'Enter invitation code',
+        inputTip2: 'Enter a lowercase letter or number'
       },
       sale: {
         alert: 'If you navigate away, the TX hash information you entered will be lost and your order may not be confirmed. Please click the confirm payment or cancel button below to confirm or cancel your order.'
