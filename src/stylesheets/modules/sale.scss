@@ -321,17 +321,19 @@
   }
 
   .tooltips-prove {
+    .tooltips-box {
+      top: -10px;
+      &:before {
+        top: 10px;
+      }
+      &:after {
+        top: 10px;
+      }
+    }
     &:hover {
       .tooltips-prove-box {
-        top: -10px;
         visibility: visible;
         opacity: 1;
-        &:before {
-          top: 10px;
-        }
-        &:after {
-          top: 10px;
-        }
       }
     }
   }
