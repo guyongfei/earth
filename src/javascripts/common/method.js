@@ -1,7 +1,7 @@
 import './global';
 export default {
   isEmpty (value) {
-    return (value === '' || value === null) ? true : false;
+    return (value === '' || value === null || value == undefined) ? true : false;
   },
   emailFormat (value) {
     return /(^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$)/.test(value);
