@@ -299,7 +299,7 @@ export default class Sale {
       // 如果表单验证通过
       if (!this.validForm().form()) return;
       let params = {
-        projectGid: this.projectGid,
+        projectGid: this.gid,
         payEthAddress: this.result.payEthAddress,
         getTokenAddress: this.result.getTokenAddress,
         priceRate: this.result.priceRate,
