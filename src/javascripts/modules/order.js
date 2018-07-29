@@ -40,7 +40,7 @@ export default class Sale {
       let data= res.data.txList, temp = '';
   
       if (data.list.length == 0) {
-        $list.html('<p class="no-data">暂无数据</p>');
+        $list.html(`<p class="no-data">${$.t('common.nodata')}</p>`);
       } else {
         // 正式环境 https://etherscan.io/tx/
         // 测试环境 https://ropsten.etherscan.io/tx/

@@ -31,7 +31,8 @@ export default {
         optional: '（选填）',
         price: '价格',
         softcap: '软顶',
-        hardcap: '硬顶'
+        hardcap: '硬顶',
+        nodata: '暂无数据'
       },
       login: {
         title: '登录',

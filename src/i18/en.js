@@ -31,7 +31,8 @@ export default {
         optional: '(Optional)',
         price: 'Price',
         softcap: 'Soft cap',
-        hardcap: 'Hard cap'
+        hardcap: 'Hard cap',
+        nodata: 'No data'
       },
       login: {
         title: 'Login',
