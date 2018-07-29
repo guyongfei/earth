@@ -49,7 +49,6 @@
     position: absolute;
     top: -20px;
     left: 30px;
-    min-width: 300px;
     min-height: 30px;
     padding: 10px;
     font-size: 13px;
@@ -294,6 +293,9 @@
   }
 
   .tooltips-wallet {
+    .tooltips-wallet-box {
+      width: 300px;
+    }
     &:hover {
       .tooltips-wallet-box {
         visibility: visible;
@@ -303,6 +305,9 @@
   }
 
   .tooltips-tokens {
+    .tooltips-tokens-box {
+      width: 250px;
+    }
     &:hover {
       .tooltips-tokens-box {
         visibility: visible;
@@ -312,6 +317,9 @@
   }
 
   .tooltips-pay {
+    .tooltips-pay-box {
+      width: 255px;
+    }
     &:hover {
       .tooltips-pay-box {
         visibility: visible;
@@ -323,6 +331,7 @@
   .tooltips-prove {
     .tooltips-box {
       top: -10px;
+      width: 200px;
       &:before {
         top: 10px;
       }
