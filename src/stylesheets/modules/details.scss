@@ -71,6 +71,7 @@
     padding: 10px 40px 10px 20px;
     min-height: 330px;
     background: #ffffff;
+    border: 1px solid #E9E9E9;
     @include border-radius(6px);
     @media (max-width: 767.9px) {
       margin-bottom: 30px;
@@ -221,6 +222,7 @@
       min-height: 330px;
       background: #ffffff;
       float: right;
+      border: 1px solid #E9E9E9;
       @include border-radius(6px);
       @media (max-width: 767.9px) {
         float: initial;
@@ -347,7 +349,7 @@
 
   .progress-wrap {
     position: relative;
-    margin-top: 20px;
+    margin-top: 40px;
     i {
       font-style: normal;
     }
@@ -410,7 +412,7 @@
     .softcap {
       margin-left: -47.5px;
       position: absolute;
-      top: 4px;
+      top: -38px;
       width: 95px;
       line-height: 20px;
       color: #3FB9EC;
@@ -422,7 +424,7 @@
         content: "";
         display: block;
         position: absolute;
-        top: -18px;
+        bottom: -20px;
         left: 50%;
         margin-left: -0.5px;
         width: 1px;
@@ -432,7 +434,7 @@
       }
       .circle {
         margin-top: -2px;
-        margin-right: 5px;
+        margin-right: 8px;
         display: inline-block;
         width: 6px;
         height: 6px;
@@ -444,7 +446,7 @@
 
     .hardcap {
       position: absolute;
-      top: 4px;
+      top: -38px;
       right: 0;
       width: 95px;
       line-height: 20px;
@@ -455,7 +457,7 @@
       text-align: center;
       .circle {
         margin-top: -2px;
-        margin-right: 5px;
+        margin-right: 8px;
         display: inline-block;
         width: 6px;
         height: 6px;
