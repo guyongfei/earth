@@ -15,7 +15,8 @@ export default class Sale {
     this.gid = method.getUrlParam('gid');
     this.code = method.getUrlParam('channel') || '';
     this.result = {};
-    this.priceRate = null; // 兑换比例
+    this.receivingAddress = false;
+    this.sendingAddress = false;
     this.minPurchaseAmount = null; // 购买的最小ETH
     this.maxPurchaseAmount = null; // 购买的最大ETH
 
@@ -33,6 +34,8 @@ export default class Sale {
       $wallet = $form.find('.wallet-container'),
       $tokens = $form.find('.tokens-container'),
       $prove = $form.find('.prove-container'),
+      $receivingInput = $('.receiving-wallet'),
+      $sendingInput = $('.send-wallet'),
       $payInput = $('.payAmount'),
       $getInput = $('.getAmount'),
       $paytxInput = $('.trade-id'),
@@ -44,6 +47,8 @@ export default class Sale {
     this.childMap.$wallet = $wallet;
     this.childMap.$tokens = $tokens;
     this.childMap.$prove = $prove;
+    this.childMap.$receivingInput = $receivingInput;
+    this.childMap.$sendingInput = $sendingInput;
     this.childMap.$payInput = $payInput;
     this.childMap.$getInput = $getInput;
     this.childMap.$paytxInput = $paytxInput;
@@ -57,6 +62,8 @@ export default class Sale {
       $loading,
       $wallet,
       $tokens,
+      $receivingInput,
+      $sendingInput,
       $payInput,
       $getInput,
       $paytxInput,
@@ -77,10 +84,12 @@ export default class Sale {
 
       // pay、get address is empty
       if (!method.isEmpty(payEthAddress)) {
-        $wallet.find('.sending-wallet').attr('disabled', true).val(payEthAddress);
+        this.sendingAddress = true;
+        $sendingInput.attr('disabled', true).val(payEthAddress);
       }
       if (!method.isEmpty(getTokenAddress)) {
-        $wallet.find('.receiving-wallet').attr('disabled', true).val(getTokenAddress);
+        this.receivingAddress = true;
+        $receivingInput.attr('disabled', true).val(getTokenAddress);
       }
 
       // 购买代币
@@ -239,6 +248,8 @@ export default class Sale {
       $wallet,
       $tokens,
       $prove,
+      $receivingInput,
+      $sendingInput,
       $payInput,
       $getInput,
       $paytxInput,
@@ -300,8 +311,6 @@ export default class Sale {
       if (!this.validForm().form()) return;
       let params = {
         projectGid: this.gid,
-        payEthAddress: this.result.payEthAddress,
-        getTokenAddress: this.result.getTokenAddress,
         priceRate: this.result.priceRate,
         payAmount: payValue,
         payCoinType: 0,
@@ -309,6 +318,11 @@ export default class Sale {
         hopeGetAmount: getValue,
         channel: codeValue
       };
+
+      if (!this.receivingAddress && !this.sendingAddress) {
+        params.payEthAddress = this.trim($sendingInput);
+        params.getTokenAddress = this.trim($receivingInput);
+      }
 
       $btnSubmit.attr('disabled', true);
       submitIndexTransaction(params)
