@@ -130,7 +130,7 @@ export default {
         name: 'Prove',
         pholder1: 'Enter a valid Tx hash',
         pholder2: 'Enter invitation code',
-        inputTip2: 'Enter a lowercase letter or number'
+        inputTip2: 'Please enter 6 letters and numbers'
       },
       sale: {
         alert: 'If you navigate away, the TX hash information you entered will be lost and your order may not be confirmed. Please click the confirm payment or cancel button below to confirm or cancel your order.'
