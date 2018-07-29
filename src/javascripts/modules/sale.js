@@ -54,6 +54,7 @@ export default class Sale {
 
   render() {
     const {
+      $loading,
       $wallet,
       $tokens,
       $payInput,
@@ -109,9 +110,11 @@ export default class Sale {
         $btnSubmit.attr('disabled', true);
       }
       this.checkCodeStatus(this.code);
+
+      $loading.hide();
     })
     .catch(err => {
-      console.log(err);
+      $loading.hide();
     })
   }
 

@@ -159,24 +159,30 @@ export default class Details {
         <a href="${result.websites.gitHub}" target="_blank" class="icon github ${this.whetherClick(result.websites.gitHub)}"></a>
       </div>
       `;
-
       // progress
       let proWidth = $('.progress-status').width(),
         progress = result.soldAmount / result.hardCap,
         progressLen = progress * proWidth,
-        currentRate = parseFloat(progress * 100).toFixed(1),
-        softcap = result.softCap / result.hardCap * proWidth,
-        newProgressLen = progressLen + 8;
+        currentRate = parseInt(progress * 100),
+        softcap = result.softCap / result.hardCap * proWidth;
       
       $proHead.html(proHeadTemp);
       $proBody.html(proBodyTemp);
       $proFoot.html(proFootTemp);
       $proMain.html(proMainTemp);
 
-      $('.progress-bar').css({ 'width': `${newProgressLen}px`, 'right': `${progressLen}px` });
-      $('.circle-outer').css({ 'left': `${progressLen}px` });
-      $('.current').css('left', `${progressLen}px`).text(`${currentRate}%`);
+      if (result.soldAmount != 0) {
+        if (progressLen > 16) {
+          $('.circle-outer').css({ 'marginLeft': '-16px' });
+          $('.current').css('marginLeft', '-20px');
+        }
+        $('.progress-bar').css({ 'width': `${progressLen}px`, 'right': `${progressLen}px` });
+        $('.circle-outer').css({ 'left': `${progressLen}px` });
+        $('.current').css('left', `${progressLen}px`).text(`${currentRate}%`);
+      }
+
       $('.softcap').css('left', `${softcap}px`);
+      
       $loading.hide();
     })
     .catch(err => {
