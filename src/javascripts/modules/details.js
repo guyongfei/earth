@@ -8,6 +8,7 @@ export default class Details {
     this.$el = $(el);
     this.childMap = {};
     this.gid = null;
+    this.code = method.getUrlParam('channel');
 
     $(() => {
       this.baseForm = getModule('baseform');
@@ -203,9 +204,9 @@ export default class Details {
       let $this = $(e.currentTarget),
         gid = $this.data('id');
 
-      getTransactionInfo(this.gid)
+      getTransactionInfo(gid)
       .then(res => {
-        let path = `./sale.html?gid=${this.gid}`;
+        let path = `./sale.html?gid=${gid}`;
 
         if (!method.isEmpty(this.code)) {
           path = `${path}&channel=${this.code}`;
