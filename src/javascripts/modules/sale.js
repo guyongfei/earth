@@ -60,6 +60,7 @@ export default class Sale {
       $payInput,
       $getInput,
       $paytxInput,
+      $codeInput,
       $btnSubmit
     } = this.childMap;
 
@@ -109,7 +110,9 @@ export default class Sale {
         $paytxInput.attr('disabled', true);
         $btnSubmit.attr('disabled', true);
       }
-      this.checkCodeStatus(this.code);
+
+      $codeInput.val(this.code);
+      // this.checkCodeStatus(this.code);
 
       $loading.hide();
     })
