@@ -35,7 +35,7 @@ export default class Sale {
       $tokens = $form.find('.tokens-container'),
       $prove = $form.find('.prove-container'),
       $receivingInput = $('.receiving-wallet'),
-      $sendingInput = $('.send-wallet'),
+      $sendingInput = $('.sending-wallet'),
       $payInput = $('.payAmount'),
       $getInput = $('.getAmount'),
       $paytxInput = $('.trade-id'),
