@@ -10,6 +10,7 @@ export default class Header {
   constructor(el) {
     this.$el = $(el);
     this.childMap = {};
+    this.code = method.getUrlParam('channel');
 
     $(() => {
       this.handleDom();
@@ -181,8 +182,12 @@ export default class Header {
     $logout.on('click', (e) => {
       logout()
       .then(res => {
+        let path = './index.html';
         method.removeCookie('logined');
-        location.href = './index.html';
+        if (!method.isEmpty(this.code)) {
+          path = `${path}&channel=${this.code}`;
+        }
+        location.href = path;
       })
       .catch(er => {
         console.log(err);
