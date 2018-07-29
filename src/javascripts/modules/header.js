@@ -185,7 +185,7 @@ export default class Header {
         let path = './index.html';
         method.removeCookie('logined');
         if (!method.isEmpty(this.code)) {
-          path = `${path}&channel=${this.code}`;
+          path = `${path}?channel=${this.code}`;
         }
         location.href = path;
       })
