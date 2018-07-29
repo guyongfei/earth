@@ -137,7 +137,7 @@ export default class Baseform {
     });
 
     $.validator.addMethod('codeFormat', (value, el) => {
-      return method.isEmpty(value) || /^(?=.*?[A-Za-z]+)(?=.*?[0-9]+).*$/.test(value);
+      return method.isEmpty(value) || /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6}$/.test(value);
     });
   }
 
