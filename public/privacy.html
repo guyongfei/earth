@@ -140,7 +140,9 @@
   <section class="form-fixed-layer" data-module="baseform">
   <div class="form-container">
     <div class="login-form-container">
-      <h3 class="form-head" data-i18n="common.login"></h3>
+      <h3 class="form-head">
+        <span data-i18n="common.login"></span>
+      </h3>
       <p class="request-error"></p>
       <form id="loginForm" class="form-body form">
         <div class="form-group">
@@ -162,7 +164,15 @@
       </div>
     </div>
     <div class="register-form-container">
-      <h3 class="form-head" data-i18n="register.title"></h3>
+      <h3 class="form-head">
+        <span data-i18n="register.title"></span>
+        <span class="tooltips tooltips-register">
+          <i class="icon-tips"></i>
+          <div class="tooltips-box">
+            <p data-i18n="register.checkEmail"></p>
+          </div>
+        </span>
+      </h3>
       <p class="request-error"></p>
       <form id="regForm" class="form-body form">
         <div class="form-group">
@@ -214,7 +224,9 @@
       </div>
     </div>
     <div class="forget-form-container">
-      <h3 class="form-head" data-i18n="forget.title"></h3>
+      <h3 class="form-head">
+        <span data-i18n="forget.title"></span>
+      </h3>
       <p class="request-error"></p>
       <form id="forgetForm" class="form-body form">
         <div class="form-group">

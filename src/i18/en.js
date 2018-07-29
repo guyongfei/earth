@@ -50,7 +50,8 @@ export default {
         agree2: ', and I expressly accept all terms, rights, and obligations described in these documents.',
         agree3: 'I agree to provide my valid ID and residence for KYC before I receive my tokens.' ,
         success: 'Acccount created!',
-        hadAccount: 'Already have an account?'
+        hadAccount: 'Already have an account?',
+        checkEmail: 'If you are unable to receive the verification code, please check the spam mailbox'
       },
       forget: {
         title: 'Forgot Password',

@@ -50,7 +50,8 @@ export default {
         agree2: '，并且我表示接受这些文档中描述的所有条款、权利和义务。',
         agree3: '我同意在我收到代币之前，为KYC提供本人有效身份证明。' ,
         success: '注册成功',
-        hadAccount: '已有账户？'
+        hadAccount: '已有账户？',
+        checkEmail: '如果遇到收不到验证码的情况，请检查一下垃圾邮箱'
       },
       forget: {
         title: '忘记密码',
