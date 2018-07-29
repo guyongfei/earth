@@ -116,7 +116,7 @@ export function projectDetails (projectGid) {
 export function getTransactionInfo (projectGid) {
   return request({
     type: 'GET',
-    url: `/transaction/info?projectGid=${projectGid}`
+    url: `/transaction/info?projectGid=${projectGid}&t=${new Date().getTime()}`
   });
 }
 
