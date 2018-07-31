@@ -62,6 +62,7 @@ export default class Sale {
       $loading,
       $wallet,
       $tokens,
+      $prove,
       $receivingInput,
       $sendingInput,
       $payInput,
@@ -110,6 +111,8 @@ export default class Sale {
       $tokens.find('.platform-address').text(result.platformAddress);
       $tokens.find('.btn-copy').attr('aria-label', result.platformAddress);
 
+      $prove.find('.name').text($.t('proves.name'));
+
       $('.buy-min-eth').text(result.minPurchaseAmount);
       $('.buy-max-eth').text(result.maxPurchaseAmount);
       $('.gas-limit').text(method.thousandsFormatter(result.gasPrice.ethGasLimit));
@@ -121,7 +124,6 @@ export default class Sale {
       }
 
       $codeInput.val(this.code);
-      // this.checkCodeStatus(this.code);
 
       $loading.hide();
     })
