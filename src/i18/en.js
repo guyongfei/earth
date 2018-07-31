@@ -34,7 +34,8 @@ export default {
         hardcap: 'Hard cap',
         nodata: 'No data',
         day: 'day',
-        hour: 'hour'
+        hour: 'hour',
+        prove: 'Prove'
       },
       login: {
         title: 'Login',

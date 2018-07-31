@@ -111,7 +111,7 @@ export default class Sale {
       $tokens.find('.platform-address').text(result.platformAddress);
       $tokens.find('.btn-copy').attr('aria-label', result.platformAddress);
 
-      $prove.find('.name').text($.t('proves.name'));
+      $prove.find('.name').text($.t('common.prove'));
 
       $('.buy-min-eth').text(result.minPurchaseAmount);
       $('.buy-max-eth').text(result.maxPurchaseAmount);

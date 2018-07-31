@@ -34,7 +34,8 @@ export default {
         hardcap: '硬顶',
         nodata: '暂无数据',
         day: '天',
-        hour: '小时'
+        hour: '小时',
+        prove: '证明'
       },
       login: {
         title: '登录',
