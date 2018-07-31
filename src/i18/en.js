@@ -131,8 +131,8 @@ export default {
         orderId: 'Order ID',
         number: 'Order quantity'
       },
-      prove: {
-        pName: 'Prove',
+      proves: {
+        name: 'Prove',
         pholder1: 'Enter a valid Tx hash',
         pholder2: 'Enter invitation code',
         inputTip2: 'Please enter 6 letters and numbers'

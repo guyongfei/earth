@@ -219,7 +219,7 @@ export default class Sale {
           hashFormat: $.t('buyTokens.inputTip5')
         },
         invitation: {
-          codeFormat: $.t('prove.inputTip2')
+          codeFormat: $.t('proves.inputTip2')
         }
       }
     });
