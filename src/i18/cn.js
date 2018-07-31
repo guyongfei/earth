@@ -133,7 +133,6 @@ export default {
         number: '认筹数量',
       },
       proves: {
-        name: '证明',
         pholder1: '输入一个合法的TX散列',
         pholder2: '请输入邀请码',
         inputTip2: '输入六位字母和数字'
