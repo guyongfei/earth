@@ -305,7 +305,14 @@ export default class Sale {
       let paytxValue = this.trim($paytxInput),
         payValue = parseFloat(this.trim($payInput)),
         getValue = parseFloat(this.trim($getInput)),
-        codeValue = this.trim($codeInput) || '';
+        codeValue = this.trim($codeInput) || '',
+        homeGetAmount = null;
+
+      if (method.isEmpty(this.result.freeGiveRate)) {
+        homeGetAmount = getValue;
+      } else {
+        homeGetAmount = (payValue * this.result.priceRate) * (1 + this.result.freeGiveRate);
+      }
 
       // 如果表单验证通过
       if (!this.validForm().form()) return;

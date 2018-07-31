@@ -57,6 +57,16 @@ export default class Details {
         <h2 class="project-status">${method.checkStatus(result.projectStatus)}</h2>
       `;
 
+      if (result.freeGiveEnd !== 0 && result.freeGiveEnd !== '' && result.freeGiveEnd !== null) {
+        commonTemp = `
+          ${commonTemp}
+          <div class="discounts">
+            <p class="discounts-txt">${$.t('detail.discountsTitle')}</p>
+            <p class="discounts-time">${$.t(this.timeFormatter(1502467199999))}</p>
+          </div>
+        `;
+      }
+
       switch (result.projectStatus) {
         case 0:
         proMainTemp = `
@@ -164,7 +174,6 @@ export default class Details {
       let proWidth = $('.progress-status').width(),
         progress = result.soldAmount / result.hardCap,
         progressLen = progress * proWidth,
-        currentRate = parseInt(progress * 100),
         softcap = result.softCap / result.hardCap * proWidth;
       
       $proHead.html(proHeadTemp);
@@ -173,13 +182,11 @@ export default class Details {
       $proMain.html(proMainTemp);
 
       if (result.soldAmount != 0) {
-        if (progressLen > 16) {
-          $('.circle-outer').css({ 'marginLeft': '-16px' });
-          $('.current').css('marginLeft', '-20px');
+        if (progressLen > 24) {
+          $('.circle-outer').css({ 'marginLeft': '-24px' });
         }
         $('.progress-bar').css({ 'width': `${progressLen}px`, 'right': `${progressLen}px` });
         $('.circle-outer').css({ 'left': `${progressLen}px` });
-        $('.current').css('left', `${progressLen}px`).text(`${currentRate}%`);
       }
 
       $('.softcap').css('left', `${softcap}px`);
@@ -249,6 +256,29 @@ export default class Details {
     if (val == null || val == '#') {
       return 'point-events';
     }
+  }
+
+  timeFormatter (timestamp) {
+    let lang = method.getCookie('witshare.i18n.language');
+    let text = null;
+    let date = new Date(timestamp),
+      day = date.getDate(),
+      hour = date.getHours();
+
+    day = day < 10 ? '0' + day : day;
+    hour = hour < 10 ? '0' + hour : hour;
+
+    switch (lang) {
+      case 'en':
+        text = `${day} ${$.t('common.day')} ${hour} ${$.t('common.hour')} left`;
+        break;
+      case 'cn':
+        text = `剩下${day}${$.t('common.day')}${hour}${$.t('common.hour')}`;
+        break;
+      default:
+        break;
+    }
+    return text;
   }
 
 }

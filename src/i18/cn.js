@@ -32,7 +32,9 @@ export default {
         price: '价格',
         softcap: '软顶',
         hardcap: '硬顶',
-        nodata: '暂无数据'
+        nodata: '暂无数据',
+        day: '天',
+        hour: '小时'
       },
       login: {
         title: '登录',
@@ -70,6 +72,7 @@ export default {
         number: '只能输入小数点后九位'
       },
       detail: {
+        discountsTitle: '优惠时间截止日期',
         current: '当前代币价格',
         btnText: '开始认筹',
         saled: '已众筹数量',
@@ -85,7 +88,7 @@ export default {
         desc4: '4. 支付地址与您实际支付的地址必须完全相同；',
         desc5: '5. 两个地址一旦输入，不可更改；',
         desc6: '6. 请勿使用交易所提供的地址（e.g. Coinbase, Binance, etc）',
-        inputTip1: '输入您的收款钱包地址',
+        inputTip1: '输入您的收到ETH钱包地址',
         inputTip2: '输入您的发送ETH的钱包地址',
         inputTip3: '输入一个有效的ETH钱包地址(以0x开头及42个字符长度)',
       },
@@ -129,8 +132,8 @@ export default {
         number: '认筹数量',
       },
       prove: {
-        name: '证明',
-        pholder1: '输入一个幼小的TX散列',
+        pName: '证明',
+        pholder1: '输入一个合法的TX散列',
         pholder2: '请输入邀请码',
         inputTip2: '输入六位字母和数字'
       },

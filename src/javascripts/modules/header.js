@@ -34,7 +34,8 @@ export default class Header {
       $logined = this.$el.find('.logined'),
       $logout = this.$el.find('.logout'),
       $footer = $('#footer'),
-      $userManage = $('.manage-link');
+      $userManage = $('.manage-link'),
+      $logo = this.$el.find('.logo');
 
     this.childMap.$switch = $switch;
     this.childMap.$langLayer = $langLayer;
@@ -47,11 +48,12 @@ export default class Header {
     this.childMap.$logout = $logout;
     this.childMap.$footer = $footer;
     this.childMap.$userManage = $userManage;
-
+    this.childMap.$logo = $logo;
   }
 
   headRender () {
     const {
+      $logo,
       $login,
       $logined,
       $logout,
@@ -60,9 +62,13 @@ export default class Header {
       $userManage
     } = this.childMap;
 
-    // let logined = method.getCookie('logined');
+    let indexPath = './index.html';
+    if (!method.isEmpty(this.code)) {
+      indexPath = `${indexPath}?channel=${this.code}`;
+    }
+    
+    $logo.attr('href', indexPath);
 
-    // if (logined) {
     userinfo()
     .then(res => {
       if (res.success) {
@@ -78,8 +84,6 @@ export default class Header {
     .catch(err => {
       console.log(err);
     });
-    // }
-
   }
 
   languageInit () {
@@ -103,6 +107,8 @@ export default class Header {
       $switch.find('.lang-btn').text('English');
       $langs.children().eq(1).addClass('l-active');
     }
+
+    document.querySelector('html').setAttribute('lang', lang);
 
     i18 = lang == 'cn' ? cn : en;
 

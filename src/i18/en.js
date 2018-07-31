@@ -32,7 +32,9 @@ export default {
         price: 'Price',
         softcap: 'Soft cap',
         hardcap: 'Hard cap',
-        nodata: 'No data'
+        nodata: 'No data',
+        day: 'day',
+        hour: 'hour'
       },
       login: {
         title: 'Login',
@@ -70,6 +72,7 @@ export default {
         number: 'Only nine digits can be entered'
       },
       detail: {
+        discountsTitle: 'Preferential time cut-off date',
         current: 'The token price',
         btnText: 'Buy tokens now',
         saled: 'Raised',
@@ -85,8 +88,8 @@ export default {
         desc4: '4. The payment address must be exactly the same as the actual payment address',
         desc5: '5. These addresses cannot be changed once you click the Next button',
         desc6: '6. Never use the address provided by the exchange（e.g. Coinbase, Binance, etc）',
-        inputTip1: 'Enter your payment wallet address',
-        inputTip2: 'Enter your ETH wallet address',
+        inputTip1: 'Enter your receiving ETH (ERC20) wallet address',
+        inputTip2: 'Enter your sending ETH wallet address',
         inputTip3: 'Enter a valid ETH wallet address (starting with 0x and 42 characters long)'
       },
       buyTokens: {
@@ -129,7 +132,7 @@ export default {
         number: 'Order quantity'
       },
       prove: {
-        name: 'Prove',
+        pName: 'Prove',
         pholder1: 'Enter a valid Tx hash',
         pholder2: 'Enter invitation code',
         inputTip2: 'Please enter 6 letters and numbers'
