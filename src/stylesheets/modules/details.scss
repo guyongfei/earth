@@ -278,6 +278,7 @@
         height: 58px;
         text-align: center;
         font-size: 18px;
+        background: #FBFBFB;
         border: 1px solid #E9E9E9;
         @include border-radius(4px);
         legend {
@@ -289,6 +290,7 @@
       }
       .equal-sign {
         display: block;
+        flex: 1;
         padding: 0 20px;
         font-size: 20px;
       }

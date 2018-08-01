@@ -18,6 +18,11 @@
     width: 380px;
     position: relative;
     overflow: hidden;
+    @media (max-width: 912px) {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
   }
 
   label.error {
@@ -111,6 +116,9 @@
     background: #ffffff;
     border: 1px solid #E9E9E9;
     @include border-radius(6px);
+    @media (max-width: 767.9px) {
+      padding: 10px;
+    }
   }
 
   .section {
@@ -124,6 +132,10 @@
       @include border-radius(100px);
       &:disabled {
         background: #EBEBEB;
+      }
+
+      @media (max-width: 767.9px) {
+        width: 100%;
       }
     }
     .sec-head {

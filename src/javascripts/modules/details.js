@@ -48,7 +48,7 @@ export default class Details {
     getIndex()
     .then(({ success, data, message }) => {
       let result = data.defaultProject;
-      let proMainTemp, commonTemp, proHeadTemp, proBodyTemp, proFootTemp;
+      let proMainTemp, commonTemp, proHeadTemp, proBodyTemp, proFootTemp, getTokenAmount = null;
       
       this.gid = result.projectGid;
       
@@ -58,6 +58,7 @@ export default class Details {
       `;
 
       if (result.freeGiveEnd > 0) {
+        getTokenAmount = parseInt(result.priceRate * (1 + result.freeGiveRate));
         commonTemp = `
           ${commonTemp}
           <div class="discounts">
@@ -65,6 +66,8 @@ export default class Details {
             <p class="discounts-time">${$.t(this.timeFormatter(result.freeGiveEnd))}</p>
           </div>
         `;
+      } else {
+        getTokenAmount = result.priceRate;
       }
 
       switch (result.projectStatus) {
@@ -94,7 +97,7 @@ export default class Details {
               <span class="equal-sign">=</span>
               <fieldset class="token-item eth">
                 <legend align="left" class="token-name">${result.projectToken}</legend>
-                ${result.priceRate}
+                ${getTokenAmount}
               </fieldset>
             </div>
             <button class="get-token-btn" data-id="${result.projectGid}">${$.t('detail.btnText')}</button>
