@@ -105,9 +105,9 @@ export default class Sale {
       });
 
       if (result.freeGiveEnd > 0) {
-        getTokenAmount = (value * result.priceRate * (1 + result.freeGiveRate)).toFixed(9);
+        getTokenAmount = (result.minPurchaseAmount * result.priceRate * (1 + result.freeGiveRate)).toFixed(9);
       } else {
-        getTokenAmount = (value * result.priceRate).toFixed(9);
+        getTokenAmount = (result.minPurchaseAmount * result.priceRate).toFixed(9);
       }
 
       $payInput.val(result.minPurchaseAmount);
