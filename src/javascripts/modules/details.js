@@ -57,12 +57,12 @@ export default class Details {
         <h2 class="project-status">${method.checkStatus(result.projectStatus)}</h2>
       `;
 
-      if (result.freeGiveEnd !== 0 && result.freeGiveEnd !== '' && result.freeGiveEnd !== null) {
+      if (result.freeGiveEnd > 0) {
         commonTemp = `
           ${commonTemp}
           <div class="discounts">
             <p class="discounts-txt">${$.t('detail.discountsTitle')}</p>
-            <p class="discounts-time">${$.t(this.timeFormatter(1502467199999))}</p>
+            <p class="discounts-time">${$.t(this.timeFormatter(result.freeGiveEnd))}</p>
           </div>
         `;
       }
@@ -190,6 +190,10 @@ export default class Details {
       }
 
       $('.softcap').css('left', `${softcap}px`);
+
+      if (result.freeGiveEnd > 0) {
+        $('.project-main').addClass('effective-discounts');
+      }
       
       $loading.hide();
     })

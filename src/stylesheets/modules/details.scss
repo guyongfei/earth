@@ -229,8 +229,18 @@
       }
     }
 
+    .effective-discounts {
+      .project-status {
+        padding-bottom: 12px;
+      }
+
+      button {
+        margin: 11px auto 9px;
+      }
+    }
+
     .project-status {
-      padding: 24px 0 12px;
+      padding: 24px 0 30px;
       font-size: 24px;
       text-align: center;
     }
@@ -336,7 +346,7 @@
       }
     }
     button {
-      margin: 11px auto 9px;
+      margin: 30px auto 28px;
       display: block;
       width: 210px;
       height: 40px;

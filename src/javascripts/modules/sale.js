@@ -77,7 +77,8 @@ export default class Sale {
     
       let result = res.data,
         payEthAddress = result.payEthAddress,
-        getTokenAddress = result.getTokenAddress;
+        getTokenAddress = result.getTokenAddress,
+        getTokenAmount = null;
       
       this.result = result;
       this.minPurchaseAmount = result.minPurchaseAmount;
@@ -103,8 +104,14 @@ export default class Sale {
         correctLevel: QRCode.CorrectLevel.H
       });
 
+      if (result.freeGiveEnd > 0) {
+        getTokenAmount = (value * result.priceRate * (1 + result.freeGiveRate)).toFixed(9);
+      } else {
+        getTokenAmount = (value * result.priceRate).toFixed(9);
+      }
+
       $payInput.val(result.minPurchaseAmount);
-      $getInput.val((result.minPurchaseAmount * result.priceRate).toFixed(9));
+      $getInput.val(getTokenAmount);
       $tokens.find('.proportion').text(result.priceRate);
       $tokens.find('.buy-eth-amount').text(result.minPurchaseAmount);
       $tokens.find('.token').text(result.projectToken);
@@ -259,8 +266,15 @@ export default class Sale {
 
     // 购买代币输入框
     $tokens.on('input', '.payAmount', (e) => {
-      let value = this.trim($(e.currentTarget));
-      let total = (value * this.result.priceRate).toFixed(9);
+      let value = this.trim($(e.currentTarget)),
+        total = null,
+        res = this.result;
+
+      if (res.freeGiveEnd > 0) {
+        total = (value * res.priceRate * (1 + res.freeGiveRate)).toFixed(9);
+      } else {
+        total = (value * res.priceRate).toFixed(9);
+      }
 
       total = total > 0 ? total : ''; 
       $('.getAmount').val(total);
@@ -268,12 +282,19 @@ export default class Sale {
     });
 
     $tokens.on('input', '.getAmount', (e) => {
-      let value = this.trim($(e.currentTarget));
-      let eth = (value / this.result.priceRate).toFixed(9);
+      let value = this.trim($(e.currentTarget)),
+        payEth = null,
+        res = this.result;
+      
+      if (res.freeGiveEnd > 0) {
+        payEth = (value / res.priceRate / (1 + res.freeGiveRate)).toFixed(9);
+      } else {
+        payEth = (value / res.priceRate).toFixed(9);
+      }
 
-      eth = eth > 0 ? eth : '';
-      $('.payAmount').val(eth);
-      $('.buy-eth-amount').text(eth);
+      payEth = payEth > 0 ? payEth : '';
+      $('.payAmount').val(payEth);
+      $('.buy-eth-amount').text(payEth);
     });
 
     // 复制到剪切板
@@ -305,14 +326,7 @@ export default class Sale {
       let paytxValue = this.trim($paytxInput),
         payValue = parseFloat(this.trim($payInput)),
         getValue = parseFloat(this.trim($getInput)),
-        codeValue = this.trim($codeInput) || '',
-        homeGetAmount = null;
-
-      if (method.isEmpty(this.result.freeGiveRate)) {
-        homeGetAmount = getValue;
-      } else {
-        homeGetAmount = (payValue * this.result.priceRate) * (1 + this.result.freeGiveRate);
-      }
+        codeValue = this.trim($codeInput) || '';
 
       // 如果表单验证通过
       if (!this.validForm().form()) return;
