@@ -59,13 +59,6 @@ export default class Details {
 
       if (result.freeGiveEnd > 0) {
         getTokenAmount = parseInt(result.priceRate * (1 + result.freeGiveRate));
-        commonTemp = `
-          ${commonTemp}
-          <div class="discounts">
-            <p class="discounts-txt">${$.t('detail.discountsTitle')}</p>
-            <p class="discounts-time">${$.t(this.timeFormatter(result.freeGiveEnd))}</p>
-          </div>
-        `;
       } else {
         getTokenAmount = result.priceRate;
       }
@@ -88,6 +81,10 @@ export default class Details {
         case 2:
           proMainTemp = `
             ${commonTemp}
+            <div class="discounts">
+              <p class="discounts-txt">${$.t('detail.discountsTitle')}</p>
+              <p class="discounts-time">${$.t(this.timeFormatter(result.freeGiveEnd))}</p>
+            </div>
             <p class="devide">${$.t('detail.current')}</p>
             <div class="token-rate-items">
               <fieldset class="token-item eth">
@@ -194,8 +191,10 @@ export default class Details {
 
       $('.softcap').css('left', `${softcap}px`);
 
-      if (result.freeGiveEnd > 0) {
-        $('.project-main').addClass('effective-discounts');
+      if (result.projectStatus == 1 || result.projectStatus == 2) {
+        if (result.freeGiveEnd > 0) {
+          $('.project-main').addClass('effective-discounts');
+        }
       }
       
       $loading.hide();
@@ -268,9 +267,9 @@ export default class Details {
   timeFormatter (timestamp) {
     let lang = method.getCookie('witshare.i18n.language');
     let text = null;
-    let date = new Date(timestamp),
-      day = date.getDate(),
-      hour = date.getHours();
+    let diff_time = parseInt(timestamp / 1000),
+      day = Math.floor(diff_time / (24 * 60 * 60)),
+      hour = Math.floor((diff_time - day * (24 * 60 * 60)) / 3600);
 
     day = day < 10 ? '0' + day : day;
     hour = hour < 10 ? '0' + hour : hour;

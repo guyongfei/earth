@@ -48,7 +48,7 @@ export default class Sale {
           temp += `<li class="ui-item">
             <div class="ui-item-head">
               <i class="dot"></i>
-              <span class="order-id">${$.t('confirmation.orderId')} <a target="_blank" href="https://ropsten.etherscan.io/tx/${item.payTx}">#${item.payTxId}</a></span>
+              <span class="order-id">${$.t('confirmation.orderId')} <a target="_blank" href="https://etherscan.io/tx/${item.payTx}">#${item.payTxId}</a></span>
               <span class="order-time">${moment(item.createTime).format('MMMM Do, h:mm:ss A')}</span>
               <span class="order-status ${this.className(item.userTxStatus)}">${method.userTxStatus(item.userTxStatus)}</span>
             </div>

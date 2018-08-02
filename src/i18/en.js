@@ -73,7 +73,7 @@ export default {
         number: 'Only nine digits can be entered'
       },
       detail: {
-        discountsTitle: 'Preferential time cut-off date',
+        discountsTitle: 'Bonus period has',
         current: 'The token price',
         btnText: 'Buy tokens now',
         saled: 'Raised',
@@ -81,15 +81,15 @@ export default {
       },
       wallet: {
         name: 'Wallet Address',
-        walletAddress: 'Your receiving ETH (ERC20) wallet address',
+        walletAddress: 'Your receiving token (ERC20) wallet address',
         ethAddress: 'Your sending ETH wallet address',
-        desc1: '1. The token you brought will be sent to your ETH (ERC20) wallet address once the project crowdfunding campaign completes.',
-        desc2: '2. You need to fill in two Ethereum wallet addresses. The first one is to receive the ERC20 token from the project. The second one is the payment address that you transfer the ETH to the project.',
-        desc3: '3. The receiving address must be a valid ETH wallet address compatible with ERC20',
+        desc1: '1. The token you brought will be sent to your (ERC20) wallet address once the project crowdfunding campaign completes.',
+        desc2: '2. You need to fill in two Ethereum wallet addresses (can be identical). The first one is to receive the ERC20 token from the project. The second one is the payment address that you transfer the ETH to the project.',
+        desc3: '3. The receiving address must be a valid wallet address compatible with ERC20',
         desc4: '4. The payment address must be exactly the same as the actual payment address',
-        desc5: '5. These addresses cannot be changed once you click the "Confirm" button',
+        desc5: '5. These two addresses cannot be changed once you click the "Confirm" button',
         desc6: '6. Never use the address provided by the exchange（e.g. Coinbase, Binance, etc）',
-        inputTip1: 'Enter your receiving ETH (ERC20) wallet address',
+        inputTip1: 'Enter your receiving token (ERC20) wallet address',
         inputTip2: 'Enter your sending ETH wallet address',
         inputTip3: 'Enter a valid ETH wallet address (starting with 0x and 42 characters long)'
       },
@@ -124,7 +124,7 @@ export default {
       },
       confirmation: {
         name: 'Confirm',
-        desc1: 'token will be sent to your ETH (ERC20) wallet address',
+        desc1: 'token will be sent to your ERC20 wallet address',
         desc2: 'once the project crowdfunding campaign completes.',
         desc3: 'The',
         gmt: 'GMT',
@@ -133,8 +133,8 @@ export default {
         number: 'Order quantity'
       },
       proves: {
-        pholder1: 'Enter a valid Tx hash',
-        pholder2: 'Enter invitation code',
+        pholder1: 'Enter a valid TX hash',
+        pholder2: 'Enter an invitation code',
         inputTip2: 'Please enter 6 letters and numbers'
       },
       sale: {
