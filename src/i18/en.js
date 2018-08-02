@@ -87,7 +87,7 @@ export default {
         desc2: '2. You need to fill in two Ethereum wallet addresses. The first one is to receive the ERC20 token from the project. The second one is the payment address that you transfer the ETH to the project.',
         desc3: '3. The receiving address must be a valid ETH wallet address compatible with ERC20',
         desc4: '4. The payment address must be exactly the same as the actual payment address',
-        desc5: '5. These addresses cannot be changed once you click the Next button',
+        desc5: '5. These addresses cannot be changed once you click the "Confirm" button',
         desc6: '6. Never use the address provided by the exchange（e.g. Coinbase, Binance, etc）',
         inputTip1: 'Enter your receiving ETH (ERC20) wallet address',
         inputTip2: 'Enter your sending ETH wallet address',

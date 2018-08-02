@@ -15,7 +15,7 @@
   justify-content: space-between;
   
   .s-col-6 {
-    width: 380px;
+    width: 400px;
     position: relative;
     overflow: hidden;
     @media (max-width: 912px) {
@@ -125,7 +125,7 @@
     margin-bottom: 24px;
     input[type="text"] {
       display: block;
-      width: 377px;
+      width: 100%;
       padding: 11px 20px;
       line-height: 20px;
       border: 1px solid #E9E9E9;

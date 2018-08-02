@@ -158,7 +158,7 @@ export function ownerTransaction (payTx) {
 export function getIndex () {
   return request({
     type: 'GET',
-    url: '/index'
+    url: `/index&t=${new Date().getTime()}`
   });
 }
 
@@ -166,7 +166,7 @@ export function getIndex () {
 export function getIndexTransaction (gid, pageNum, pageSize) {
   return request({
     type: 'GET',
-    url: `/index-transaction?projectGid=${gid}&pageNum=${pageNum}&pageSize=${pageSize}`,
+    url: `/index-transaction?projectGid=${gid}&pageNum=${pageNum}&pageSize=${pageSize}&t=${new Date().getTime()}`,
   });
 }
 
