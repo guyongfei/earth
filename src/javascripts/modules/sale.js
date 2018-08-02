@@ -78,7 +78,8 @@ export default class Sale {
       let result = res.data,
         payEthAddress = result.payEthAddress,
         getTokenAddress = result.getTokenAddress,
-        getTokenAmount = null;
+        getTokenAmount = null,
+        defaultTokenAmount = null;
       
       this.result = result;
       this.minPurchaseAmount = result.minPurchaseAmount;
@@ -106,13 +107,15 @@ export default class Sale {
 
       if (result.freeGiveEnd > 0) {
         getTokenAmount = (result.minPurchaseAmount * result.priceRate * (1 + result.freeGiveRate)).toFixed(9);
+        defaultTokenAmount = parseInt(result.priceRate * (1 + result.freeGiveRate));
       } else {
         getTokenAmount = (result.minPurchaseAmount * result.priceRate).toFixed(9);
+        defaultTokenAmount = result.priceRate;
       }
 
       $payInput.val(result.minPurchaseAmount);
       $getInput.val(getTokenAmount);
-      $tokens.find('.proportion').text(result.priceRate);
+      $tokens.find('.proportion').text(defaultTokenAmount);
       $tokens.find('.buy-eth-amount').text(result.minPurchaseAmount);
       $tokens.find('.token').text(result.projectToken);
       $tokens.find('.platform-address').text(result.platformAddress);
