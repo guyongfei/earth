@@ -158,7 +158,7 @@ export function ownerTransaction (payTx) {
 export function getIndex () {
   return request({
     type: 'GET',
-    url: `/index&t=${new Date().getTime()}`
+    url: `/index?t=${new Date().getTime()}`
   });
 }
 
