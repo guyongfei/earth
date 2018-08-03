@@ -36,7 +36,7 @@
 }
 
 .color-blue {
-  color: #5768C0;
+  color: #019AC9;
 }
 
 .tooltips {
@@ -104,10 +104,6 @@
   padding-top: 60px;
   padding-bottom: 60px;
   min-height: 100%;
-  background-image: url('../../images/bases/top_lf_bg.png'), url('../../images/bases/btm_rt_bg.png');
-  background-repeat: no-repeat, no-repeat;
-  background-size: 377px 316px,377px 316px;
-  background-position: 0 50px, 100% 95%;
 
   .container {
     margin: 0 auto;
@@ -150,7 +146,7 @@
         @include wh(24px, 24px);
         line-height: 24px;
         font-size: 16px;
-        color: #68B541;
+        color: #019AC9;
         background: #ffffff;
         text-align: center;
         @include border-radius(100%);
@@ -189,7 +185,7 @@
         margin-right: 10px;
         width: 10px;
         height: 10px;
-        background: #68B541;
+        background: #019AC9;
         @include border-radius(100%);
         vertical-align: middle;
       }
@@ -212,7 +208,7 @@
       height: 36px;
       line-height: 36px;
       color: #ffffff;
-      background: #68B541;
+      background: #019AC9;
       text-align: center;
       @include border-radius(100px);
       &.token {
@@ -294,7 +290,7 @@
       line-height: 44px;
       font-size: 16px;
       color: #ffffff;
-      background: #3FB9EC;
+      background: #019AC9;
       text-align: center;
       @include border-radius(100px);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.14);

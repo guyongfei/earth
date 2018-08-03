@@ -1,6 +1,8 @@
 import moment from 'moment';
 import { getTransactionInfo, getIndex } from '../common/service';
 import method from '../common/method';
+import '../lib/jquery.plugin.min';
+import '../lib/jquery.countdown.min';
 import getModule from './index';
 
 export default class Details {
@@ -21,14 +23,16 @@ export default class Details {
 
   handleDom () {
     let $loading = $('#loading'),
-      $section = $('.section'),
-      $proHead = $section.find('.project-head'),
-      $proBody = $section.find('.project-body'),
-      $proFoot = $section.find('.project-foot'),
-      $proMain = $section.find('.project-main');
+      $sectionTop = $('.section-top'),
+      $sectionMid = $('.section-middle'),
+      $proHead = $sectionMid.find('.project-head'),
+      $proBody = $sectionMid.find('.project-body'),
+      $proFoot = $sectionMid.find('.project-foot'),
+      $proMain = $sectionMid.find('.project-main');
     
     this.childMap.$loading = $loading;
-    this.childMap.$section = $section;
+    this.childMap.$sectionTop = $sectionTop;
+    this.childMap.$sectionMid = $sectionMid;
     this.childMap.$proHead = $proHead;
     this.childMap.$proBody = $proBody;
     this.childMap.$proFoot = $proFoot;
@@ -49,7 +53,7 @@ export default class Details {
     .then(({ success, data, message }) => {
       let result = data.defaultProject;
       let proMainTemp, commonTemp, proHeadTemp, proBodyTemp, proFootTemp, getTokenAmount = null;
-      
+      let that = this;
       this.gid = result.projectGid;
       
       // 根据status，显示不同的内容
@@ -62,44 +66,28 @@ export default class Details {
       } else {
         getTokenAmount = result.priceRate;
       }
-
+      
       switch (result.projectStatus) {
         case 0:
-        proMainTemp = `
-          ${commonTemp}
-          <div class="countdown">
-            <div class="time"><p class="top">Year</p><p class="bottom">${moment(result.startTime).format('YYYY')}</p></div>
-            <span class="delimiter">:</span>
-            <div class="time"><p class="top">Month</p><p class="bottom">${moment(result.startTime).format('MM')}</p></div>
-            <span class="delimiter">:</span>
-            <div class="time"><p class="top">Day</p><p class="bottom">${moment(result.startTime).format('DD')}</p></div>
-          </div>
-          <button class="get-token-btn" data-id="${result.projectGid}" disabled="disabled">${$.t('detail.btnText')}</button>
-          `;
-          break;
         case 1:
         case 2:
-          proMainTemp = `
-            ${commonTemp}
+        
+        proMainTemp = `
+          ${commonTemp}
+          <div class="unstart-wrapper" style="display:none;">
+            <div class="project-start">${result.projectToken} ICO Starts in</div>
+            <div class="project-countdown-wrapper clearfix" id="project-countdown"></div>
+          </div>
+          <div class="start-wrapper" style="display:none;">
             <div class="discounts">
-              <p class="discounts-txt">${$.t('detail.discountsTitle')}</p>
-              <p class="discounts-time">${$.t(this.timeFormatter(result.freeGiveEnd))}</p>
+              <p class="discounts-txt">${this.discountFormmatter(result.freeGiveRate)}${$.t('detail.discountsTitle')}</p>
+              <div class="discounts-countdown-wrapper clearfix" id="discounts-countdown"></div>
             </div>
-            <p class="devide">${$.t('detail.current')}</p>
-            <div class="token-rate-items">
-              <fieldset class="token-item eth">
-                <legend align="left" class="token-name">ETH</legend>
-                1
-              </fieldset>
-              <span class="equal-sign">=</span>
-              <fieldset class="token-item eth">
-                <legend align="left" class="token-name">${result.projectToken}</legend>
-                ${getTokenAmount}
-              </fieldset>
+            <div class="token-rate">
+              1 ETH : ${method.thousandsFormatters(getTokenAmount)} ${result.projectToken}
             </div>
             <button class="get-token-btn" data-id="${result.projectGid}">${$.t('detail.btnText')}</button>
-            <p class="sale-numbers">${method.thousandsFormatters(result.soldTokenAmount)}</p>
-            <p class="sale-txt">${$.t('detail.saled')}</p>
+          </div>
           `;
           break;
         case 3:
@@ -109,16 +97,10 @@ export default class Details {
             <p>${$.t('detail.end')}</p>
             <div class="collect-total">
               <div class="collect-item">
-                <fieldset class="token-item eth">
-                  <legend align="left" class="token-name">Token</legend>
-                  ${method.thousandsFormatters(result.soldAmount)}ETH
-                </fieldset>
+                ${method.thousandsFormatters(result.soldAmount)} ETH
               </div>
               <div class="collect-item">
-                <fieldset class="token-item eth">
-                  <legend align="left" class="token-name">Token</legend>
-                  ${method.thousandsFormatters(result.soldTokenAmount)}${result.projectToken}
-                </fieldset>
+                ${method.thousandsFormatters(result.soldTokenAmount)} ${result.projectToken}
               </div>
             </div>
           `;
@@ -129,8 +111,20 @@ export default class Details {
 
       proHeadTemp = `
         <div class="head-details">
-          <img src="${result.projectLogoLink}" alt="logo" class="project-logo">
-          <span class="project-name">${result.projectName}</span>
+          <div class="project-logo">
+            <img src="${result.projectLogoLink}" alt="logo" class="logo">
+          </div>
+          <div class="project-info">
+            <h3 class="project-name">${result.projectName}</h3>
+            <div class="links">
+              <a href="${result.websites.twitter}" target="_blank" class="icon twitter ${this.whetherClick(result.websites.twitter)}"></a>
+              <a href="${result.websites.facebook}" target="_blank" class="icon facebook ${this.whetherClick(result.websites.facebook)}"></a>
+              <a href="${result.websites.telegram}" target="_blank" class="icon telegram ${this.whetherClick(result.websites.telegram)}"></a>
+              <a href="${result.websites.reddit}" target="_blank" class="icon reddit ${this.whetherClick(result.websites.reddit)}"></a>
+              <a href="${result.websites.biYong}" target="_blank" class="icon biyong ${this.whetherClick(result.websites.biYong)}"></a>
+              <a href="${result.websites.gitHub}" target="_blank" class="icon github ${this.whetherClick(result.websites.gitHub)}"></a>
+            </div>
+          </div>
         </div>
         <p class="project-instruction">${result.projectInstruction}</p>
       `;
@@ -161,42 +155,52 @@ export default class Details {
         <a href="${result.websites.officialLink}" target="_blank" class="${this.whetherClick(result.websites.officialLink)}">${$.t('links.website')}</a>
         <a href="${result.websites.whitePaperLink}" target="_blank" class="${this.whetherClick(result.websites.whitePaperLink)}">${$.t('links.whitepaper')}</a>
       </div>
-      <div class="links">
-        <a href="${result.websites.twitter}" target="_blank" class="icon twitter ${this.whetherClick(result.websites.twitter)}"></a>
-        <a href="${result.websites.facebook}" target="_blank" class="icon facebook ${this.whetherClick(result.websites.facebook)}"></a>
-        <a href="${result.websites.telegram}" target="_blank" class="icon telegram ${this.whetherClick(result.websites.telegram)}"></a>
-        <a href="${result.websites.reddit}" target="_blank" class="icon reddit ${this.whetherClick(result.websites.reddit)}"></a>
-        <a href="${result.websites.biYong}" target="_blank" class="icon biyong ${this.whetherClick(result.websites.biYong)}"></a>
-        <a href="${result.websites.gitHub}" target="_blank" class="icon github ${this.whetherClick(result.websites.gitHub)}"></a>
-      </div>
       `;
-      // progress
-      let proWidth = $('.progress-status').width(),
-        progress = result.soldAmount / result.hardCap,
-        progressLen = progress * proWidth,
-        softcap = result.softCap / result.hardCap * proWidth;
       
       $proHead.html(proHeadTemp);
       $proBody.html(proBodyTemp);
       $proFoot.html(proFootTemp);
       $proMain.html(proMainTemp);
 
+      // progress
+      let proWidth = $('.progress-status').width(),
+        progress = result.soldAmount / result.hardCap,
+        progressLen = progress * proWidth,
+        softcap = result.softCap / result.hardCap * proWidth;
+      
       if (result.soldAmount != 0) {
-        if (progressLen > 24) {
-          $('.circle-outer').css({ 'marginLeft': '-24px' });
-        }
+        progressLen > 24 && $('.circle-outer').css({ 'marginLeft': '-24px' });
         $('.progress-bar').css({ 'width': `${progressLen}px`, 'right': `${progressLen}px` });
         $('.circle-outer').css({ 'left': `${progressLen}px` });
       }
 
       $('.softcap').css('left', `${softcap}px`);
 
-      if (result.projectStatus == 1 || result.projectStatus == 2) {
-        if (result.freeGiveEnd > 0) {
-          $('.project-main').addClass('effective-discounts');
-        }
+      switch (result.projectStatus) {
+        case 0:
+          $('.unstart-wrapper').show();
+
+          // let dateTime = result.startTime - result.currentTime;
+          let dateTime = 5;
+          let dateTime2 = 5;
+          // this.proStartCountdown(dateTime, result.freeGiveEnd / 1000);
+          this.proStartCountdown(dateTime, dateTime2);
+          break;
+        case 1:
+        case 2:
+          $('.start-wrapper').show();
+          if (result.freeGiveEnd > 0) {
+            $('.project-main').addClass('is-discounts');
+            this.disStartCountdown(result.freeGiveEnd / 1000);
+          } else {
+            $('.discounts').hide();
+          }
+          break;
+        default:
+          break;
       }
-      
+
+      $('.eth-raised-amount').text(method.thousandsFormatters(result.soldTokenAmount));
       $loading.hide();
     })
     .catch(err => {
@@ -285,6 +289,77 @@ export default class Details {
         break;
     }
     return text;
+  }
+
+  discountFormmatter (value) {
+    if (method.isEmpty(value)) return '';
+    return `${parseFloat(value) * 100}%`;
+  }
+
+  // project start countdown
+  proStartCountdown (date1, date2) {
+    $('#project-countdown').countdown({
+      until: date1,
+      padZeroes: true,
+      format: 'dHMS',
+      labels: ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Minutes', 'Seconds'],
+      // labels1: ['年', '月', '周', '天', '小时', '分钟', '秒'],
+      whichLabels: null,
+      onExpiry: () => {
+        $('.unstart-wrapper').hide();
+        $('.start-wrapper').show();
+        this.disStartCountdown(date2);
+      }
+    });
+  }
+
+  // discounts start countdown
+  disStartCountdown (date) {
+    $('#discounts-countdown').countdown({
+      until: date,
+      padZeroes: true,
+      format: 'dHMS',
+      labels: ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Minutes', 'Seconds'],
+      // labels1: ['年', '月', '周', '天', '小时', '分钟', '秒'],
+      whichLabels: null,
+      onExpiry: () => {
+        $('.discounts').hide();
+        $('.project-main').removeClass('is-discounts');
+        this.renderProject();
+      }
+    });
+  }
+
+  // 项目开始后，局部刷新
+  renderProject () {
+    getIndex()
+    .then(({ success, data, message }) => {
+      let result = data.defaultProject;
+      let getTokenAmount = '';
+      switch (result.projectStatus) {
+        case 0:
+          break;
+        case 1:
+        case 2:
+          if (result.freeGiveEnd > 0) {
+            getTokenAmount = parseInt(result.priceRate * (1 + result.freeGiveRate));
+          } else {
+            getTokenAmount = result.priceRate;
+          }
+          $('.project-main').removeClass('is-discounts').addClass('no-discounts');
+          $('.token-rate').text(`1 ETH : ${method.thousandsFormatters(getTokenAmount)} ${result.projectToken}`);
+          $('.eth-raised-amount').text(method.thousandsFormatters(result.soldTokenAmount));
+          break;
+        case 3:
+        case 4:
+          break;
+        default:
+          break;
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
   }
 
 }

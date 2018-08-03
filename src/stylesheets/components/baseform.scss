@@ -137,7 +137,7 @@
   }
 
   .color-blue {
-    color: #3fb9ec;
+    color: #019AC9;
   }
 
   .form-head {
@@ -177,7 +177,7 @@
       width: 100%;
       line-height: 44px;
       color: $color-white;
-      background: #3fb9ec;
+      background: #019AC9;
       cursor: pointer;
       &:disabled {
         background: #999999;
@@ -245,7 +245,7 @@
       width: 90px;
       line-height: 24px;
       color: $color-white;
-      background: #68b541;
+      background: #c3b67e;
       font-size: 12px;
       @include border-radius(20px);
     }

@@ -1,6 +1,6 @@
 {% extends 'layouts/application.html' %}
 
-{% block title %}TokenPie{% endblock %}
+{% block title %}TokenPie - Best Token Sale Platform{% endblock %}
 
 {% block head %}
   <link rel="stylesheet" href="stylesheets/modules/details.css">
@@ -12,8 +12,21 @@
     {% include "shared/loading.html" %}
     {% include "shared/header.html" %}
 
-    <section class="section">
+    <section class="section-top">
       <div class="s-container">
+        <h3 class="title" data-i18n="detail.platform"></h3>
+        <p class="summary-txt" data-i18n="detail.summary"></p>
+        <p class="join-txt" data-i18n="detail.join"></p>
+        <a href="javascript:;" class="btn-telegram">
+          <span class="icon-tg"></span>
+          <span class="tg-text" data-i18n="detail.btnTelegram"></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-middle">
+      <div class="s-container">
+        <h2 class="title">Active Project</h2>
         <div class="row-push clearfix">
           <div class="col-md-push-5 area area-right">
             <div class="project-main"></div>
@@ -24,6 +37,11 @@
             <div class="project-foot"></div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <section class="section-foot">
+      <div class="s-container">
         <div class="progress-wrap">
           <div class="progress-status">
             <span class="softcap"><i class="circle blue"></i><i data-i18n="common.softcap"></i></span>
@@ -36,6 +54,9 @@
             </span>
           </div>
         </div>
+        <p class="eth-raised">
+          <span class="eth-raised-amount"></span> ETH <span class="raised-txt" data-i18n="detail.saled"></span>
+        </p>
       </div>
     </section>
 

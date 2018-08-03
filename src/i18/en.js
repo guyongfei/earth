@@ -73,9 +73,14 @@ export default {
         number: 'Only nine digits can be entered'
       },
       detail: {
-        discountsTitle: 'Bonus period has',
+        platform: 'Best Token Sales Platform',
+        summary: 'TokenPie is a platform for responsibly listing token sales projects. Our professionals combine market experience and resources to create a winning solution to pick superior projects and execute ICO safely and securely.',
+        join: 'Join us to get free information for the project progress and receiving free airdrops.',
+        btnTelegram: 'Join us on Telegram',
+        activeProject: 'Active Project',
+        discountsTitle: ' Bonus ends in',
         current: 'The token price',
-        btnText: 'Buy tokens now',
+        btnText: 'Register & Buy tokens now',
         saled: 'Raised',
         end:  'Number of raises'
       },
@@ -112,7 +117,7 @@ export default {
         copiedFail: 'Copied failed',
         payId: 'Proof of Payment',
         tradeId: 'Transaction ID',
-        tradeIdText: 'Transaction Hash',
+        tradeIdText: 'Transaction#',
         inputTip1: 'Please enter a valid number',
         inputTip3: 'The minimum purchase quantity is',
         inputTip4: 'The maximum purchase quantity is',
@@ -134,18 +139,18 @@ export default {
       },
       proves: {
         pholder1: 'Enter a valid TX hash',
-        pholder2: 'Enter an invitation code',
+        pholder2: 'Enter a referral code (Optional)',
         inputTip2: 'Please enter 6 letters and numbers'
       },
       sale: {
         alert: 'If you navigate away, the TX hash information you entered will be lost and your order may not be confirmed. Please click the confirm payment or cancel button below to confirm or cancel your order.'
       },
       summaryStatus: {
-        0: 'To be started',
-        1: 'Started',
-        2: 'Started',
-        3: 'Completed',
-        4: 'Completed'
+        0: 'TO BE STARTED!',
+        1: 'STARTED!',
+        2: 'STARTED!',
+        3: 'COMPLETED!',
+        4: 'COMPLETED!'
       },
       totalStatus: {
         0: 'To be started',
@@ -170,15 +175,13 @@ export default {
         2: 'Success',
         3: 'Fail'
       },
-      nav: {
-        home: 'TokenPie'
-      },
       agreement: {
         privacy: 'Privacy Policy'
       },
       links: {
         website: 'Website',
-        whitepaper: 'White paper'
+        whitepaper: 'White paper',
+        telegram: 'Telegram'
       }
     }
   }

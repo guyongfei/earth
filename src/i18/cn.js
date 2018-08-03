@@ -73,15 +73,20 @@ export default {
         number: '只能输入小数点后九位'
       },
       detail: {
-        discountsTitle: '优惠时间截止日期',
+        platform: '最佳令牌销售平台',
+        summary: 'TokenPie是一个负责任地列出令牌销售项目的平台。我们的专业人员结合市场经验和资源，创造了一个成功的解决方案，可以选择优质项目并安全可靠地执行ICO。',
+        join: '加入我们，获取项目进展和免费空投的免费信息。',
+        btnTelegram: '加入我们的电报',
+        activeProject: 'Active Project',
+        discountsTitle: '的优惠截止时间至',
         current: '当前代币价格',
-        btnText: '开始认筹',
+        btnText: '注册 & 开始认筹',
         saled: '已众筹数量',
         end:  '募集数量',
       },
       wallet: {
         name: '钱包地址',
-        walletAddress: '您的接受兼容ERC20代币的钱包地址',
+        walletAddress: '您的接收兼容ERC20代币的钱包地址',
         ethAddress: '您的支付ETH的钱包地址',
         desc1: '1. 您认购的代币将会在项目认筹结束后，统一打到您提供的接收ERC20代币的钱包地址；',
         desc2: '2. 您需要填写两个以太坊钱包地址（可以使用同一地址），一个是接收地址，用于接收该项目的ERC20代币；另一个是支付地址，用于支付ETH给项目方；',
@@ -89,7 +94,7 @@ export default {
         desc4: '4. 支付地址与您实际支付的地址必须完全相同；',
         desc5: '5. 两个地址一旦输入，不可更改；',
         desc6: '6. 请勿使用交易所提供的地址（e.g. Coinbase, Binance, etc）',
-        inputTip1: '输入您的收到ETH20代币的钱包地址',
+        inputTip1: '输入您用于接收ERC20代币的钱包地址',
         inputTip2: '输入您的发送ETH的钱包地址',
         inputTip3: '输入一个有效的ETH钱包地址(以0x开头及42个字符长度)',
       },
@@ -112,7 +117,7 @@ export default {
         copiedFail: '复制失败',
         payId: '提供支付证明',
         tradeId: '交易ID',
-        tradeIdText: '交易哈希值',
+        tradeIdText: '交易号',
         inputTip1: '请输入合法的数字',
         inputTip3: '最小购买量为',
         inputTip4: '最大购买量为',
@@ -134,7 +139,7 @@ export default {
       },
       proves: {
         pholder1: '输入一个合法的TX散列',
-        pholder2: '请输入邀请码',
+        pholder2: '请输入邀请码（可选）',
         inputTip2: '输入六位字母和数字'
       },
       sale: {
@@ -170,15 +175,13 @@ export default {
         2: '成功',
         3: '失败'
       },
-      nav: {
-        home: 'TokenPie'
-      },
       agreement: {
         privacy: '隐私声明'
       },
       links: {
         website: '官网',
-        whitepaper: '白皮书'
+        whitepaper: '白皮书',
+        telegram: '电报'
       }
     }
   }

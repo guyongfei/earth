@@ -30,10 +30,6 @@ ul, ol, li {
   padding-top: 60px;
   padding-bottom: 60px;
   min-height: 100%;
-  background-image: url('../../images/bases/top_lf_bg.png'), url('../../images/bases/btm_rt_bg.png');
-  background-repeat: no-repeat, no-repeat;
-  background-size: 377px 316px,377px 316px;
-  background-position: 0 50px, 100% 95%;
 
   .title {
     font-size: 16px;
@@ -106,7 +102,7 @@ ul, ol, li {
           line-height: 1;
           font-size: 16px;
           color: #ffffff;
-          background: #68B541;
+          background: #019AC9;
           @include border-radius(50px);
         }
         .subscription {
@@ -143,7 +139,7 @@ ul, ol, li {
       line-height: 44px;
       font-size: 16px;
       color: #ffffff;
-      background: #3FB9EC;
+      background: #019AC9;
       text-align: center;
       @include border-radius(100px);
     }
