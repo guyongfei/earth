@@ -77,7 +77,7 @@ export default {
         summary: 'TokenPie是一个负责任地列出令牌销售项目的平台。我们的专业人员结合市场经验和资源，创造了一个成功的解决方案，可以选择优质项目并安全可靠地执行ICO。',
         join: '加入我们，获取项目进展和免费空投的免费信息。',
         btnTelegram: '加入我们的电报',
-        activeProject: 'Active Project',
+        activeProject: '当前的项目',
         discountsTitle: '的优惠截止时间至',
         current: '当前代币价格',
         btnText: '注册 & 开始认筹',
