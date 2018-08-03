@@ -3,6 +3,7 @@ import { getTransactionInfo, getIndex } from '../common/service';
 import method from '../common/method';
 import '../lib/jquery.plugin.min';
 import '../lib/jquery.countdown.min';
+import '../lib/jquery.countdown-zh-CN';
 import getModule from './index';
 
 export default class Details {
@@ -298,13 +299,14 @@ export default class Details {
 
   // project start countdown
   proStartCountdown (date1, date2) {
+    let lang = method.getCookie('witshare.i18n.language');
+    let type = lang === 'cn' ? 'zh-CN' : ''; 
+
+    $.countdown.setDefaults($.countdown.regionalOptions[type]);
     $('#project-countdown').countdown({
       until: date1,
       padZeroes: true,
       format: 'dHMS',
-      labels: ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Minutes', 'Seconds'],
-      // labels1: ['年', '月', '周', '天', '小时', '分钟', '秒'],
-      whichLabels: null,
       onExpiry: () => {
         $('.unstart-wrapper').hide();
         $('.start-wrapper').show();
@@ -315,13 +317,14 @@ export default class Details {
 
   // discounts start countdown
   disStartCountdown (date) {
+    let lang = method.getCookie('witshare.i18n.language');
+    let type = lang === 'cn' ? 'zh-CN' : ''; 
+
+    $.countdown.setDefaults($.countdown.regionalOptions[type]);
     $('#discounts-countdown').countdown({
       until: date,
       padZeroes: true,
       format: 'dHMS',
-      labels: ['Years', 'Months', 'Weeks', 'Days', 'Hours', 'Minutes', 'Seconds'],
-      // labels1: ['年', '月', '周', '天', '小时', '分钟', '秒'],
-      whichLabels: null,
       onExpiry: () => {
         $('.discounts').hide();
         $('.project-main').removeClass('is-discounts');
