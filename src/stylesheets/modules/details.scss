@@ -10,6 +10,10 @@
   color: #a9a9a9;
 }
 
+.align-center {
+  text-align: center;
+}
+
 .point-events {
   pointer-events: none;
   cursor: default;
@@ -341,7 +345,7 @@
     }
 
     .collect-total {
-      margin-top: 10px;
+      margin-top: 16px;
       .collect-item {
         margin-bottom: 10px;
         @include fc(18px, #000000);

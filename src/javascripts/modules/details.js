@@ -95,7 +95,7 @@ export default class Details {
         case 4:
           proMainTemp = `
             ${commonTemp}
-            <p>${$.t('detail.end')}</p>
+            <p class="align-center">${$.t('detail.end')}</p>
             <div class="collect-total">
               <div class="collect-item">
                 ${method.thousandsFormatters(result.soldAmount)} ETH
