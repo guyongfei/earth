@@ -199,7 +199,7 @@ export default class Details {
           break;
       }
 
-      $('.eth-raised-amount').text(method.thousandsFormatters(result.soldTokenAmount));
+      $('.eth-raised-amount').text(method.thousandsFormatters(result.soldAmount));
       $loading.hide();
     })
     .catch(err => {
@@ -349,7 +349,7 @@ export default class Details {
           }
           $('.project-main').removeClass('is-discounts').addClass('no-discounts');
           $('.token-rate').text(`1 ETH : ${method.thousandsFormatters(getTokenAmount)} ${result.projectToken}`);
-          $('.eth-raised-amount').text(method.thousandsFormatters(result.soldTokenAmount));
+          $('.eth-raised-amount').text(method.thousandsFormatters(result.soldAmount));
           break;
         case 3:
         case 4:
