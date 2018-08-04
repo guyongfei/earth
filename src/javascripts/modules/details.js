@@ -162,12 +162,13 @@ export default class Details {
       $proBody.html(proBodyTemp);
       $proFoot.html(proFootTemp);
       $proMain.html(proMainTemp);
-
+      
       // progress
       let proWidth = $('.progress-status').width(),
-        progress = result.soldAmount / result.hardCap,
+        progress = result.soldAmount / 15000,
         progressLen = progress * proWidth,
-        softcap = result.softCap / result.hardCap * proWidth;
+        softcap = result.softCap / 15000 * proWidth,
+        hardcap = result.hardCap / 15000 * proWidth;
       
       if (result.soldAmount != 0) {
         progressLen > 24 && $('.circle-outer').css({ 'marginLeft': '-24px' });
@@ -176,6 +177,7 @@ export default class Details {
       }
 
       $('.softcap').css('left', `${softcap}px`);
+      $('.hardcap').css('left', `${hardcap}px`);
 
       switch (result.projectStatus) {
         case 0:
