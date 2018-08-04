@@ -61,7 +61,8 @@
     }
 
     .summary-txt {
-      margin-bottom: 15px;
+      max-width: 725px;
+      margin: 0 auto 15px;
     }
 
     .join-txt {
@@ -493,6 +494,12 @@
 
 html[lang=cn] {
   .details-wrapper {
+
+    .section-top {
+      .summary-txt {
+        max-width: 585px;
+      }
+    }
     .area-right {
       .discounts {
         margin-bottom: 32px;
