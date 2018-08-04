@@ -26,7 +26,7 @@
 
 .s-container {
   margin: 0 auto;
-  max-width: 780px;
+  max-width: 900px;
 }
 
 .details-wrapper {
@@ -34,6 +34,7 @@
   min-height: 100%;
 
   .section-top {
+    margin-top: 30px;
     text-align: center;
     .title {
       padding: 20px 0 15px;
