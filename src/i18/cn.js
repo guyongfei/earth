@@ -83,6 +83,7 @@ export default {
         btnText: '注册 & 开始认筹',
         saled: '已众筹数量',
         end:  '募集数量',
+        start: '开始'
       },
       wallet: {
         name: '钱包地址',
