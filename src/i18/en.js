@@ -146,7 +146,7 @@ export default {
         alert: 'If you navigate away, the TX hash information you entered will be lost and your order may not be confirmed. Please click the confirm payment or cancel button below to confirm or cancel your order.'
       },
       summaryStatus: {
-        0: 'TO BE STARTED!',
+        0: 'START SOON!',
         1: 'STARTED!',
         2: 'STARTED!',
         3: 'COMPLETED!',

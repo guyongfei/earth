@@ -181,11 +181,8 @@ export default class Details {
         case 0:
           $('.unstart-wrapper').show();
 
-          // let dateTime = result.startTime - result.currentTime;
-          let dateTime = 5;
-          let dateTime2 = 5;
-          // this.proStartCountdown(dateTime, result.freeGiveEnd / 1000);
-          this.proStartCountdown(dateTime, dateTime2);
+          let dateTime = (result.startTime - result.currentTime) / 1000;
+          this.proStartCountdown(dateTime, result.freeGiveEnd / 1000);
           break;
         case 1:
         case 2:
@@ -195,6 +192,7 @@ export default class Details {
             this.disStartCountdown(result.freeGiveEnd / 1000);
           } else {
             $('.discounts').hide();
+            $('.project-main').addClass('no-discounts');
           }
           break;
         default:
@@ -205,7 +203,7 @@ export default class Details {
       $loading.hide();
     })
     .catch(err => {
-      console.log(err);
+      $loading.hide();
     });
 
   }
