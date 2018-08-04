@@ -65,6 +65,7 @@
       height: 25px;
       line-height: 25px;
       color: #ffffff;
+      font-size: 0;
       background: #019AC9;
       vertical-align: middle;
     }
@@ -76,6 +77,10 @@
       height: 13px;
       background: url('../../images/bases/icon_tg.png') no-repeat;
       background-size: cover;
+    }
+
+    .tg-text {
+      font-size: 14px;
     }
   }
 
@@ -314,9 +319,9 @@
     }
 
     .project-start {
-      margin-top: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 16px;
       color: #BCBCBB;
+      text-align: center;
     }
 
     button {
@@ -340,6 +345,7 @@
       .collect-item {
         margin-bottom: 10px;
         @include fc(18px, #000000);
+        text-align: center;
       }
     }
   }
