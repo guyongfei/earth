@@ -82,7 +82,8 @@ export default {
         current: 'The token price',
         btnText: 'Register & Buy tokens now',
         saled: 'Raised',
-        end:  'Number of raises'
+        end:  'Number of raises',
+        start: 'Start in'
       },
       wallet: {
         name: 'Wallet Address',

@@ -76,7 +76,7 @@ export default class Details {
         proMainTemp = `
           ${commonTemp}
           <div class="unstart-wrapper" style="display:none;">
-            <div class="project-start">${result.projectToken} ICO Starts in</div>
+            <div class="project-start">${result.projectToken} ICO ${$.t('detail.start')}</div>
             <div class="project-countdown-wrapper clearfix" id="project-countdown"></div>
           </div>
           <div class="start-wrapper" style="display:none;">
