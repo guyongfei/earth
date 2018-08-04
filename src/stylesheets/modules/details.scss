@@ -7,7 +7,7 @@
 @import "../components/countdown.scss";
 
 .color-gray {
-  color: #a9a9a9;
+  color: #BCBCBB
 }
 
 .align-center {
@@ -36,8 +36,7 @@
 .details-wrapper {
   padding-top: 50px;
   padding-bottom: 60px;
-  // min-height: 100%;
-  height: 100%;
+  min-height: 100%;
   background-image: url('../../images/bases/top_lf_bg.png'), url('../../images/bases/btm_rt_bg.png');
   background-repeat: no-repeat, no-repeat;
   background-size: 377px 316px, 377px 316px;
@@ -296,16 +295,16 @@
     }
 
     .project-status {
-      padding-bottom: 16px;
+      padding-bottom: 12px;
       @include fc(30px, #333333);
       line-height: 1;
       text-align: center;
     }
 
     .discounts {
-      margin-bottom: 40px;
+      margin-bottom: 36px;
       .discounts-txt {
-        margin-bottom: 16px;
+        margin-bottom: 22px;
         @include fc(14px, #000000);
         text-align: center;
       }
@@ -335,7 +334,7 @@
     }
 
     button {
-      margin: 36px auto 0;
+      margin: 38px auto 0;
       display: block;
       width: 230px;
       height: 40px;

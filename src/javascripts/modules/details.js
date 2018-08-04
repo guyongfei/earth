@@ -57,6 +57,7 @@ export default class Details {
       let that = this;
       this.gid = result.projectGid;
       
+      result.projectStatus = 0;
       // 根据status，显示不同的内容
       commonTemp = `
         <h2 class="project-status">${method.checkStatus(result.projectStatus)}</h2>
@@ -95,7 +96,7 @@ export default class Details {
         case 4:
           proMainTemp = `
             ${commonTemp}
-            <p class="align-center">${$.t('detail.end')}</p>
+            <p class="color-gray align-center">${$.t('detail.end')}</p>
             <div class="collect-total">
               <div class="collect-item">
                 ${method.thousandsFormatters(result.soldAmount)} ETH
