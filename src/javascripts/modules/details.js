@@ -172,7 +172,7 @@ export default class Details {
       
       if (result.soldAmount != 0) {
         progressLen > 24 && $('.circle-outer').css({ 'marginLeft': '-24px' });
-        $('.progress-bar').css({ 'width': `${progressLen}px`, 'right': `${progressLen}px` });
+        $('.progress-bar').css({ 'width': `${progressLen}px` });
         $('.circle-outer').css({ 'left': `${progressLen}px` });
       }
 
