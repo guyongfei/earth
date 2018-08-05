@@ -54,9 +54,9 @@ export default class Details {
     .then(({ success, data, message }) => {
       let result = data.defaultProject;
       let proMainTemp, commonTemp, proHeadTemp, proBodyTemp, proFootTemp, getTokenAmount = null;
-      let that = this;
+
       this.gid = result.projectGid;
-      
+
       // 根据status，显示不同的内容
       commonTemp = `
         <h2 class="project-status">${method.checkStatus(result.projectStatus)}</h2>
@@ -184,7 +184,7 @@ export default class Details {
           $('.unstart-wrapper').show();
 
           let dateTime = (result.startTime - result.currentTime) / 1000;
-          this.proStartCountdown(dateTime, result.freeGiveEnd / 1000);
+          this.proStartCountdown(dateTime);
           break;
         case 1:
         case 2:
@@ -298,19 +298,17 @@ export default class Details {
   }
 
   // project start countdown
-  proStartCountdown (date1, date2) {
+  proStartCountdown (date) {
     let lang = method.getCookie('witshare.i18n.language');
     let type = lang === 'cn' ? 'zh-CN' : ''; 
 
     $.countdown.setDefaults($.countdown.regionalOptions[type]);
     $('#project-countdown').countdown({
-      until: date1,
+      until: date,
       padZeroes: true,
       format: 'dHMS',
       onExpiry: () => {
-        $('.unstart-wrapper').hide();
-        $('.start-wrapper').show();
-        this.disStartCountdown(date2);
+        this.renderProject('start');
       }
     });
   }
@@ -326,32 +324,48 @@ export default class Details {
       padZeroes: true,
       format: 'dHMS',
       onExpiry: () => {
-        $('.discounts').hide();
-        $('.project-main').removeClass('is-discounts');
-        this.renderProject();
+        this.renderProject('discount');
       }
     });
   }
 
   // 项目开始后，局部刷新
-  renderProject () {
+  renderProject (type) {
     getIndex()
     .then(({ success, data, message }) => {
       let result = data.defaultProject;
       let getTokenAmount = '';
+
+      $('.project-status').text(method.checkStatus(result.projectStatus));
       switch (result.projectStatus) {
         case 0:
+          $('.unstart-wrapper').show();
+          $('.start-wrapper').hide();
           break;
         case 1:
         case 2:
-          if (result.freeGiveEnd > 0) {
-            getTokenAmount = parseInt(result.priceRate * (1 + result.freeGiveRate));
+
+          if (type == 'start') {
+            // 当前时间大于开始时间
+            if (result.currentTime > result.startTime) {
+              $('.unstart-wrapper').hide();
+              $('.start-wrapper').show();
+              this.disStartCountdown(result.freeGiveEnd / 1000);
+            }
           } else {
-            getTokenAmount = result.priceRate;
-          }
-          $('.project-main').removeClass('is-discounts').addClass('no-discounts');
-          $('.token-rate').text(`1 ETH : ${method.thousandsFormatters(getTokenAmount)} ${result.projectToken}`);
-          $('.eth-raised-amount').text(method.thousandsFormatters(result.soldAmount));
+            // 优惠剩余时间大于0
+            if (result.freeGiveEnd > 0) {
+              getTokenAmount = parseInt(result.priceRate * (1 + result.freeGiveRate));
+              $('.project-main').removeClass('no-discounts').addClass('is-discounts');
+            } else {
+              getTokenAmount = result.priceRate;
+              $('.project-main').removeClass('is-discounts').addClass('no-discounts');
+            }
+
+            $('.discounts').hide();
+            $('.token-rate').text(`1 ETH : ${method.thousandsFormatters(getTokenAmount)} ${result.projectToken}`);
+            $('.eth-raised-amount').text(method.thousandsFormatters(result.soldAmount));
+          }          
           break;
         case 3:
         case 4:
